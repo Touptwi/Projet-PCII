@@ -6,9 +6,8 @@ import Modele.Etat;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
-public class Affichage extends JPanel 
+public class Affichage extends JPanel
 {
 
     private final Etat etat;
@@ -33,8 +32,6 @@ public class Affichage extends JPanel
     @Override
     public void paint(Graphics g) 
     {
-    	Entitee[][] grille;
-    	
         super.paint(g);
         for(int i = 0; i <= 10; i++) 
         {
