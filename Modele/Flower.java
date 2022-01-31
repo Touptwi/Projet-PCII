@@ -2,24 +2,32 @@ package Modele;
 
 import java.awt.*;
 
-public class Flower extends Thread {
-
+public class Flower extends Thread 
+{
     private int durability = 10;
     private Color color = Color.red;
 
-    public Flower() {
+    public Flower() 
+    {
+    	
     }
 
-    public void run() {
-
-        while(durability>0) {
+    public void run() 
+    {
+        while(durability > 0) 
+        {
             durability--;
-            if(durability<5 && color == Color.red) {
+            if(durability < 5 && color == Color.red) 
+            {
                 color = Color.orange;
-            } else if (durability<3 && color == Color.orange){
+            } 
+            else if (durability<3 && color == Color.orange)
+            {
                 color = Color.yellow;
             }
-            try { Thread.sleep(100); } catch (Exception e) { e.printStackTrace(); }
+            
+            try { Thread.sleep(100); } 
+            catch (Exception e) { e.printStackTrace(); }
         }
     }
 
