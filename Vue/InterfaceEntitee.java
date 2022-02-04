@@ -2,6 +2,10 @@ package Vue;
 
 import javax.swing.JFrame;
 
+/** Cette interface correspond aux interfaces graphiques a afficher 
+ * a droite du terrain, correspondant a l'entitee selectionee.
+ * Elle se traduit par un simple Component (JFrame) que l'on ajoutera 
+ * simplement a l'affichage (ou supprimera) quand on selectionne (ou deselectionne) une Entitee. */
 public interface InterfaceEntitee
 {
 	public JFrame getJFrame();
