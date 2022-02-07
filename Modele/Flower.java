@@ -2,7 +2,7 @@ package Modele;
 
 import java.awt.*;
 
-public class Flower extends Thread 
+public class Flower extends Entitee implements Runnable
 {
     private int durability = 10;
     private Color color = Color.red;
@@ -14,7 +14,7 @@ public class Flower extends Thread
 
     public void run() 
     {
-        while(durability > 0) 
+        while(durability > 0)
         {
             durability--;
             if(durability < 5 && color == Color.red) 
