@@ -33,7 +33,7 @@ public class Flower extends Entitee implements Runnable
             try { Thread.sleep(2000); }
             catch (Exception e) { e.printStackTrace(); }
         }
-        color = null;
+        affichable = null;
         System.out.printf("JE SUIS MORT ;-;\n");
     }
 

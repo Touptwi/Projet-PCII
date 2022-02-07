@@ -142,23 +142,25 @@ public class Grille {
     }
 
     /**
-     * rend l'entitée situé sur la case de coordonnée X Y
+     * rend l'entitée situé sur la case de coordonnée X Y ssi elle est affichable
      * @param x la coord X
      * @param y la coord Y
      * @return rend L'entitée située sur la case et null si il n'y a rien à ces coordonnées
      */
     public Entitee getEntitee(int x, int y)
     {
+        if (grille[x][y] != null && grille[x][y].getSprite() == null) { grille[x][y] = null; }
         return grille[x][y];
     }
     
-    /** Renvoie l'entitee situee a la case donee
+    /** Renvoie l'entitee situee a la case donee ssi elle est affichable
      * @param from : Case contenant l'entitee
      * @return Entitee a la case donee
      */
     public Entitee getEntitee(Point from)
     {
-    	return grille[from.x][from.y];
+        if (grille[from.x][from.y] != null && grille[from.x][from.y].getSprite() == null) { grille[from.x][from.y] = null; }
+        return grille[from.x][from.y];
     }
 
     /**
