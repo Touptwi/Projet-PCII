@@ -5,14 +5,14 @@ import java.awt.Point;
 public class Deplacement extends Thread
 {
 	protected Entitee e;
+	protected Grille grille;
 	protected Point from;
 	protected Point to;
-	protected Grille grille;
-	
 	
 	public 
-	Deplacement(Entitee _e, Point _from, Point _to)
+	Deplacement(Entitee _e, Point _from, Point _to, Grille _grille)
 	{
+		this.grille = _grille;
 		this.e = _e;
 		this.from = _from;
 		this.to = _to;

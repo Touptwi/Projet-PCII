@@ -20,7 +20,7 @@ public class Etat {
         hauteur = h;
         grille = new Grille(this, largeur_grille, hauteur_grille);
         Flower f = new Flower(this);
-        grille.setCase(0,0,f);
+        grille.setCase(0, 0, f);
         new Thread(f).start();
     }
 
@@ -50,7 +50,8 @@ public class Etat {
     		
     		case DEPLACEMENT: 
 			{
-				(new Deplacement(this.grille.getSelectedEntitee(), this.grille.getSelectionPosition(), new Point(x,y))).start(); 
+				(new Deplacement(this.grille.getSelectedEntitee(), this.grille.getSelectionPosition(), new Point(x,y), grille)).start(); 
+				this.mode_courant = Modes.SELECTION;
 			} break;
     	}
     }

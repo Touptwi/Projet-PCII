@@ -18,10 +18,12 @@ public class IE_Fleur implements InterfaceEntitee
 	{
 		this.fleur = _fleur;
 		this.interface_graphique = new JPanel();
-		JButton move_button = new JButton();
+		JButton move_button = new JButton("DEPLACEMENT");
 		MoveListener move_action = new MoveListener(_etat);
 		move_button.addActionListener(move_action);
 		move_button.setBounds(new Rectangle(0, 0, 100, 100));
+		move_button.setVisible(true);
+		this.interface_graphique.setBounds(new Rectangle(100*_etat.getLargeurGrille(), 0, 1400, 100*_etat.getHauteurGrille()));
 		this.interface_graphique.add(move_button);
 	}
 
