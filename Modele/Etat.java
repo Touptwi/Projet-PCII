@@ -1,7 +1,12 @@
 package Modele;
 
+import java.awt.Point;
+
 public class Etat {
 
+	public enum Modes { SELECTION, DEPLACEMENT }
+	
+	Modes mode_courant = Modes.SELECTION;
     private final int largeur;
     private final int hauteur;
     
@@ -30,6 +35,25 @@ public class Etat {
     public int getLargeurGrille() { return largeur_grille; }
     public int getHauteurGrille() { return hauteur_grille; }
     public Grille getGrille() { return this.grille; }
+    
+    public void setMode(Modes mode) { this.mode_courant = mode; }
+    
+    public void
+    click(int x, int y)
+    {
+    	switch(mode_courant)
+    	{
+    		case SELECTION: 
+    		{
+    			this.grille.selectionne(x, y); 
+    		} break;
+    		
+    		case DEPLACEMENT: 
+			{
+				(new Deplacement(this.grille.getSelectedEntitee(), this.grille.getSelectionPosition(), new Point(x,y))).start(); 
+			} break;
+    	}
+    }
     
     
     public Entitee getEntitee(int i, int j)

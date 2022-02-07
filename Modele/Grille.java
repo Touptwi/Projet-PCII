@@ -100,6 +100,11 @@ public class Grille {
     {
         return selectionY;
     }
+    
+    public Point getSelectionPosition()
+    {
+    	return new Point(selectionX, selectionY);
+    }
 
     /**
      * change la valeur d'une case du tableau
@@ -132,6 +137,8 @@ public class Grille {
         selectionX = x;
         selectionY = y;
         //System.out.print(String.format("x,y : %d,%d", x, y)); //debug
+        
+        
     }
 
     /**

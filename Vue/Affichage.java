@@ -40,9 +40,10 @@ public class Affichage extends JPanel
      * @param Entitee e : Entitee a afficher
      * */
     public void 
-    selectionnerEntitee(Entitee e)
+    selectionnerEntitee()
     {
-    	this.add( e.getInterfaceEntitee().getJFrame() );
+    	Entitee selected = etat.getGrille().getSelectedEntitee();
+    	if( selected != null) this.add(selected.getInterfaceEntitee().getJFrame());
     }
     
     /** Enleve l'affichage de la derniere entitee
@@ -53,7 +54,9 @@ public class Affichage extends JPanel
     public void 
     deselectionnerEntitee()
     {
-    	this.remove(this.getComponent(this.getComponentCount()-1));
+    	Entitee selected = etat.getGrille().getSelectedEntitee();
+    	if( selected != null) this.remove(selected.getInterfaceEntitee().getJFrame());
+    	
     }
     
     /** Affichage a l'ecran, divise en plusieurs sections :
