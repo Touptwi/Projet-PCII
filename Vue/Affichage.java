@@ -33,6 +33,8 @@ public class Affichage extends JPanel
         fenetre.setVisible(true);
     }
     
+    public int getTailleCase() { return this.taille_case; }
+    
     /** Ajoute l'affichage de l'entitee donee
      * @note Ne pas appeler cette methode quand elle a deja etee appelee et que la deselection n'est pas faite.
      * @param Entitee e : Entitee a afficher

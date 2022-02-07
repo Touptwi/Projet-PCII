@@ -131,6 +131,7 @@ public class Grille {
     {
         selectionX = x;
         selectionY = y;
+        //System.out.print(String.format("x,y : %d,%d", x, y)); //debug
     }
 
     /**

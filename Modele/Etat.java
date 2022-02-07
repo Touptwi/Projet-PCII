@@ -26,7 +26,9 @@ public class Etat {
     
     public int getLargeurGrille() { return largeur_grille; }
     public int getHauteurGrille() { return hauteur_grille; }
-
+    public Grille getGrille() { return this.grille; }
+    
+    
     public Entitee getEntitee(int i, int j)
     {
         return grille.getEntitee(i,j);
