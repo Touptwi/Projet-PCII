@@ -1,0 +1,36 @@
+@startuml{
+
+rectangle entite[
+    entite
+]
+
+rectangle grille[
+    grille
+]
+
+rectangle aff_entite [
+    affichage de l'entite
+]
+
+rectangle i_entite [
+    interface  de l'entite
+]
+
+rectangle aff_grille[
+    affichage général
+]
+
+
+
+
+
+grille --> aff_grille
+entite --> grille
+entite --> aff_entite
+aff_entite --> aff_grille
+entite <-- i_entite
+i_entite --> aff_grille
+i_entite --> grille
+
+@enduml
+}
