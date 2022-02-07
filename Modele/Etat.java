@@ -19,7 +19,7 @@ public class Etat {
         largeur = l;
         hauteur = h;
         grille = new Grille(this, largeur_grille, hauteur_grille);
-        Flower f = new Flower();
+        Flower f = new Flower(this);
         grille.setCase(0,0,f);
         new Thread(f).start();
     }

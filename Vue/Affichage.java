@@ -14,6 +14,8 @@ public class Affichage extends JPanel
 	private Etat etat;
     final int taille_case = 100;
     
+    JPanel interface_entitee_courante = null;
+    
     /** Initialise une fenetre qui se rafraichi, avec un controller et un etat qu'on utilisera comme modele a afficher.
      * @param Etat e : Etat sur lequel se baser pour l'affichage.
      */
@@ -35,28 +37,18 @@ public class Affichage extends JPanel
     
     public int getTailleCase() { return this.taille_case; }
     
-    /** Ajoute l'affichage de l'entitee donee
-     * @note Ne pas appeler cette methode quand elle a deja etee appelee et que la deselection n'est pas faite.
-     * @param Entitee e : Entitee a afficher
-     * */
+    /** Ajoute l'affichage de l'entitee selectionnee */
     public void 
     selectionnerEntitee()
     {
+    	if(interface_entitee_courante != null) this.remove(interface_entitee_courante);
     	Entitee selected = etat.getGrille().getSelectedEntitee();
-    	if( selected != null) this.add(selected.getInterfaceEntitee().getJFrame());
-    }
-    
-    /** Enleve l'affichage de la derniere entitee
-     * @note ATTENTION : APPELER CETTE FONCTION SEULEMENT SI UNE ENTITEE EST SELECTIONEE
-     * Possible changement : donner une entitee dont on prendra l'affichage que l'on supprime
-     * -> Besoin d'avoir l'entitee selectionnee.
-     * */
-    public void 
-    deselectionnerEntitee()
-    {
-    	Entitee selected = etat.getGrille().getSelectedEntitee();
-    	if( selected != null) this.remove(selected.getInterfaceEntitee().getJFrame());
-    	
+    	if(selected == null) interface_entitee_courante = null;
+    	else
+    	{
+    		interface_entitee_courante = selected.getInterfaceEntitee().getJPanel();
+    		this.add(selected.getInterfaceEntitee().getJPanel());
+		}
     }
     
     /** Affichage a l'ecran, divise en plusieurs sections :
@@ -67,7 +59,8 @@ public class Affichage extends JPanel
     @Override
     public void paint(Graphics g) 
     {
-        super.paint(g);
+    	super.paint(g);
+    	
         for(int i = 0; i <= 10; i++) 
         {
             g.drawLine( 0, taille_case*i, taille_case*10, taille_case*i );

@@ -1,5 +1,6 @@
 package Modele;
 
+import Vue.IE_Fleur;
 import Vue.VueFlower;
 
 import java.awt.*;
@@ -9,8 +10,9 @@ public class Flower extends Entitee implements Runnable
     private int durability = 10;
     private Color color = Color.red;
 
-    public Flower() 
+    public Flower(Etat _e) 
     {
+    	this.interface_e = new IE_Fleur(_e, this);
     	affichable = new VueFlower(this);
     }
 

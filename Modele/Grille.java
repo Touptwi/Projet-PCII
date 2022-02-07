@@ -138,7 +138,6 @@ public class Grille {
         selectionY = y;
         //System.out.print(String.format("x,y : %d,%d", x, y)); //debug
         
-        
     }
 
     /**

@@ -25,7 +25,10 @@ public class Control implements MouseListener {
     	
     	if(mouseX > 0 && mouseX < etat.getLargeurGrille()*affichage.getTailleCase()
     		&& mouseY > 0 && mouseY < etat.getHauteurGrille()*affichage.getTailleCase())
+    	{
     		etat.click(mouseX/affichage.getTailleCase(), mouseY/affichage.getTailleCase());
+    		affichage.selectionnerEntitee();
+    	}
     }
     
     @Override
