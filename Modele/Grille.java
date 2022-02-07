@@ -1,5 +1,7 @@
 package Modele;
 
+import java.awt.Point;
+
 public class Grille {
 
     /// lien objets externe ///
@@ -67,6 +69,15 @@ public class Grille {
     {
         return grille[x][y] != null;
     }
+    
+    /** Verifie si une case donnee est occupee par une entitee
+     * @param p : placement de la case
+     * @return vrai si une entitee est placee sur la case donnee, faux sinon
+     */
+    public boolean estOccupee(Point p)
+    {
+    	return grille[p.x][p.y] != null;
+    }
 
 /////// guetters et setters ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -100,6 +111,16 @@ public class Grille {
     {
         grille[x][y] = val;
     }
+    
+    
+    /** Place une entitee dans une case
+     * @param to : case ou placer l'entitee
+     * @param val : Entitee a placer 
+     */
+    public void setCase(Point to, Entitee val)
+    {
+    	grille[to.x][to.y] = val;
+    }
 
     /**
      * va marque la case de coordonnée x y comme selectionnée
@@ -121,6 +142,15 @@ public class Grille {
     public Entitee getEntitee(int x, int y)
     {
         return grille[x][y];
+    }
+    
+    /** Renvoie l'entitee situee a la case donee
+     * @param from : Case contenant l'entitee
+     * @return Entitee a la case donee
+     */
+    public Entitee getEntitee(Point from)
+    {
+    	return grille[from.x][from.y];
     }
 
     /**
