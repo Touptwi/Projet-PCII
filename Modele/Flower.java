@@ -19,20 +19,21 @@ public class Flower extends Entitee implements Runnable
         while(durability > 0)
         {
             durability--;
-            if(durability < 5 && color == Color.red)
+            if(durability < 7 && color == Color.red)
             {
                 color = Color.orange;
                 System.out.printf("JE SUIS ORANGE !\n");
             } 
-            else if (durability<3 && color == Color.orange)
+            else if (durability<4 && color == Color.orange)
             {
                 color = Color.yellow;
                 System.out.printf("JE SUIS JAUNE !!\n");
             }
             
-            try { Thread.sleep(1000); }
+            try { Thread.sleep(2000); }
             catch (Exception e) { e.printStackTrace(); }
         }
+        color = null;
         System.out.printf("JE SUIS MORT ;-;\n");
     }
 

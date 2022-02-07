@@ -1,5 +1,6 @@
 import Modele.Etat;
 import Vue.Affichage;
+import Vue.ReAffichage;
 
 public class Main {
 
@@ -11,5 +12,6 @@ public class Main {
     {
         Etat etat = new Etat(largeur, hauteur);
         Affichage affichage = new Affichage(etat);
+        new ReAffichage(affichage).start();
     }
 }
