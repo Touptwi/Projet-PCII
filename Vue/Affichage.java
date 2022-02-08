@@ -7,14 +7,14 @@ import Modele.Etat;
 import javax.swing.*;
 import java.awt.*;
 
-public class Affichage extends JPanel
+public class Affichage extends JSplitPane
 {
     /** Java est maintenant tres content. */
 	private static final long serialVersionUID = 1L;
 	private Etat etat;
-    final int taille_case = 100;
+    private final int taille_case = 100;
     
-    JPanel interface_entitee_courante = null;
+    private JPanel interface_entitee_courante = null;
     
     /** Initialise une fenetre qui se rafraichi, avec un controller et un etat qu'on utilisera comme modele a afficher.
      * @param Etat e : Etat sur lequel se baser pour l'affichage.
@@ -29,6 +29,10 @@ public class Affichage extends JPanel
         this.setPreferredSize(new Dimension(etat.getLargeur() , etat.getHauteur()));
         this.addMouseListener(new Control(etat, this));
         this.setFocusable(true);
+
+        this.setLeftComponent(new JPanel());
+        this.setRightComponent(interface_entitee_courante);
+        this.setDividerSize(0);
         
         fenetre.add(this);
         fenetre.pack();
@@ -47,8 +51,32 @@ public class Affichage extends JPanel
     	else
     	{
     		interface_entitee_courante = selected.getInterfaceEntitee().getJPanel();
-    		this.add(selected.getInterfaceEntitee().getJPanel());
+            this.setDividerLocation(1/1.4);
+            this.setRightComponent(interface_entitee_courante);
 		}
+    }
+
+    private void drawGrille(Graphics g){
+        for(int i = 0; i <= etat.getLargeurGrille(); i++) {
+            g.drawLine(0, taille_case*i, taille_case*etat.getLargeurGrille(), taille_case * i);
+        }
+        for(int i = 0; i <= etat.getHauteurGrille(); i++) {
+            g.drawLine( taille_case*i, 0, taille_case*i, taille_case*etat.getHauteurGrille());
+        }
+    }
+
+    private void drawEntitee(Graphics g) {
+        for(int j = 0; j < etat.getHauteurGrille(); ++j)
+        {
+            for(int i = 0; i < etat.getLargeurGrille(); ++i)
+            {
+                Entitee entitee = etat.getEntitee(i, j);
+                if(entitee == null) continue;
+                ((Graphics2D) g).translate(i*taille_case, j*taille_case);
+                entitee.getSprite().draw(g);
+                ((Graphics2D) g).translate(-i*taille_case, -j*taille_case);
+            }
+        }
     }
     
     /** Affichage a l'ecran, divise en plusieurs sections :
@@ -60,26 +88,8 @@ public class Affichage extends JPanel
     public void paint(Graphics g) 
     {
     	super.paint(g);
-    	
-        for(int i = 0; i <= 10; i++) 
-        {
-            g.drawLine( 0, taille_case*i, taille_case*10, taille_case*i );
-            g.drawLine( taille_case*i, 0, taille_case*i, taille_case*10);
-        }
-        
-        for(int j = 0; j < etat.getHauteurGrille(); ++j)
-        {
-        	for(int i = 0; i < etat.getLargeurGrille(); ++i)
-        	{
-        		Entitee entitee = etat.getEntitee(i, j);
-        		if(entitee == null) continue; 
-        		((Graphics2D) g).translate(i*taille_case, j*taille_case);
-        		entitee.getSprite().draw(g);
-        		((Graphics2D) g).translate(-i*taille_case, -j*taille_case);
-        	}
-        }
-        
-//        g.setColor(new Color(250, 0, 0, 255));
-//        g.fillOval(10,10,80,80);
+
+        drawGrille(g);
+        drawEntitee(g);
     }
 }
