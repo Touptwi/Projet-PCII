@@ -12,8 +12,8 @@ public class VueFlower implements Affichable {
         flower = f;
     }
 
-    public void draw(Graphics g){
+    public void draw(Graphics g, Affichage a){
         g.setColor(flower.getColor());
-        g.fillOval(10,10, 80, 80);
+        g.fillOval(a.fitX(10),a.fitY(10), a.fitX(80), a.fitY(80));
     }
 }

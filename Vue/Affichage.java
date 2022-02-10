@@ -56,12 +56,18 @@ public class Affichage extends JSplitPane
 		}
     }
 
+    public int fitX(int x) { return (int)((double)x/etat.getLargeur()*this.getWidth()); }
+
+    public int fitY(int y) {
+        return (int)((double)y/etat.getHauteur()*this.getHeight());
+    }
+
     private void drawGrille(Graphics g){
         for(int i = 0; i <= etat.getLargeurGrille(); i++) {
-            g.drawLine(0, taille_case*i, taille_case*etat.getLargeurGrille(), taille_case * i);
+            g.drawLine(0, fitY(taille_case*i), fitX(taille_case*etat.getLargeurGrille()), fitY(taille_case * i));
         }
         for(int i = 0; i <= etat.getHauteurGrille(); i++) {
-            g.drawLine( taille_case*i, 0, taille_case*i, taille_case*etat.getHauteurGrille());
+            g.drawLine( fitX(taille_case*i), 0, fitX(taille_case*i), fitY(taille_case*etat.getHauteurGrille()));
         }
     }
 
@@ -72,9 +78,9 @@ public class Affichage extends JSplitPane
             {
                 Entitee entitee = etat.getEntitee(i, j);
                 if(entitee == null) continue;
-                ((Graphics2D) g).translate(i*taille_case, j*taille_case);
-                entitee.getSprite().draw(g);
-                ((Graphics2D) g).translate(-i*taille_case, -j*taille_case);
+                ((Graphics2D) g).translate(fitX(i*taille_case), fitY(j*taille_case));
+                entitee.getSprite().draw(g, this);
+                ((Graphics2D) g).translate(fitX(-i*taille_case), fitY(-j*taille_case));
             }
         }
     }

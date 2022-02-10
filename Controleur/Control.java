@@ -23,10 +23,10 @@ public class Control implements MouseListener {
     	int mouseX = e.getX();
     	int mouseY = e.getY();
     	
-    	if(mouseX > 0 && mouseX < etat.getLargeurGrille()*affichage.getTailleCase()
-    		&& mouseY > 0 && mouseY < etat.getHauteurGrille()*affichage.getTailleCase())
+    	if(mouseX > 0 && mouseX < affichage.fitX(etat.getLargeurGrille()*affichage.getTailleCase())
+    		&& mouseY > 0 && mouseY < affichage.fitY(etat.getHauteurGrille()*affichage.getTailleCase()))
     	{
-    		etat.click(mouseX/affichage.getTailleCase(), mouseY/affichage.getTailleCase());
+    		etat.click(mouseX/affichage.fitX(affichage.getTailleCase()), mouseY/affichage.fitY(affichage.getTailleCase()));
     		affichage.selectionnerEntitee();
     	}
     }
