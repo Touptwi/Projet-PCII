@@ -12,5 +12,5 @@ public interface Affichable
 	 * @note : Cet affichage sera fait en 0 0 donc il faut bien penser a translatter cet affichage.
 	 * @param g : Graphic sur lequel afficher
 	 * */
-	public void draw(Graphics g);
+	public void draw(Graphics g, Affichage a);
 }

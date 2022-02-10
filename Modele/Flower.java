@@ -13,7 +13,7 @@ public class Flower extends Entitee implements Runnable
     public Flower(Etat _e) 
     {
     	this.interface_e = new IE_Fleur(_e, this);
-    	affichable = new VueFlower(this);
+    	this.affichable = new VueFlower(this);
     }
 
     public void run() 
@@ -24,19 +24,16 @@ public class Flower extends Entitee implements Runnable
             if(durability < 7 && color == Color.red)
             {
                 color = Color.orange;
-                System.out.printf("JE SUIS ORANGE !\n");
             } 
             else if (durability<4 && color == Color.orange)
             {
                 color = Color.yellow;
-                System.out.printf("JE SUIS JAUNE !!\n");
             }
             
             try { Thread.sleep(2000); }
             catch (Exception e) { e.printStackTrace(); }
         }
         affichable = null;
-        System.out.printf("JE SUIS MORT ;-;\n");
     }
 
     public Color getColor() { return color; }
