@@ -32,4 +32,8 @@ public class IE_Fleur implements InterfaceEntitee
 	{
 		return this.interface_graphique;
 	}
+
+	@Override
+	public void mise_a_jour()
+	{}
 }

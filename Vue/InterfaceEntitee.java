@@ -9,4 +9,9 @@ import javax.swing.JPanel;
 public interface InterfaceEntitee
 {
 	public JPanel getJPanel();
+
+	/**
+	 * a appeller pour demander la mise à jour de l'interface
+	 */
+	public void mise_a_jour();
 }

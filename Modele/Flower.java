@@ -1,8 +1,10 @@
 package Modele;
 
 import Vue.IE_Fleur;
+import Vue.IE_Fleur2;
 import Vue.VueFlower;
 
+import javax.swing.event.ChangeEvent;
 import java.awt.*;
 
 public class Flower extends Entitee implements Runnable
@@ -12,7 +14,7 @@ public class Flower extends Entitee implements Runnable
 
     public Flower(Etat _e) 
     {
-    	this.interface_e = new IE_Fleur(_e, this);
+        this.interface_e = new IE_Fleur2(_e, this);
     	this.affichable = new VueFlower(this);
     }
 
@@ -21,6 +23,7 @@ public class Flower extends Entitee implements Runnable
         while(durability > 0)
         {
             durability--;
+            interface_e.mise_a_jour();
             if(durability < 7 && color == Color.red)
             {
                 color = Color.orange;
@@ -39,4 +42,5 @@ public class Flower extends Entitee implements Runnable
     public Color getColor() { return color; }
 
     public int getDurability() { return durability; }
+
 }
