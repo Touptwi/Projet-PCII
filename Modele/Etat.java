@@ -20,7 +20,9 @@ public class Etat {
         hauteur = h;
         grille = new Grille(this, largeur_grille, hauteur_grille);
         Flower f = new Flower(this);
+        Gardener g = new Gardener(this);
         grille.setCase(0, 0, f);
+        grille.setCase(1,0,g);
         new Thread(f).start();
     }
 
