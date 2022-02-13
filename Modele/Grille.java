@@ -1,6 +1,7 @@
 package Modele;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 public class Grille {
 
@@ -170,5 +171,19 @@ public class Grille {
     {
         return getEntitee(selectionX, selectionY);
     }
-    
+
+    public void create_batiment(Batiment bat)
+    {
+        Point origine = new Point(selectionX,selectionY);
+        ArrayList<Point> a_construire = bat.getStructure();
+        for (int i = 0; i< a_construire.size(); i++)
+        {
+            Point point = new Point(origine.x + a_construire.get(i).x, origine.y + a_construire.get(i).y);
+            if (((point.x < 0 || point.y < 0) && (point.x > largeur || point.y > longueur)) || estOccupee(point) )
+            {
+                return;
+            }
+            setCase(point, bat);
+        }
+    }
 }

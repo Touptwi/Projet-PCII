@@ -4,6 +4,7 @@ import Vue.InterfaceEntitee;
 
 public abstract class Entitee 
 {
+
 	public Affichable affichable;
 	public InterfaceEntitee interface_e;
 	
