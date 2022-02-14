@@ -5,17 +5,16 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Modele.Etat;
-import Modele.Flower;
-import Modele.Gardener;
+import Modele.Dwarf;
 import Vue.ButtonListeners.MoveListener;
 
 public class IE_Fleur implements InterfaceEntitee
 {
-	Gardener fleur;
+	Dwarf fleur;
 	JPanel interface_graphique;
 	
 	public 
-	IE_Fleur(Etat _etat, Gardener _fleur)
+	IE_Fleur(Etat _etat, Dwarf _fleur)
 	{
 		this.fleur = _fleur;
 		this.interface_graphique = new JPanel();
