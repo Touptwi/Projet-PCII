@@ -21,7 +21,6 @@ public class RecupererListener implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		// TODO Auto-generated method stub
 		etat.getGrille().recupererRessources(dwarf);
 	}
 

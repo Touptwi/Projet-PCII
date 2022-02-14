@@ -1,6 +1,5 @@
 package Modele;
 
-import Vue.Affichable;
 import Vue.IE_Ressource;
 import Vue.VueRessource;
 
@@ -9,8 +8,6 @@ public class Ressource extends Entitee
 	public enum Type { OR, RUBIS, EMERAUDE, SAPHIR, COUNT }
 	private Type type = Type.OR;
 	private int quantitee = 0;
-	
-	
 	
 	public Ressource(Etat _e, int q, Type t) 
 	{ 
@@ -37,4 +34,17 @@ public class Ressource extends Entitee
 	
 	public void setType(Type t) { this.type = t; }
 	public void setQuantitee(int q) { this.quantitee = q; }
+	
+	@Override
+	public String 
+	toString()
+	{	
+		String ressource_type = "";
+		if(this.type == Type.OR) ressource_type = "or";
+		else if(this.type == Type.RUBIS) ressource_type = "rubis";
+		else if(this.type == Type.EMERAUDE) ressource_type = "emeraude";
+		else if(this.type == Type.SAPHIR) ressource_type = "saphir";
+		
+        return (ressource_type + " " + this.quantitee);
+	}
 }

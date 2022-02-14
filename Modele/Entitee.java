@@ -2,7 +2,7 @@ package Modele;
 import Vue.Affichable;
 import Vue.InterfaceEntitee;
 
-public abstract class Entitee 
+public abstract class Entitee
 {
 
 	public Affichable affichable;
