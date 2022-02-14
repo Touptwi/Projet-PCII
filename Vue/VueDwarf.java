@@ -18,7 +18,7 @@ public class VueDwarf implements Affichable
     public VueDwarf(Dwarf dwarf)
     {
         this.dwarf = dwarf;
-        try { img = ImageIO.read(new File("Images\\Dwarf.png"));}
+        try { img = ImageIO.read(new File("Images/Dwarf.png"));}
         catch (IOException E) { E.printStackTrace(); }
     }
 
