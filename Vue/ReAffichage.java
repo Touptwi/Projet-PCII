@@ -1,5 +1,8 @@
 package Vue;
 
+/**
+ * ce thread assure le réaffichage régulier de la fenetre
+ */
 public class ReAffichage extends Thread {
 
     Affichage affichage;

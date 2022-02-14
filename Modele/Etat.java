@@ -43,7 +43,12 @@ public class Etat {
     public Grille getGrille() { return this.grille; }
     
     public void setMode(Modes mode) { this.mode_courant = mode; }
-    
+
+    /**
+     * au clic va, en fonction du mode courant selectionner ou lancé le déplacement d'une entitée
+     * @param x la coordonnée x de la case cliqué
+     * @param y la coordonnée y de la case cliqué
+     */
     public void
     click(int x, int y)
     {
