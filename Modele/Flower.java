@@ -1,7 +1,7 @@
 package Modele;
 
-import Vue.IE_Fleur;
-import Vue.IE_Fleur2;
+import Vue.IE_Dwarf;
+import Vue.IE_Plante;
 import Vue.VueFlower;
 
 import javax.swing.event.ChangeEvent;
@@ -14,7 +14,7 @@ public class Flower extends Entitee implements Runnable
 
     public Flower(Etat _e) 
     {
-        this.interface_e = new IE_Fleur2(_e, this);
+        this.interface_e = new IE_Plante(_e, this);
     	this.affichable = new VueFlower(this);
     }
 

@@ -7,7 +7,7 @@ import Modele.Flower;
 import javax.swing.*;
 import java.awt.*;
 
-public class IE_Fleur2 implements InterfaceEntitee {
+public class IE_Plante implements InterfaceEntitee {
     private Flower flower;
     private JPanel interface_graphique_princ;
     private Canvas icone;
@@ -15,7 +15,7 @@ public class IE_Fleur2 implements InterfaceEntitee {
     private JProgressBar barre;
 
 
-    public IE_Fleur2(Etat _e, Flower f)
+    public IE_Plante(Etat _e, Flower f)
     {
         flower = f;
         interface_graphique_princ = new JPanel();

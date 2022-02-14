@@ -2,6 +2,8 @@ package Modele;
 
 import java.awt.Point;
 
+import Modele.Ressource.Type;
+
 public class Etat {
 
 	public enum Modes { SELECTION, DEPLACEMENT }
@@ -21,8 +23,10 @@ public class Etat {
         grille = new Grille(this, largeur_grille, hauteur_grille);
         Flower f = new Flower(this);
         Dwarf d = new Dwarf(this);
+        Ressource r = new Ressource(this, 5, Type.OR);
         grille.setCase(0, 0, f);
         grille.setCase(1,0,d);
+        grille.setCase(new Point(0, 1), r);
         new Thread(f).start();
     }
 

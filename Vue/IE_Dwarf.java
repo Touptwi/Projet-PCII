@@ -8,22 +8,28 @@ import Modele.Etat;
 import Modele.Dwarf;
 import Vue.ButtonListeners.MoveListener;
 
-public class IE_Fleur implements InterfaceEntitee
+public class IE_Dwarf implements InterfaceEntitee
 {
-	Dwarf fleur;
+	Dwarf dwarf;
 	JPanel interface_graphique;
 	
 	public 
-	IE_Fleur(Etat _etat, Dwarf _fleur)
+	IE_Dwarf(Etat _etat, Dwarf _dwarf)
 	{
-		this.fleur = _fleur;
+		this.dwarf = _dwarf;
 		this.interface_graphique = new JPanel();
+		
 		JButton move_button = new JButton("DEPLACEMENT");
 		MoveListener move_action = new MoveListener(_etat);
 		move_button.addActionListener(move_action);
 		move_button.setBounds(new Rectangle(0, 0, 100, 100));
 		move_button.setVisible(true);
-		this.interface_graphique.setBounds(new Rectangle(100*_etat.getLargeurGrille(), 0, 1400, 100*_etat.getHauteurGrille()));
+		
+		//"Recuperer"
+		
+		//"Livrer"
+		
+		
 		this.interface_graphique.add(move_button);
 	}
 

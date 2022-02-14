@@ -8,7 +8,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class VueDwarf implements Affichable {
+public class VueDwarf implements Affichable 
+{
 
     private final Dwarf dwarf;
 
