@@ -22,7 +22,7 @@ public class Affichage extends JSplitPane
     private JPanel interface_entitee_courante = null;
     
     /** Initialise une fenetre qui se rafraichi, avec un controller et un etat qu'on utilisera comme modele a afficher.
-     * @param Etat e : Etat sur lequel se baser pour l'affichage.
+     * @param e : Etat sur lequel se baser pour l'affichage.
      */
     public Affichage(Etat e) 
     {
@@ -46,7 +46,7 @@ public class Affichage extends JSplitPane
     
     public int getTailleCase() { return this.taille_case; }
     
-    /** Ajoute l'affichage de l'entitee selectionnee */
+    /** Ajoute l'affichage de l'entitee selectionnee dans la grille */
     public void 
     selectionnerEntitee()
     {
@@ -61,11 +61,22 @@ public class Affichage extends JSplitPane
 		}
     }
 
+    /**
+     * va adapter la coordonnée x transmise à la taille acutelle de la fenetre
+     * @param x la coordonnée initiale
+     * @return la coordonnée x adaptée
+     */
     public int fitX(int x) { return (int)((double)x/etat.getLargeur()*this.getWidth()); }
 
+    /**
+     * va adapter la coordonnée y  transmise à la taille acutelle de la fenetre
+     * @param y la coordonnée initiale
+     * @return la coordonnée x adaptée
+     */
     public int fitY(int y) {
         return (int)((double)y/etat.getHauteur()*this.getHeight());
     }
+
 
     private void drawGrille(Graphics g){
 
@@ -94,6 +105,7 @@ public class Affichage extends JSplitPane
         }
     }
 
+
     private void drawEntitee(Graphics g) {
         for(int j = 0; j < etat.getHauteurGrille(); ++j)
         {
@@ -111,7 +123,7 @@ public class Affichage extends JSplitPane
     /** Affichage a l'ecran, divise en plusieurs sections :
      * - Affichage du terrain (grille)
      * - Affichage des Entitees (points, sprites plus tard)
-     * @param Graphics g : Graphic sur lequel afficher.
+     * @param g : Graphic sur lequel afficher.
      */
     @Override
     public void paint(Graphics g) 

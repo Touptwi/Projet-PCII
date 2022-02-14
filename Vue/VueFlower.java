@@ -4,6 +4,10 @@ import Modele.Flower;
 
 import java.awt.*;
 
+
+/**
+ * interface liée aux fleur
+ */
 public class VueFlower implements Affichable {
 
     private final Flower flower;

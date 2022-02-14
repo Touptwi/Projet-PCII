@@ -21,8 +21,11 @@ public class IE_Plante implements InterfaceEntitee {
 
     public IE_Plante(Etat _e, Flower f)
     {
+        //recupération des variables utiles à l'interface
         flower = f;
         Durabilite_max = f.getDurability();
+
+        //création de la fenetre générale de l'interface
         interface_graphique_princ = new JPanel();
 
         //generation de l'icone
@@ -46,6 +49,9 @@ public class IE_Plante implements InterfaceEntitee {
     }
 
 
+    /**
+     * met a jour la barre de progression d'après l'avancée de la fleur
+     */
     @Override
     public void mise_a_jour()
     {

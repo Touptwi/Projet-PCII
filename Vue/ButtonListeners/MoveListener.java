@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import Modele.Etat;
 
+/**
+ * Listener lier au bouton "déplacement" de l'interface des entitées mobiles tel que le nain
+ */
 public class MoveListener implements ActionListener
 {
 	Etat etat;

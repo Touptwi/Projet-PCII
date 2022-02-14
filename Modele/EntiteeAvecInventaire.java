@@ -7,7 +7,7 @@ public abstract class EntiteeAvecInventaire extends Entitee
 	private Ressource[] inventaire = new Ressource[Ressource.Type.COUNT.ordinal()];
 	
 	public Ressource[] getInventaire() { return this.inventaire; }
-	
+
 	public void addToInventaire(Ressource r) 
 	{ 
 		Ressource inInvRess = this.inventaire[r.getType().ordinal()];

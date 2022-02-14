@@ -26,8 +26,8 @@ public class Control implements MouseListener {
     	if(mouseX > 0 && mouseX < affichage.fitX(etat.getLargeurGrille()*affichage.getTailleCase())
     		&& mouseY > 0 && mouseY < affichage.fitY(etat.getHauteurGrille()*affichage.getTailleCase()))
     	{
-    		etat.click(mouseX/affichage.fitX(affichage.getTailleCase()), mouseY/affichage.fitY(affichage.getTailleCase()));
-    		affichage.selectionnerEntitee();
+    		etat.click(mouseX/affichage.fitX(affichage.getTailleCase()), mouseY/affichage.fitY(affichage.getTailleCase())); //previent la grille du click sur la case ciblée par la souris
+    		affichage.selectionnerEntitee(); //on prévient l'affichage qu'une entité a été selectionnée pour afficher son interface
     	}
     }
     
