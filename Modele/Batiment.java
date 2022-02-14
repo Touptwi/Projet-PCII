@@ -9,7 +9,12 @@ public abstract class Batiment extends Entitee {
     private final ArrayList<Point> structure = new ArrayList<Point>(); //les déplacement necessaire pour
     private ArrayList<Point> action;
 
-
+    /**
+     * Inutile pour l'instant
+     * @param array
+     * @param value
+     * @return
+     */
     private boolean check(ArrayList<Point> array, Point value)
     {
         for (int i = 0; i < structure.size(); i++)

@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Flower extends Entitee implements Runnable
 {
-    private int durability = 10;
+    private int durability = 100;
     private Color color = Color.red;
 
     public Flower(Etat _e) 
@@ -24,16 +24,16 @@ public class Flower extends Entitee implements Runnable
         {
             durability--;
             interface_e.mise_a_jour();
-            if(durability < 7 && color == Color.red)
+            if(durability < 70 && color == Color.red)
             {
                 color = Color.orange;
             } 
-            else if (durability<4 && color == Color.orange)
+            else if (durability<40 && color == Color.orange)
             {
                 color = Color.yellow;
             }
             
-            try { Thread.sleep(2000); }
+            try { Thread.sleep(200); }
             catch (Exception e) { e.printStackTrace(); }
         }
         affichable = null;

@@ -10,6 +10,7 @@ public abstract class EntiteeAvecInventaire extends Entitee
 	public void addToInventaire(Ressource r) 
 	{ 
 		Ressource inInvRess = this.inventaire[r.getType().ordinal()];
+		if(inInvRess == null) inInvRess = new Ressource(null, 0, r.getType());
 		int quantitee = inInvRess.getQuantitee() + r.getQuantitee();
 		inInvRess.setQuantitee(quantitee); 
 	}
@@ -17,11 +18,10 @@ public abstract class EntiteeAvecInventaire extends Entitee
 	public boolean removeFromInventaire(Ressource r) 
 	{ 
 		Ressource inInvRess = this.inventaire[r.getType().ordinal()];
+		if(inInvRess == null) return false;
 		int quantitee = inInvRess.getQuantitee() - r.getQuantitee();
-		
 		if(quantitee >= 0) inInvRess.setQuantitee(quantitee);
-		else return false;
-		
+		else return false;		
 		return true;
 	}
 	

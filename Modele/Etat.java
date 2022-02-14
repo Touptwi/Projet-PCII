@@ -23,7 +23,7 @@ public class Etat {
         grille = new Grille(this, largeur_grille, hauteur_grille);
         Flower f = new Flower(this);
         Dwarf d = new Dwarf(this);
-        Ressource r = new Ressource(this, 5, Type.OR);
+        Ressource r = new Ressource(this, 5, Type.RUBIS);
         grille.setCase(0, 0, f);
         grille.setCase(1,0,d);
         grille.setCase(new Point(0, 1), r);
@@ -67,4 +67,6 @@ public class Etat {
     {
         return grille.getEntitee(i,j);
     }
+    
+    
 }

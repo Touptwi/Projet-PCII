@@ -4,8 +4,13 @@ import Controleur.Control;
 import Modele.Entitee;
 import Modele.Etat;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.Buffer;
 
 public class Affichage extends JSplitPane
 {
@@ -63,6 +68,24 @@ public class Affichage extends JSplitPane
     }
 
     private void drawGrille(Graphics g){
+
+        try {
+            BufferedImage img = ImageIO.read(new File("Images\\Gazon.png"));
+            BufferedImage img_ = ImageIO.read(new File("Images\\Gazon_.png"));
+            //BufferedImage img__ = ImageIO.read(new File("Images\\Goblin.png"));
+            for (int i = 0; i < etat.getLargeurGrille(); i++) {
+                for (int j = 0; j < etat.getHauteurGrille(); j++) {
+                    if((i+j)%2==0) {
+                        g.drawImage(img, fitX(j*taille_case), fitY(i*taille_case), fitX(taille_case), fitY(taille_case), null);
+                    } else {
+                        g.drawImage(img_, fitX(j*taille_case), fitY(i*taille_case), fitX(taille_case), fitY(taille_case), null);
+                    }
+                }
+            }
+            //g.drawImage(img__, 310,310,80,80,null);
+        }
+        catch (IOException E) { E.printStackTrace(); }
+
         for(int i = 0; i <= etat.getLargeurGrille(); i++) {
             g.drawLine(0, fitY(taille_case*i), fitX(taille_case*etat.getLargeurGrille()), fitY(taille_case * i));
         }

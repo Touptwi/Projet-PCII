@@ -3,8 +3,8 @@ package Modele;
 import java.awt.Point;
 import java.util.ArrayList;
 
-public class Grille {
-
+public class Grille 
+{
     /// lien objets externe ///
     private static Etat e;
     ///////////////////////////
@@ -16,7 +16,7 @@ public class Grille {
     private int selectionY;
 
     private Entitee[][] grille;
-
+    
     public Grille(Etat etat, int longu, int larg)
     {
         e = etat;
@@ -106,6 +106,18 @@ public class Grille {
     {
     	return new Point(selectionX, selectionY);
     }
+    
+    public ArrayList<Point> getSelectionVoisins()
+    {
+    	ArrayList<Point> voisins = new ArrayList<Point>();
+		for(int i = -1; i <= 1; ++i)
+			for(int j = -1; j <= 1; ++j)
+				if(	(j != i || j != 0)
+					&& selectionX + i >= 0 && selectionY + i < largeur 
+					&& selectionY + j >= 0 && selectionY + j < longueur)
+						voisins.add(new Point(selectionX + i, selectionY + j));
+		return voisins;
+    }
 
     /**
      * change la valeur d'une case du tableau
@@ -186,4 +198,17 @@ public class Grille {
             setCase(point, bat);
         }
     }
+
+	public void recupererRessources(Dwarf dwarf) 
+	{
+		for(Point p : this.getSelectionVoisins())
+		{
+			Entitee e = this.getEntitee(p);
+			if(e instanceof Ressource) 
+			{
+				dwarf.addToInventaire((Ressource) e); 
+				this.setCase(p, null);
+			}
+		}
+	}
 }
