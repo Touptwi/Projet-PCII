@@ -28,6 +28,7 @@ public class Etat {
         grille.setCase(1,0,d);
         grille.setCase(new Point(0, 1), r);
         new Thread(f).start();
+        new Thread(d).start();
     }
 
     public int getLargeur() {
