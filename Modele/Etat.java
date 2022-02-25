@@ -24,9 +24,21 @@ public class Etat {
         Flower f = new Flower(this);
         Dwarf d = new Dwarf(this);
         Ressource r = new Ressource(this, 5, Type.RUBIS);
+
+        //initiation du test de la forge
+        forge forge = new forge(this,3);
+        forge.get_inventaire().put(Type.RUBIS,3);
+        forge.add_recettes(new Rubis_poli());
+        forge.add_recettes(new Rubis_poli());
+        forge.add_recettes(new Rubis_poli());
+        forge.lancer_recette(forge.get_recettes().get(0));
+        forge.interface_e.mise_a_jour();
+        //
+
         grille.setCase(0, 0, f);
         grille.setCase(1,0,d);
         grille.setCase(new Point(0, 1), r);
+        grille.create_batiment(new Point(3,3),forge); //ajout de la forge à la grille
         new Thread(f).start();
         new Thread(d).start();
     }

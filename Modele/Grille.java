@@ -184,7 +184,7 @@ public class Grille
         return getEntitee(selectionX, selectionY);
     }
 
-    public void create_batiment(Batiment bat)
+    public void create_batiment_selection(Batiment bat)
     {
         Point origine = new Point(selectionX,selectionY);
         ArrayList<Point> a_construire = bat.getStructure();
@@ -196,6 +196,21 @@ public class Grille
                 return;
             }
             setCase(point, bat);
+        }
+    }
+
+    public void create_batiment(Point p, Batiment bat)
+    {
+        ArrayList<Point> a_construire = bat.getStructure();
+        for (int i = 0; i< a_construire.size(); i++)
+        {
+            Point point = new Point(p.x + a_construire.get(i).x, p.y + a_construire.get(i).y);
+            if (((point.x < 0 || point.y < 0) && (point.x > largeur || point.y > longueur)) || estOccupee(point) )
+            {
+                System.out.println("probleme lors de la creation du bâtiment " + bat.getClass());
+                return;
+            }
+            this.setCase(point.x,point.y, bat);
         }
     }
 

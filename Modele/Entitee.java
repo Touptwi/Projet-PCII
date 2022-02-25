@@ -2,7 +2,7 @@ package Modele;
 import Vue.Affichable;
 import Vue.InterfaceEntitee;
 
-public abstract class Entitee
+public class Entitee
 {
 	/** Sprite de l'Entitee : image a afficher ou l'entitee est sur le terrain */
 	public Affichable affichable;
