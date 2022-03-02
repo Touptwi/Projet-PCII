@@ -16,8 +16,8 @@ public class Recette_Thread extends Thread{
     {
         origine = f;
         ie = (IE_Forge) f.interface_e;
-        duree = r.getAvancee();
-        valMax = r.getAvancee();
+        duree = r.getTemps();
+        valMax = r.getTemps();
         nom = r.getNom();
     }
 
@@ -54,6 +54,9 @@ public class Recette_Thread extends Thread{
         return valMax;
     }
 
+    /**
+     * Va stopper le thread et mettre a jour l'interface
+     */
     public void stopThread()
     {
         enCours = false;

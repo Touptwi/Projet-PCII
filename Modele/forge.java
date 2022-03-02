@@ -32,7 +32,7 @@ public class forge extends Batiment{
     /**
      * lance la production d'une recette de la liste recettes
      * @param r la recette a produire
-     * @return
+     * @return true si la recette a put être lancée
      */
     public boolean lancer_recette(Recette r)
     {
@@ -54,6 +54,7 @@ public class forge extends Batiment{
         return false;
     }
 
+
     public void add_recettes(Recette r)
     {
         recettes.add(r);
@@ -65,6 +66,10 @@ public class forge extends Batiment{
         return recettes;
     }
 
+    /**
+     * renvoie le nombre d'emplacement libre dans le tableau fourneau
+     * @return int le nombre
+     */
     public int get_nb_fourneaux_libre()
     {
         int result = 0;
@@ -73,7 +78,7 @@ public class forge extends Batiment{
             if (fourneaux[i] == null ||!fourneaux[i].enCours)
             {
                 result ++;
-                fourneaux[i] = null;
+                fourneaux[i] = null; //permet de remettre
             }
         }
         return result;
@@ -84,6 +89,11 @@ public class forge extends Batiment{
         return fourneaux.length;
     }
 
+
+    /**
+     * renvoit la liste des emplacements libres dans fourneaux
+     * @return la liste des indices des cases mise à null dans la liste fourneaux
+     */
     public ArrayList<Integer> get_liste_fourneaux_actif()
     {
         ArrayList<Integer> result = new ArrayList<Integer>();
@@ -91,7 +101,7 @@ public class forge extends Batiment{
         {
             if (fourneaux[i] == null ||!fourneaux[i].enCours)
             {
-                fourneaux[i] = null;
+                fourneaux[i] = null; //si un thread a terminé son execution alors il est retiré
             }else{
                 result.add(i);
             }
@@ -99,6 +109,12 @@ public class forge extends Batiment{
         return result;
     }
 
+    /**
+     * verifie que
+     * @param i un indice de fourneaux
+     * @return false si fourneaux[i] = null et true sinon
+     * /!\ ne verifie PAS que i un indice valide
+     */
     public boolean fourneau_actif(int i)
     {
         if (fourneaux[i] != null && fourneaux[i].enCours)

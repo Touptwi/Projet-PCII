@@ -100,6 +100,9 @@ public class IE_Forge implements InterfaceEntitee{
         }
     }
 
+    /**
+     * va mettre a jour la sous fenêtre montrant le contenu des fourneaux de la forge
+     */
     public void maj_zone_fourneau()
     {
         zone_fourneaux.setBorder(BorderFactory.createTitledBorder("peux encore lancer jusqu'à " + forge.get_nb_fourneaux_libre() + " recettes"));
@@ -117,6 +120,9 @@ public class IE_Forge implements InterfaceEntitee{
 
     }
 
+    /**
+     * met a jour l'interface indiquant l'inventaire de l'inventaire de la forge
+     */
     public void maj_zone_inventaire()
     {
         if (forge.get_inventaire() != null)
@@ -133,6 +139,9 @@ public class IE_Forge implements InterfaceEntitee{
     }
 
 
+    /**
+     * Initialiser la sous fenêtre representant les fourneaux de la forge et tous les composants necessaires
+     */
     private void generate_ie_fourneau()
     {
         JPanel result = new JPanel();

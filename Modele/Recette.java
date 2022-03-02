@@ -2,7 +2,6 @@ package Modele;
 
 import Vue.IE_Recette;
 
-import javax.swing.*;
 import java.util.*;
 
 public abstract class Recette {
@@ -13,7 +12,7 @@ public abstract class Recette {
 
     private String nom;
 
-    private int avancee = 0; //indique le temps de réalisation d'une recette (utilise par les threads des bâtiments)
+    private int temps = 0; //indique le temps de réalisation d'une recette (utilise par les threads des bâtiments)
 
     IE_Recette ie = new IE_Recette(this); //l'interface (cette interface est utilisé comme sous interface de IE_Forge)
 
@@ -24,6 +23,10 @@ public abstract class Recette {
         ingredients.put(ing,nb);
     }
 
+    /**
+     * renvoie la liste des objets necessaires pour réaliser la recette sous la forme d'une chaine de caractère
+     * @return String la liste des objets necessaires
+     */
     public String get_ingredients_string()
     {
         String result = "";
@@ -39,12 +42,12 @@ public abstract class Recette {
         return result;
     }
 
-    public int getAvancee() {
-        return avancee;
+    public int getTemps() {
+        return temps;
     }
 
-    protected void setAvancee(int avancee) {
-        this.avancee = avancee;
+    protected void setTemps(int temps) {
+        this.temps = temps;
     }
 
     public String getNom() {
@@ -83,9 +86,9 @@ public abstract class Recette {
     }
 
     /**
-     * retire les ingredients necessaire ) la recette à un inventaire donné
+     * retire les ingredients necessaire à la recette à un inventaire donné
      * @param inventaire l'inventaire dont on veut retirer les éléments
-     * /!\ Cette fonction n'est pas sécurisé et  ne verifie pas que l'inventaire possède assez d'élément pour la recette
+     * /!\ Cette fonction n'est pas sécurisé et ne verifie pas que l'inventaire possède assez d'élément pour la recette
      * si ce n'est pas le cas l'inventaire possèdera des quantité négatives
      */
     public void produire(Dictionary<Ressource.Type,Integer> inventaire)
@@ -105,11 +108,11 @@ public abstract class Recette {
         if (this == o) return true;
         if (!(o instanceof Recette)) return false;
         Recette recette = (Recette) o;
-        return avancee == recette.avancee && ingredients.equals(recette.ingredients) && getNom().equals(recette.getNom());
+        return temps == recette.temps && ingredients.equals(recette.ingredients) && getNom().equals(recette.getNom());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ingredients, avancee, getNom());
+        return Objects.hash(ingredients, temps, getNom());
     }
 }
