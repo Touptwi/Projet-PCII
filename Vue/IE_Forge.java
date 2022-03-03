@@ -60,6 +60,7 @@ public class IE_Forge implements InterfaceEntitee{
         tabbed_pane.add("inventaire", zone_inventaire);
 
         JSplitPane separation = new JSplitPane(JSplitPane.VERTICAL_SPLIT,zone_fourneaux,tabbed_pane);
+        separation.setDividerSize(0);
         fenetre_princ.add(separation);
 
     }

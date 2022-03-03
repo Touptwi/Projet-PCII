@@ -34,6 +34,7 @@ public class IE_Ressource implements InterfaceEntitee
         
         //mise en page via un SPLITSPANE
         separateur = new JSplitPane(JSplitPane.VERTICAL_SPLIT, icone, nameAndQuantity);
+        separateur.setDividerSize(0);
         interface_graphique_princ.add(separateur);
     }
 
