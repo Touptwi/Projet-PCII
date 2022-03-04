@@ -13,7 +13,7 @@ public class forge extends Batiment{
     private Recette_Thread[] fourneaux;
 
 
-    public forge(Etat _e, int nb_fourneaux)
+    public forge(Etat _e, int nb_fourneaux, Point pos)
     {
         super(new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(1,0), new Point(-1,0))));
         affichable = new VueForge();
@@ -27,6 +27,8 @@ public class forge extends Batiment{
         interface_e = new IE_Forge(_e, this);
         interface_e.mise_a_jour();
 
+        this.position = pos;
+        _e.getGrille().create_batiment(pos,this); //ajout de la forge à la grille
     }
 
     /**

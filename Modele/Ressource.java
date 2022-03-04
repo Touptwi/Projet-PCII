@@ -3,13 +3,25 @@ package Modele;
 import Vue.IE_Ressource;
 import Vue.VueRessource;
 
+import java.awt.*;
+
 public class Ressource extends Entitee
 {
 	public enum Type { OR, RUBIS, EMERAUDE, SAPHIR, COUNT }
 	private Type type = Type.OR;
 	private int quantitee = 0;
-	
-	public Ressource(Etat _e, int q, Type t) 
+
+	public Ressource(Etat _e, int q, Type t, Point pos)
+	{
+		quantitee = q;
+		type = t;
+		this.interface_e = new IE_Ressource(_e, this);
+		this.affichable = new VueRessource(this);
+		this.position = pos;
+		_e.getGrille().setCase(pos, this);
+	}
+
+	public Ressource(Etat _e, int q, Type t)
 	{ 
 		quantitee = q; 
 		type = t; 
