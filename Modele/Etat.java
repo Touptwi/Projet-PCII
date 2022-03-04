@@ -21,12 +21,13 @@ public class Etat {
         largeur = l;
         hauteur = h;
         grille = new Grille(this, largeur_grille, hauteur_grille);
-        Flower f = new Flower(this);
-        Dwarf d = new Dwarf(this);
-        Ressource r = new Ressource(this, 5, Type.RUBIS);
+        Flower f = new Flower(this, new Point(0,0));
+        Dwarf d = new Dwarf(this, new Point(1, 0));
+        Ressource r = new Ressource(this, 5, Type.RUBIS, new Point(0, 1));
+        Goblin gob = new Goblin(this, new Point(9,9), r);
 
         //initiation du test de la forge
-        forge forge = new forge(this,3);
+        forge forge = new forge(this,3, new Point(3,3));
         forge.get_inventaire().put(Type.RUBIS,3);
         forge.add_recettes(new Rubis_poli());
         forge.add_recettes(new Rubis_poli());
@@ -35,12 +36,9 @@ public class Etat {
         forge.interface_e.mise_a_jour();
         //
 
-        grille.setCase(0, 0, f);
-        grille.setCase(1,0,d);
-        grille.setCase(new Point(0, 1), r);
-        grille.create_batiment(new Point(3,3),forge); //ajout de la forge à la grille
         new Thread(f).start();
         new Thread(d).start();
+        new Thread(gob).start();
     }
 
     public int getLargeur() {

@@ -1,16 +1,18 @@
 package Modele;
 
-import java.awt.Color;
+import java.awt.*;
 
 import Vue.IE_Dwarf;
 import Vue.VueDwarf;
 
 public class Dwarf extends EntiteeAvecInventaire implements Runnable
 {
-    public Dwarf(Etat _e) 
+    public Dwarf(Etat _e, Point pos)
     {
         this.interface_e = new IE_Dwarf(_e, this);
         this.affichable = new VueDwarf(this);
+		this.position = pos;
+		_e.getGrille().setCase(pos, this);
     }
 
 	@Override

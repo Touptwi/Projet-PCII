@@ -214,14 +214,14 @@ public class Grille
         }
     }
 
-	public void recupererRessources(Dwarf dwarf) 
+	public void recupererRessources(EntiteeAvecInventaire EAI)
 	{
 		for(Point p : this.getSelectionVoisins())
 		{
 			Entitee e = this.getEntitee(p);
 			if(e instanceof Ressource) 
 			{
-				dwarf.addToInventaire((Ressource) e); 
+				EAI.addToInventaire((Ressource) e);
 				this.setCase(p, null);
 			}
 		}
