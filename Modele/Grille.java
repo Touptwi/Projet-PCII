@@ -112,10 +112,22 @@ public class Grille
     	ArrayList<Point> voisins = new ArrayList<Point>();
 		for(int i = -1; i <= 1; ++i)
 			for(int j = -1; j <= 1; ++j)
-				if(	(j != i || j != 0)
+				if(	j != i && j*i != -1
 					&& selectionX + i >= 0 && selectionY + i < largeur 
 					&& selectionY + j >= 0 && selectionY + j < longueur)
 						voisins.add(new Point(selectionX + i, selectionY + j));
+		return voisins;
+    }
+    
+    public ArrayList<Point> getVoisins(Point p)
+    {
+    	ArrayList<Point> voisins = new ArrayList<Point>();
+		for(int i = -1; i <= 1; ++i)
+			for(int j = -1; j <= 1; ++j)
+				if(	j != i && j != -1*i
+					&& p.x + i >= 0 && p.x + i < largeur 
+					&& p.y + j >= 0 && p.y + j < longueur)
+						voisins.add(new Point(p.x + i, p.y + j));
 		return voisins;
     }
 
