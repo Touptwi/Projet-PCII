@@ -38,15 +38,15 @@ public class Deplacement extends Thread
 		System.out.println(t);
 		if(!grille.estOccupee(f))
 		{
-			System.out.println("Pas d'entitee case de départ"); //debug
+//			System.out.println("Pas d'entitee case de départ"); //debug
 			return false;
 		}
 		else if (grille.estOccupee(t)) 
 		{
-			System.out.print("Entitee case de départ : "); //debug
-			System.out.println(grille.getEntitee(f)); //debug
-			System.out.print("Entitee case d'arrivée : "); //debug
-			System.out.println(grille.getEntitee(t)); //debug
+//			System.out.print("Entitee case de départ : "); //debug
+//			System.out.println(grille.getEntitee(f)); //debug
+//			System.out.print("Entitee case d'arrivée : "); //debug
+//			System.out.println(grille.getEntitee(t)); //debug
 			return false;
 		}
 		else
@@ -84,7 +84,7 @@ public class Deplacement extends Thread
 				}
 				else 
 				{ 
-					System.out.print("Erreur de déplacement : "); System.out.println(v);  //debug
+//					System.out.print("Erreur de déplacement : "); System.out.println(v);  //debug
 					from = current_p;
 					if(algorithmA_star()) idx = 0;
 					else 
@@ -109,11 +109,11 @@ public class Deplacement extends Thread
 	public boolean
 	algorithmA_star() 
 	{
-		System.out.print("A* start (from, to) :("); //debug
-			System.out.print("["); System.out.print(from.x); System.out.print(","); System.out.print(from.y); System.out.print("]");//debug
-			System.out.print(", "); //debug
-			System.out.print("["); System.out.print(to.x); System.out.print(","); System.out.print(to.y); System.out.print("]"); //debug
-		System.out.println(")"); //debug
+//		System.out.print("A* start (from, to) :("); //debug
+//			System.out.print("["); System.out.print(from.x); System.out.print(","); System.out.print(from.y); System.out.print("]");//debug
+//			System.out.print(", "); //debug
+//			System.out.print("["); System.out.print(to.x); System.out.print(","); System.out.print(to.y); System.out.print("]"); //debug
+//		System.out.println(")"); //debug
 		
 		ArrayList<Point> a_voir = new ArrayList<Point>();
 		a_voir.add(from);
