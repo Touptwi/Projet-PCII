@@ -33,9 +33,10 @@ public class Deplacement extends Thread
 	public synchronized boolean
 	move(Point f, Point t)
 	{
-		System.out.print(f);
-		System.out.print("  ");
-		System.out.println(t);
+//		System.out.print(f); //debug
+//		System.out.print("  "); //debug
+//		System.out.println(t); //debug
+		
 		if(!grille.estOccupee(f))
 		{
 //			System.out.println("Pas d'entitee case de départ"); //debug
