@@ -27,12 +27,28 @@ public class Deplacement extends Thread
 	 * @param f case "from" de départ
 	 * @param t case "to" d'arrivée
 	 * @return vrai si le move a été effectué et était correct, faux sinon
+	 * TODO : Vérifier que le "synchronized" fait bien ce qu'on veut.
 	 */
 	
-	public boolean
+	public synchronized boolean
 	move(Point f, Point t)
 	{
-		if(!grille.estOccupee(f) || grille.estOccupee(t)) return false;
+		System.out.print(f);
+		System.out.print("  ");
+		System.out.println(t);
+		if(!grille.estOccupee(f))
+		{
+			System.out.println("Pas d'entitee case de départ"); //debug
+			return false;
+		}
+		else if (grille.estOccupee(t)) 
+		{
+			System.out.print("Entitee case de départ : "); //debug
+			System.out.println(grille.getEntitee(f)); //debug
+			System.out.print("Entitee case d'arrivée : "); //debug
+			System.out.println(grille.getEntitee(t)); //debug
+			return false;
+		}
 		else
 		{
 			grille.setCase(f, null);
@@ -45,8 +61,6 @@ public class Deplacement extends Thread
 	 * Procedure run de déplacement d'un entitée
 	 * Lance A* et déplace l'entitée le long du chemin qu'elle a à parcourir
 	 * Vérifie que les mouvements sont corrects
-	 * TODO : relancer A* et synchroniser/section critique en cas d'erreur ?
-	 * TODO : arrêt avant la dernière case si celle ci devient occupée
 	 */
 	@Override
 	public void
@@ -56,19 +70,32 @@ public class Deplacement extends Thread
 		if(!algorithmA_star()) System.out.print("Aucun chemin trouvé");
 		else
 		{
-			System.out.print("A* : "); System.out.println(a_star_path);
-			for(Point v : a_star_path)
+			//System.out.print("A* : "); System.out.println(a_star_path);
+			int idx = 0;
+			
+			while(idx < a_star_path.size())
 			{
+				Point v = a_star_path.get(idx);
 				if(this.move(current_p, v)) 
 				{ 
-					current_p = v; 
+					current_p = v; //changing our position locally
+					idx++; //going to read the next step
 					//System.out.print("Move : "); System.out.println(v); //debug
 				}
 				else 
 				{ 
-					System.out.print("Erreur de déplacement : "); System.out.println(v); 
+					System.out.print("Erreur de déplacement : "); System.out.println(v);  //debug
+					from = current_p;
+					if(algorithmA_star()) idx = 0;
+					else 
+					{
+						System.out.print("Aucun chemin trouvé");
+						break; 
+						//TODO : Possible débat ici, est-ce vraiment bon de break dans ce cas ou faut-il attendre ?
+						// -> Vérification de la distance entre la position et la destination ?
+					}
 				}
-				try { sleep(1000); } 
+				try { sleep(500); } 
 				catch (InterruptedException e) { e.printStackTrace(); }
 			}			
 		}
@@ -113,10 +140,23 @@ public class Deplacement extends Thread
 				{
 					if(!deja_vu[v.x][v.y])
 					{
-						deja_vu[v.x][v.y] = true;
-						a_voir.add(v);
-						precedents[v.x][v.y] = new Point(u);
+						if(grille.estOccupee(v)) // Modification locale dans le cas ou la case destination soit occupee
+						{
+							if(v.x == to.x && v.y == to.y)
+							{
+								this.a_star_path = retrace_chemin(u, precedents);
+//								for(Point[] precs: precedents) System.out.println(Arrays.toString(precs)); //debug
+								return true;
+							}
+						}
+						else
+						{
+							a_voir.add(v);
+							precedents[v.x][v.y] = new Point(u);							
+						}
+						
 					}
+					deja_vu[v.x][v.y] = true;
 				}
 			}
 		}
@@ -137,9 +177,9 @@ public class Deplacement extends Thread
 	retrace_chemin(Point u, Point[][] prec)
 	{
 		ArrayList<Point> chemin;
-		if(u.x != from.x || u.y != from.y) chemin = retrace_chemin(prec[u.x][u.y], prec);
-		else return new ArrayList<Point>();
-		chemin.add(u);
+		if(u.x == from.x && u.y == from.y) return new ArrayList<Point>(); //Ne pas ajouter la premiere case (case de départ)
+		else chemin = retrace_chemin(prec[u.x][u.y], prec); //Retracer le reste du chemin inverse
+		chemin.add(u); //Ajouter la case en cours a la fin
 		return chemin;
 	}
 }
