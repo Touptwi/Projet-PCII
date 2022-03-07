@@ -6,13 +6,14 @@ import Vue.VueFlower;
 import javax.swing.event.ChangeEvent;
 import java.awt.*;
 
-public class Flower extends Entitee implements Runnable
+public class Flower extends Ressource implements Runnable
 {
     private int durability = 100;
     private Color color = Color.red;
 
     public Flower(Etat _e, Point pos)
     {
+    	super(_e, 1, Ressource.Type.FLEUR, pos);
         this.interface_e = new IE_Plante(_e, this);
     	this.affichable = new VueFlower(this);
         this.position = pos;

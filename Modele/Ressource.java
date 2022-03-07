@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Ressource extends Entitee
 {
-	public enum Type { OR, RUBIS, EMERAUDE, SAPHIR, COUNT }
+	public enum Type { OR, RUBIS, EMERAUDE, SAPHIR, FLEUR, COUNT }
 	private Type type = Type.OR;
 	private int quantitee = 0;
 
