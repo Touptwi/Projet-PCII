@@ -12,7 +12,7 @@ public class Main {
     {
         Etat etat = new Etat(largeur, hauteur);
         Affichage affichage = new Affichage(etat);
-        new ReAffichage(affichage).start();
+
     }
 }
 

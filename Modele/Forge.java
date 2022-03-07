@@ -7,13 +7,13 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class forge extends Batiment{
+public class Forge extends Batiment{
 
     private ArrayList<Recette> recettes;
     private Recette_Thread[] fourneaux;
 
 
-    public forge(Etat _e, int nb_fourneaux, Point pos)
+    public Forge(Etat _e, int nb_fourneaux, Point pos)
     {
         super(new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(1,0), new Point(-1,0))));
         affichable = new VueForge();

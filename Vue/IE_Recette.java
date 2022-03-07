@@ -1,7 +1,7 @@
 package Vue;
 
 import Modele.Recette;
-import Modele.forge;
+import Modele.Forge;
 import Vue.ButtonListeners.ProduireListener;
 
 import javax.swing.*;
@@ -29,7 +29,7 @@ public class IE_Recette {
 
     }
 
-    public void maj_ie_recette(forge forge)
+    public void maj_ie_recette(Forge forge)
     {
 
         // LE bouton qui permettera de selectionner la recette

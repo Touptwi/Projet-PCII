@@ -27,7 +27,7 @@ public class Etat {
         Goblin gob = new Goblin(this, new Point(9,9), r);
 
         //initiation du test de la forge
-        forge forge = new forge(this,3, new Point(3,3));
+        Forge forge = new Forge(this,3, new Point(3,3));
         forge.get_inventaire().put(Type.RUBIS,3);
         forge.add_recettes(new Rubis_poli());
         forge.add_recettes(new Rubis_poli());

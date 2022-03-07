@@ -4,7 +4,7 @@ import Vue.IE_Forge;
 
 public class Recette_Thread extends Thread{
 
-    forge origine;
+    Forge origine;
     IE_Forge ie;
     private int duree;
     private int valMax;
@@ -12,7 +12,7 @@ public class Recette_Thread extends Thread{
     public boolean enCours = true;
 
 
-    public Recette_Thread(forge f,Recette r)
+    public Recette_Thread(Forge f, Recette r)
     {
         origine = f;
         ie = (IE_Forge) f.interface_e;

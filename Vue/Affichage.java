@@ -42,6 +42,7 @@ public class Affichage extends JSplitPane
         fenetre.add(this);
         fenetre.pack();
         fenetre.setVisible(true);
+        new ReAffichage(this).start();
     }
     
     public int getTailleCase() { return this.taille_case; }

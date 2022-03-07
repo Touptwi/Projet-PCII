@@ -1,8 +1,7 @@
 package Vue.ButtonListeners;
 
 import Modele.Recette;
-import Modele.forge;
-import Vue.IE_Forge;
+import Modele.Forge;
 import Vue.InterfaceEntitee;
 
 import java.awt.event.ActionEvent;
@@ -11,9 +10,9 @@ import java.awt.event.ActionListener;
 public class ProduireListener implements ActionListener {
 
     InterfaceEntitee ie_forge;
-    forge forge;
+    Forge forge;
     Recette recette;
-    public ProduireListener(forge f, Recette r)
+    public ProduireListener(Forge f, Recette r)
     {
         ie_forge = f.interface_e;
         forge = f;

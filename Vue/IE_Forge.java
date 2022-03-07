@@ -3,8 +3,7 @@ package Vue;
 import Modele.Etat;
 import Modele.Recette;
 import Modele.Ressource;
-import Modele.forge;
-import Vue.ButtonListeners.ProduireListener;
+import Modele.Forge;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +14,7 @@ import java.util.Enumeration;
 public class IE_Forge implements InterfaceEntitee{
 
     //Objet représenté
-    private forge forge;
+    private Forge forge;
 
 
     //composant de la page
@@ -32,7 +31,7 @@ public class IE_Forge implements InterfaceEntitee{
     JPanel zone_recette = new JPanel();
     ArrayList<Recette> liste_recette = new ArrayList<Recette>();
 
-    public IE_Forge(Etat _e, forge f) {
+    public IE_Forge(Etat _e, Forge f) {
         forge = f;
 
         //parametrage de la liste des fourneaux
