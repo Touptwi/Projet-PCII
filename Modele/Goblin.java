@@ -6,7 +6,7 @@ import Vue.VueGoblin;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Goblin extends EntiteeAvecInventaire implements Runnable
+public class Goblin extends EntiteeDeplacable implements Runnable
 {
 
     Ressource ressource;
@@ -45,4 +45,22 @@ public class Goblin extends EntiteeAvecInventaire implements Runnable
             catch (Exception e) { e.printStackTrace(); }
         }
     }
+
+	@Override
+	public void check_deplacement(Point position, ArrayList<Point> voisins) 
+	{
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void fin_deplacement(Point position, ArrayList<Point> voisins) 
+	{
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void fuir(Point position, ArrayList<Point> voisins) 
+	{
+		// TODO Auto-generated method stub
+	}
 }
