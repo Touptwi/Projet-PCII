@@ -20,12 +20,10 @@ public class Forge extends Batiment{
         init_inventaire();//creation de l'inventaire;
         fourneaux = new Recette_Thread[nb_fourneaux];
         recettes = new ArrayList<Recette>();
-        System.out.println(nb_fourneaux);
         Arrays.fill(fourneaux, null);
 
         //creation et mise a jour de l'interface
         interface_e = new IE_Forge(_e, this);
-        interface_e.mise_a_jour();
 
         this.position = pos;
         _e.getGrille().create_batiment(pos,this); //ajout de la forge à la grille
@@ -47,7 +45,6 @@ public class Forge extends Batiment{
                     fourneaux[i].start();
                     r.produire(inventaire);
                     recettes.remove(r);
-                    interface_e.mise_a_jour();
                     return true;
                 }
                 i++;
@@ -60,7 +57,6 @@ public class Forge extends Batiment{
     public void add_recettes(Recette r)
     {
         recettes.add(r);
-        interface_e.mise_a_jour();
     }
 
     public ArrayList<Recette> get_recettes()

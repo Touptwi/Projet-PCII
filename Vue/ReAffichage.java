@@ -1,11 +1,14 @@
 package Vue;
 
+import javax.swing.*;
+
 /**
  * ce thread assure le réaffichage régulier de la fenetre
  */
 public class ReAffichage extends Thread {
 
     Affichage affichage;
+    InterfaceEntitee ie;
 
     public ReAffichage(Affichage a) {
         affichage = a;
@@ -14,6 +17,11 @@ public class ReAffichage extends Thread {
     public void run() {
 
         while(true) {
+            ie = affichage.getInterface_entitee_courante();
+            if(ie != null)
+            {
+                ie.mise_a_jour();
+            }
             affichage.revalidate();
             affichage.repaint();
             try { Thread.sleep(20); }

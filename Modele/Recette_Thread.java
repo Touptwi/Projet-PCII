@@ -30,12 +30,10 @@ public class Recette_Thread extends Thread{
             catch (Exception e) { e.printStackTrace();}
 
             duree --;
-            ie.maj_zone_fourneau();
             if (duree <= 0)
                 enCours = false;
 
         }
-        System.out.println("fin de la recette");
         ie.maj_zone_fourneau();
     }
 

@@ -25,7 +25,6 @@ public class Flower extends Ressource implements Runnable
         while(durability > 0)
         {
             durability--;
-            interface_e.mise_a_jour(); //utilisé pour assurer que la barre de progression de l'interfae suit la durabilité
             if(durability < 70 && color == Color.red)
             {
                 color = Color.orange;

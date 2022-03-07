@@ -20,7 +20,6 @@ public class Dwarf extends EntiteeAvecInventaire implements Runnable
 	{
 		while(true)
 		{
-			interface_e.mise_a_jour();
 			try { Thread.sleep(100); }
 			catch (Exception e) { e.printStackTrace(); }			
 		}

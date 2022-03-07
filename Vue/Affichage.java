@@ -20,7 +20,11 @@ public class Affichage extends JSplitPane
     private final int taille_case = 100;
     
     private JPanel interface_entitee_courante = null;
-    
+
+    private Thread thread_rafraichissement;
+
+
+
     /** Initialise une fenetre qui se rafraichi, avec un controller et un etat qu'on utilisera comme modele a afficher.
      * @param e : Etat sur lequel se baser pour l'affichage.
      */
@@ -42,7 +46,8 @@ public class Affichage extends JSplitPane
         fenetre.add(this);
         fenetre.pack();
         fenetre.setVisible(true);
-        new ReAffichage(this).start();
+        thread_rafraichissement = new ReAffichage(this);
+        thread_rafraichissement.start();
     }
     
     public int getTailleCase() { return this.taille_case; }
@@ -130,5 +135,17 @@ public class Affichage extends JSplitPane
 
         drawGrille(g);
         drawEntitee(g);
+    }
+
+    /**
+     * Renvoie l'interface de l'entitée selectionnée si elle existe
+     * @return l'entitée de l'entité selectionnée et null si il n'y en a pas
+     */
+    public InterfaceEntitee getInterface_entitee_courante() {
+        Entitee entitee = etat.getGrille().getSelectedEntitee();
+        if (entitee == null)
+            return null;
+        else
+            return entitee.interface_e;
     }
 }
