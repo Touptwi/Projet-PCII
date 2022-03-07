@@ -12,6 +12,7 @@ public class Goblin extends EntiteeAvecInventaire implements Runnable
     {
         this.interface_e = new IE_Goblin(e, this);
         this.affichable = new VueGoblin(this);
+        this.position = pos;
         e.getGrille().setCase(pos, this);
         new Deplacement(this, pos, r.getPosition(),e.getGrille()).start();
     }
