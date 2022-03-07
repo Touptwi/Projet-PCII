@@ -78,9 +78,8 @@ public class Affichage extends JSplitPane
         return (int)((double)y/etat.getHauteur()*this.getHeight());
     }
 
-
+    /** Affichage de la grille */
     private void drawGrille(Graphics g){
-
         try {
             BufferedImage img = ImageIO.read(new File("Images/Gazon.png"));
             BufferedImage img_ = ImageIO.read(new File("Images/Gazon_.png"));
@@ -104,7 +103,7 @@ public class Affichage extends JSplitPane
         }
     }
 
-
+    /** Affichage des Entitee */
     private void drawEntitee(Graphics g) {
         for(int j = 0; j < etat.getHauteurGrille(); ++j)
         {
