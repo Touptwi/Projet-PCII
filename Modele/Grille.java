@@ -14,6 +14,8 @@ public class Grille
     // coordonnées de la case selectionnée
     private int selectionX;
     private int selectionY;
+    
+    private Entitee entitee_selectionee;
 
     private Entitee[][] grille;
     
@@ -40,24 +42,6 @@ public class Grille
                 grille[i][j] = null;
             }
         }
-    }
-
-    /**
-     * bouge l'objet sur la case sélectionnée vers la case de coordonnée x y (si celle-ci n'est pas occupée)
-     * @param x coordonnée X de la case d'arrivée
-     * @param y coordonnée Y de la case d'arrivée
-     * @return true si le mouvement a pu etre effectué, false sinon
-     */
-    public boolean mouvement(int x, int y)
-    {
-        if (estOccupee(getSelectionX(),getSelectionY()) && !estOccupee(x,y))
-        {
-            grille[x][y] = getSelectedEntitee();
-            grille[selectionX][selectionY] = null;
-            return true;
-        }
-        return false;
-
     }
 
     /**
@@ -161,6 +145,7 @@ public class Grille
     {
         selectionX = x;
         selectionY = y;
+        entitee_selectionee = getEntitee(x,y);
         //System.out.print(String.format("x,y : %d,%d", x, y)); //debug
         
     }
@@ -188,12 +173,11 @@ public class Grille
     }
 
     /**
-     * rend l'entitée située sur la case selectionnée
-     * @return Une entitée si celle-ci se trouve sur la case selectionnée et null sinon
+     * @return la denrniere entitee selectionne
      */
     public Entitee getSelectedEntitee()
     {
-        return getEntitee(selectionX, selectionY);
+        return entitee_selectionee;
     }
 
     public void create_batiment_selection(Batiment bat)

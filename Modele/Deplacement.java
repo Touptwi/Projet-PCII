@@ -11,7 +11,11 @@ public class Deplacement extends Thread
 	protected Point from;
 	protected Point to;
 	
+	protected Point current_p;
+	
 	protected ArrayList<Point> a_star_path;
+	
+	boolean shouldQuit = false;
 	
 	public 
 	Deplacement(Entitee _e, Point _from, Point _to, Grille _grille)
@@ -20,6 +24,58 @@ public class Deplacement extends Thread
 		this.e = _e;
 		this.from = _from;
 		this.to = _to;
+	}
+	
+	/**
+	 * Procedure run de déplacement d'un entitée
+	 * Lance A* et déplace l'entitée le long du chemin qu'elle a à parcourir
+	 * Vérifie que les mouvements sont corrects
+	 */
+	@Override
+	public void
+	run()
+	{
+		current_p = from;
+		if(!algorithmA_star()) System.out.print("Aucun chemin trouvé");
+		else
+		{
+			//System.out.print("A* : "); System.out.println(a_star_path);
+			int idx = 0;
+			
+			while(idx < a_star_path.size())
+			{
+				Point v = a_star_path.get(idx);
+				if(this.move(current_p, v)) 
+				{ 
+					current_p = v; //changing our position locally
+					idx++; //going to read the next step
+					//System.out.print("Move : "); System.out.println(v); //debug
+				}
+				else 
+				{ 
+//					System.out.print("Erreur de déplacement : "); System.out.println(v);  //debug
+					from = current_p;
+					if(algorithmA_star()) idx = 0;
+					else 
+					{
+						System.out.print("Aucun chemin trouvé");
+						break; 
+						//TODO : Possible débat ici, est-ce vraiment bon de break dans ce cas ou faut-il attendre ?
+						// -> Vérification de la distance entre la position et la destination ?
+					}
+				}
+				try { sleep(500); } 
+				catch (InterruptedException e) { e.printStackTrace(); }
+				if(shouldQuit) break;
+			}			
+		}
+	}
+	
+	public Point
+	stop_thread()
+	{
+		this.shouldQuit = true;
+		return this.current_p;
 	}
 	
 	/**
@@ -57,50 +113,7 @@ public class Deplacement extends Thread
 			return true;
 		}
 	}
-	
-	/**
-	 * Procedure run de déplacement d'un entitée
-	 * Lance A* et déplace l'entitée le long du chemin qu'elle a à parcourir
-	 * Vérifie que les mouvements sont corrects
-	 */
-	@Override
-	public void
-	run()
-	{
-		Point current_p = from;
-		if(!algorithmA_star()) System.out.print("Aucun chemin trouvé");
-		else
-		{
-			//System.out.print("A* : "); System.out.println(a_star_path);
-			int idx = 0;
-			
-			while(idx < a_star_path.size())
-			{
-				Point v = a_star_path.get(idx);
-				if(this.move(current_p, v)) 
-				{ 
-					current_p = v; //changing our position locally
-					idx++; //going to read the next step
-					//System.out.print("Move : "); System.out.println(v); //debug
-				}
-				else 
-				{ 
-//					System.out.print("Erreur de déplacement : "); System.out.println(v);  //debug
-					from = current_p;
-					if(algorithmA_star()) idx = 0;
-					else 
-					{
-						System.out.print("Aucun chemin trouvé");
-						break; 
-						//TODO : Possible débat ici, est-ce vraiment bon de break dans ce cas ou faut-il attendre ?
-						// -> Vérification de la distance entre la position et la destination ?
-					}
-				}
-				try { sleep(500); } 
-				catch (InterruptedException e) { e.printStackTrace(); }
-			}			
-		}
-	}
+
 	
 	/**
 	 * Algorithme A* (sans heuristiques : cases carrées de même dimensions)

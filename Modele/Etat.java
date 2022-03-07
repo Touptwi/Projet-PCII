@@ -72,7 +72,13 @@ public class Etat {
     		
     		case DEPLACEMENT: 
 			{
-				(new Deplacement(this.grille.getSelectedEntitee(), this.grille.getSelectionPosition(), new Point(x,y), grille)).start(); 
+				EntiteeDeplacable selected = (EntiteeDeplacable) this.grille.getSelectedEntitee();
+				Deplacement d = selected.getDeplacement();
+				Point depart = this.grille.getSelectionPosition();
+				if(d != null) depart = d.stop_thread();
+				d = new Deplacement(selected, depart, new Point(x,y), grille);
+				selected.setDeplacement(d);
+				d.start();
 				this.mode_courant = Modes.SELECTION;
 			} break;
     	}
