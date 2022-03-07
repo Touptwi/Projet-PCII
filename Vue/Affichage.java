@@ -81,8 +81,8 @@ public class Affichage extends JSplitPane
     private void drawGrille(Graphics g){
 
         try {
-            BufferedImage img = ImageIO.read(new File("Images\\Gazon.png"));
-            BufferedImage img_ = ImageIO.read(new File("Images\\Gazon_.png"));
+            BufferedImage img = ImageIO.read(new File("Images/Gazon.png"));
+            BufferedImage img_ = ImageIO.read(new File("Images/Gazon_.png"));
             for (int i = 0; i < etat.getLargeurGrille(); i++) {
                 for (int j = 0; j < etat.getHauteurGrille(); j++) {
                     if((i+j)%2==0) {
