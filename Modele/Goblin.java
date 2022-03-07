@@ -26,9 +26,9 @@ public class Goblin extends EntiteeDeplacable implements Runnable
     /** Prendre la ressource si atteint puis fuit*/
     public void takeRessource(Point pos, ArrayList<Point> voisins) {
         if(voisins.contains(ressource.getPosition())) {
-            this.addToInventaire(ressource);
-            doEscape(pos, voisins);
+            etat.getGrille().recupererRessources(this);
         }
+        doEscape(pos, voisins);
     }
 
     /** Rentre d'où il vient */
@@ -55,12 +55,12 @@ public class Goblin extends EntiteeDeplacable implements Runnable
 	@Override
 	public void fin_deplacement(Point position, ArrayList<Point> voisins) 
 	{
-		// TODO Auto-generated method stub
+		takeRessource(position, voisins);
 	}
 
 	@Override
 	public void fuir(Point position, ArrayList<Point> voisins) 
 	{
-		// TODO Auto-generated method stub
+		doEscape(position, voisins);
 	}
 }
