@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class Deplacement extends Thread
 {
-	protected Entitee e;
+	protected EntiteeDeplacable e;
 	protected Grille grille;
 	protected Point from;
 	protected Point to;
@@ -18,7 +18,7 @@ public class Deplacement extends Thread
 	boolean shouldQuit = false;
 	
 	public 
-	Deplacement(Entitee _e, Point _from, Point _to, Grille _grille)
+	Deplacement(EntiteeDeplacable _e, Point _from, Point _to, Grille _grille)
 	{
 		this.grille = _grille;
 		this.e = _e;
@@ -67,7 +67,8 @@ public class Deplacement extends Thread
 				try { sleep(500); } 
 				catch (InterruptedException e) { e.printStackTrace(); }
 				if(shouldQuit) break;
-			}			
+			}
+			e.fin_deplacement(current_p,grille.getVoisins(current_p));
 		}
 	}
 	
