@@ -17,7 +17,8 @@ public class Etat {
 
     private Grille grille;
 
-    public Etat(int l, int h) {
+    public Etat(int l, int h) 
+    {
         largeur = l;
         hauteur = h;
         grille = new Grille(this, largeur_grille, hauteur_grille);
