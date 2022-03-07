@@ -34,7 +34,6 @@ public class Recette_Thread extends Thread{
                 enCours = false;
 
         }
-        ie.maj_zone_fourneau();
     }
 
     public int getDuree()
@@ -58,6 +57,5 @@ public class Recette_Thread extends Thread{
     public void stopThread()
     {
         enCours = false;
-        ie.mise_a_jour();
     }
 }
