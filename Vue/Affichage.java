@@ -83,7 +83,6 @@ public class Affichage extends JSplitPane
         try {
             BufferedImage img = ImageIO.read(new File("Images\\Gazon.png"));
             BufferedImage img_ = ImageIO.read(new File("Images\\Gazon_.png"));
-            //BufferedImage img__ = ImageIO.read(new File("Images\\Goblin.png"));
             for (int i = 0; i < etat.getLargeurGrille(); i++) {
                 for (int j = 0; j < etat.getHauteurGrille(); j++) {
                     if((i+j)%2==0) {
@@ -93,7 +92,6 @@ public class Affichage extends JSplitPane
                     }
                 }
             }
-            //g.drawImage(img__, 310,310,80,80,null);
         }
         catch (IOException E) { E.printStackTrace(); }
 

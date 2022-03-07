@@ -1,6 +1,5 @@
 package Modele;
 
-import Vue.IE_Dwarf;
 import Vue.IE_Plante;
 import Vue.VueFlower;
 
@@ -12,10 +11,12 @@ public class Flower extends Entitee implements Runnable
     private int durability = 100;
     private Color color = Color.red;
 
-    public Flower(Etat _e) 
+    public Flower(Etat _e, Point pos)
     {
         this.interface_e = new IE_Plante(_e, this);
     	this.affichable = new VueFlower(this);
+        this.position = pos;
+        _e.getGrille().setCase(pos, this);
     }
 
     public void run() 

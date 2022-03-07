@@ -17,6 +17,7 @@ public class IE_Plante implements InterfaceEntitee {
     //Variable
 
     private int Durabilite_max;
+    
 
 
     public IE_Plante(Etat _e, Flower f)

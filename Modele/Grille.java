@@ -112,10 +112,22 @@ public class Grille
     	ArrayList<Point> voisins = new ArrayList<Point>();
 		for(int i = -1; i <= 1; ++i)
 			for(int j = -1; j <= 1; ++j)
-				if(	(j != i || j != 0)
+				if(	j != i && j*i != -1
 					&& selectionX + i >= 0 && selectionY + i < largeur 
 					&& selectionY + j >= 0 && selectionY + j < longueur)
 						voisins.add(new Point(selectionX + i, selectionY + j));
+		return voisins;
+    }
+    
+    public ArrayList<Point> getVoisins(Point p)
+    {
+    	ArrayList<Point> voisins = new ArrayList<Point>();
+		for(int i = -1; i <= 1; ++i)
+			for(int j = -1; j <= 1; ++j)
+				if(	j != i && j != -1*i
+					&& p.x + i >= 0 && p.x + i < largeur 
+					&& p.y + j >= 0 && p.y + j < longueur)
+						voisins.add(new Point(p.x + i, p.y + j));
 		return voisins;
     }
 
@@ -184,16 +196,44 @@ public class Grille
         return getEntitee(selectionX, selectionY);
     }
 
+    public void create_batiment_selection(Batiment bat)
+    {
+        Point origine = new Point(selectionX,selectionY);
+        ArrayList<Point> a_construire = bat.getStructure();
+        for (int i = 0; i< a_construire.size(); i++)
+        {
+            Point point = new Point(origine.x + a_construire.get(i).x, origine.y + a_construire.get(i).y);
+            if (((point.x < 0 || point.y < 0) && (point.x > largeur || point.y > longueur)) || estOccupee(point) )
+            {
+                return;
+            }
+            setCase(point, bat);
+        }
+    }
 
+    public void create_batiment(Point p, Batiment bat)
+    {
+        ArrayList<Point> a_construire = bat.getStructure();
+        for (int i = 0; i< a_construire.size(); i++)
+        {
+            Point point = new Point(p.x + a_construire.get(i).x, p.y + a_construire.get(i).y);
+            if (((point.x < 0 || point.y < 0) && (point.x > largeur || point.y > longueur)) || estOccupee(point) )
+            {
+                System.out.println("probleme lors de la creation du bâtiment " + bat.getClass());
+                return;
+            }
+            this.setCase(point.x,point.y, bat);
+        }
+    }
 
-	public void recupererRessources(Dwarf dwarf) 
+	public void recupererRessources(EntiteeAvecInventaire EAI)
 	{
 		for(Point p : this.getSelectionVoisins())
 		{
 			Entitee e = this.getEntitee(p);
 			if(e instanceof Ressource) 
 			{
-				dwarf.addToInventaire((Ressource) e); 
+				EAI.addToInventaire((Ressource) e);
 				this.setCase(p, null);
 			}
 		}
