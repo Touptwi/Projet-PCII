@@ -9,13 +9,14 @@ import java.lang.reflect.Array;
 public class VueForge implements Affichable{
 
     Image[] img = new Image[3];
+    int appel = 0;
 
     public VueForge()
     {
         for (int i = 0; i < 3 ; i++)
         {
             try {
-                img[i] = ImageIO.read(new File("Images/furnace"+ (i + 1) +".png"));
+                img[i] = ImageIO.read(new File("Images/furnace"+ ((i%2) + 1) +".png"));
             } catch (IOException E) {
                 E.printStackTrace();
             }
@@ -24,6 +25,7 @@ public class VueForge implements Affichable{
 
     @Override
     public void draw(Graphics g, Affichage a) {
-        g.drawImage(img[1],10, 20, a.fitX(80), a.fitY(80),null);
+        g.drawImage(img[appel],10, 20, a.fitX(80), a.fitY(80),null);
+        appel = (appel + 1)%3;
     }
 }
