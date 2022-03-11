@@ -2,7 +2,15 @@ package Modele;
 
 import java.awt.Point;
 
-import Modele.Ressource.Type;
+import Modele.Entitees.*;
+import Modele.Entitees.Batiments.Forge.Forge;
+import Modele.Entitees.Batiments.Forge.Rubis_poli;
+import Modele.Entitees.EntieesDeplacable.Dwarf;
+import Modele.Entitees.EntieesDeplacable.EntiteeDeplacable;
+import Modele.Entitees.EntieesDeplacable.Goblin;
+import Modele.Entitees.Ressources.Ressource;
+import Modele.Entitees.Ressources.Ressource.Type;
+import Modele.Entitees.Ressources.Flower;
 
 public class Etat {
 
@@ -84,12 +92,9 @@ public class Etat {
 			} break;
     	}
     }
-    
-    
+
     public Entitee getEntitee(int i, int j)
     {
         return grille.getEntitee(i,j);
     }
-    
-    
 }

@@ -1,21 +1,20 @@
-package Vue;
+package Vue.AffichageForge;
 
 import Modele.Etat;
-import Modele.Recette;
-import Modele.Ressource;
-import Modele.Forge;
+import Modele.Entitees.Batiments.Recette;
+import Modele.Entitees.Ressources.Ressource;
+import Modele.Entitees.Batiments.Forge.Forge;
+import Vue.InterfaceEntitee;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Dictionary;
-import java.util.Enumeration;
 
-public class IE_Forge implements InterfaceEntitee{
+public class IE_Forge implements InterfaceEntitee {
 
     //Objet représenté
     private Forge forge;
-
 
     //composant de la page
     private JPanel fenetre_princ = new JPanel();
@@ -24,7 +23,6 @@ public class IE_Forge implements InterfaceEntitee{
     private ArrayList<JPanel> liste_fourneaux = new ArrayList<JPanel>();
 
     private JTextArea zone_inventaire = new JTextArea("*");
-
 
     private JTabbedPane tabbed_pane = new JTabbedPane();
 
@@ -61,7 +59,6 @@ public class IE_Forge implements InterfaceEntitee{
         JSplitPane separation = new JSplitPane(JSplitPane.VERTICAL_SPLIT,zone_fourneaux,tabbed_pane);
         separation.setDividerSize(0);
         fenetre_princ.add(separation);
-
     }
 
     @Override
@@ -117,7 +114,6 @@ public class IE_Forge implements InterfaceEntitee{
                 liste_fourneaux.get(i).setVisible(false);
             }
         }
-
     }
 
     /**
@@ -139,7 +135,6 @@ public class IE_Forge implements InterfaceEntitee{
             zone_inventaire.setText(result);
         }
     }
-
 
     /**
      * Initialiser la sous fenêtre representant les fourneaux de la forge et tous les composants necessaires

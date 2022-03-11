@@ -1,7 +1,7 @@
 package Vue.ButtonListeners;
 
-import Modele.Recette;
-import Modele.Forge;
+import Modele.Entitees.Batiments.Recette;
+import Modele.Entitees.Batiments.Forge.Forge;
 import Vue.InterfaceEntitee;
 
 import java.awt.event.ActionEvent;

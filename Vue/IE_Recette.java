@@ -1,7 +1,7 @@
 package Vue;
 
-import Modele.Recette;
-import Modele.Forge;
+import Modele.Entitees.Batiments.Recette;
+import Modele.Entitees.Batiments.Forge.Forge;
 import Vue.ButtonListeners.ProduireListener;
 
 import javax.swing.*;
@@ -45,5 +45,4 @@ public class IE_Recette {
     {
         return recette_ie;
     }
-
 }

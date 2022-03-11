@@ -1,4 +1,7 @@
-package Modele;
+package Modele.Entitees.Batiments;
+
+import Modele.Entitees.Entitee;
+import Modele.Entitees.Ressources.Ressource;
 
 import java.awt.*;
 
@@ -50,5 +53,4 @@ public abstract class Batiment extends Entitee {
     public ArrayList<Point> getStructure() {
         return structure;
     }
-
 }

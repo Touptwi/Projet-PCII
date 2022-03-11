@@ -1,10 +1,11 @@
-package Vue;
+package Vue.AffichageRessource;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-
-import Modele.Ressource;
+import Modele.Entitees.Ressources.Ressource;
+import Vue.Affichable;
+import Vue.Affichage;
 
 public class VueRessource implements Affichable
 {

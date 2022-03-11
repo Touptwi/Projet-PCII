@@ -1,8 +1,9 @@
 package Modele;
 
+import Modele.Entitees.EntieesDeplacable.EntiteeDeplacable;
+
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Deplacement extends Thread
 {
@@ -115,7 +116,6 @@ public class Deplacement extends Thread
 		}
 	}
 
-	
 	/**
 	 * Algorithme A* (sans heuristiques : cases carrées de même dimensions)
 	 * Trace un chemin du point "from" au point "to" si il existe et le stocke dans le champs "a_star_path"

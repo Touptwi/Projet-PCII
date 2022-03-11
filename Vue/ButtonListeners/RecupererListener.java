@@ -3,7 +3,7 @@ package Vue.ButtonListeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Modele.Dwarf;
+import Modele.Entitees.EntieesDeplacable.Dwarf;
 import Modele.Etat;
 
 public class RecupererListener implements ActionListener
@@ -23,5 +23,4 @@ public class RecupererListener implements ActionListener
 	{
 		etat.getGrille().recupererRessources(dwarf);
 	}
-
 }

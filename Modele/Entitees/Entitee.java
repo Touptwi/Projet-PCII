@@ -1,4 +1,5 @@
-package Modele;
+package Modele.Entitees;
+
 import Vue.Affichable;
 import Vue.InterfaceEntitee;
 

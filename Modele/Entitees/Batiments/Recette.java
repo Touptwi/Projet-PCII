@@ -1,5 +1,6 @@
-package Modele;
+package Modele.Entitees.Batiments;
 
+import Modele.Entitees.Ressources.Ressource;
 import Vue.IE_Recette;
 
 import java.util.*;
@@ -100,8 +101,6 @@ public abstract class Recette {
             inventaire.put(ing,inventaire.get(ing) - ingredients.get(ing));
         }
     }
-
-
 
     @Override
     public boolean equals(Object o) {

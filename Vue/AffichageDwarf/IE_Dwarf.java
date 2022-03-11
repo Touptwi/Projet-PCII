@@ -1,7 +1,5 @@
-package Vue;
+package Vue.AffichageDwarf;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.util.Arrays;
 
@@ -11,9 +9,10 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import Modele.Etat;
-import Modele.Dwarf;
+import Modele.Entitees.EntieesDeplacable.Dwarf;
 import Vue.ButtonListeners.MoveListener;
 import Vue.ButtonListeners.RecupererListener;
+import Vue.InterfaceEntitee;
 
 public class IE_Dwarf implements InterfaceEntitee
 {

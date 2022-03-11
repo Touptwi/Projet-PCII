@@ -1,10 +1,11 @@
-package Modele;
+package Modele.Entitees.EntieesDeplacable;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-import Vue.IE_Dwarf;
-import Vue.VueDwarf;
+import Modele.Etat;
+import Vue.AffichageDwarf.IE_Dwarf;
+import Vue.AffichageDwarf.VueDwarf;
 
 public class Dwarf extends EntiteeDeplacable implements Runnable
 {

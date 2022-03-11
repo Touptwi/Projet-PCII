@@ -1,6 +1,7 @@
-package Modele;
+package Modele.Entitees.Batiments;
 
-import Vue.IE_Forge;
+import Modele.Entitees.Batiments.Forge.Forge;
+import Vue.AffichageForge.IE_Forge;
 
 public class Recette_Thread extends Thread{
 
@@ -10,7 +11,6 @@ public class Recette_Thread extends Thread{
     private int valMax;
     private String nom;
     public boolean enCours = true;
-
 
     public Recette_Thread(Forge f, Recette r)
     {

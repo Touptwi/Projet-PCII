@@ -1,4 +1,4 @@
-package Vue;
+package Vue.AffichageRessource;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -8,8 +8,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import Modele.Etat;
-import Modele.Ressource;
-import Modele.Ressource.Type;
+import Modele.Entitees.Ressources.Ressource;
+import Vue.InterfaceEntitee;
 
 public class IE_Ressource implements InterfaceEntitee
 {
@@ -17,7 +17,6 @@ public class IE_Ressource implements InterfaceEntitee
     private JPanel interface_graphique_princ;
     private Canvas icone;
     private JSplitPane separateur;
-
 
     public IE_Ressource(Etat _e, Ressource r)
     {
@@ -38,7 +37,6 @@ public class IE_Ressource implements InterfaceEntitee
         interface_graphique_princ.add(separateur);
     }
 
-
     @Override
     public JPanel getJPanel() 
     {
@@ -51,4 +49,3 @@ public class IE_Ressource implements InterfaceEntitee
         
     }
 }
-

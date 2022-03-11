@@ -1,12 +1,14 @@
-package Vue;
+package Vue.AffichageForge;
+
+import Vue.Affichable;
+import Vue.Affichage;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 
-public class VueForge implements Affichable{
+public class VueForge implements Affichable {
 
     Image[] img = new Image[3];
     int appel = 0;

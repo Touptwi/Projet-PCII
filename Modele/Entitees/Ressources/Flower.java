@@ -1,9 +1,9 @@
-package Modele;
+package Modele.Entitees.Ressources;
 
-import Vue.IE_Plante;
-import Vue.VueFlower;
+import Modele.Etat;
+import Vue.AffichageFlower.IE_Plante;
+import Vue.AffichageFlower.VueFlower;
 
-import javax.swing.event.ChangeEvent;
 import java.awt.*;
 
 public class Flower extends Ressource implements Runnable
@@ -43,5 +43,4 @@ public class Flower extends Ressource implements Runnable
     public Color getColor() { return color; }
 
     public int getDurability() { return durability; }
-
 }

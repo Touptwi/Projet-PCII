@@ -1,13 +1,17 @@
-package Modele;
+package Modele.Entitees.Batiments.Forge;
 
-import Vue.IE_Forge;
-import Vue.VueForge;
+import Modele.Entitees.Batiments.Batiment;
+import Modele.Entitees.Batiments.Recette_Thread;
+import Modele.Etat;
+import Modele.Entitees.Batiments.Recette;
+import Vue.AffichageForge.IE_Forge;
+import Vue.AffichageForge.VueForge;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Forge extends Batiment{
+public class Forge extends Batiment {
 
     private ArrayList<Recette> recettes;
     private Recette_Thread[] fourneaux;

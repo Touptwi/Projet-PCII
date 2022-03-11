@@ -1,7 +1,7 @@
 package Vue;
 
 import Controleur.Control;
-import Modele.Entitee;
+import Modele.Entitees.Entitee;
 import Modele.Etat;
 
 import javax.imageio.ImageIO;
@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 
 public class Affichage extends JSplitPane
 {
@@ -22,8 +21,6 @@ public class Affichage extends JSplitPane
     private JPanel interface_entitee_courante = null;
 
     private Thread thread_rafraichissement;
-
-
 
     /** Initialise une fenetre qui se rafraichi, avec un controller et un etat qu'on utilisera comme modele a afficher.
      * @param e : Etat sur lequel se baser pour l'affichage.
@@ -86,8 +83,8 @@ public class Affichage extends JSplitPane
     /** Affichage de la grille */
     private void drawGrille(Graphics g){
         try {
-            BufferedImage img = ImageIO.read(new File("Images/Gazon.png"));
-            BufferedImage img_ = ImageIO.read(new File("Images/Gazon_.png"));
+            BufferedImage img = ImageIO.read(new File("Images/Gazon/Gazon.png"));
+            BufferedImage img_ = ImageIO.read(new File("Images/Gazon/Gazon_.png"));
             for (int i = 0; i < etat.getLargeurGrille(); i++) {
                 for (int j = 0; j < etat.getHauteurGrille(); j++) {
                     if((i+j)%2==0) {

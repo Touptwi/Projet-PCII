@@ -1,5 +1,10 @@
 package Modele;
 
+import Modele.Entitees.Batiments.Batiment;
+import Modele.Entitees.Entitee;
+import Modele.Entitees.EntiteeAvecInventaire;
+import Modele.Entitees.Ressources.Ressource;
+
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -215,7 +220,7 @@ public class Grille
 		for(Point p : this.getSelectionVoisins())
 		{
 			Entitee e = this.getEntitee(p);
-			if(e instanceof Ressource) 
+			if(e instanceof Ressource)
 			{
 				EAI.addToInventaire((Ressource) e);
 				this.setCase(p, null);

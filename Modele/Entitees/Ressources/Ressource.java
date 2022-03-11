@@ -1,7 +1,9 @@
-package Modele;
+package Modele.Entitees.Ressources;
 
-import Vue.IE_Ressource;
-import Vue.VueRessource;
+import Modele.Entitees.Entitee;
+import Modele.Etat;
+import Vue.AffichageRessource.IE_Ressource;
+import Vue.AffichageRessource.VueRessource;
 
 import java.awt.*;
 

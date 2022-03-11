@@ -1,8 +1,8 @@
-package Vue;
+package Vue.AffichageFlower;
 
-import Modele.Entitee;
 import Modele.Etat;
-import Modele.Flower;
+import Modele.Entitees.Ressources.Flower;
+import Vue.InterfaceEntitee;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,5 +63,4 @@ public class IE_Plante implements InterfaceEntitee {
             interface_graphique_princ.setVisible(false);
         }
     }
-
 }

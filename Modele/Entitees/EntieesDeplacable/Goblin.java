@@ -1,7 +1,10 @@
-package Modele;
+package Modele.Entitees.EntieesDeplacable;
 
-import Vue.IE_Goblin;
-import Vue.VueGoblin;
+import Modele.Deplacement;
+import Modele.Entitees.Ressources.Ressource;
+import Modele.Etat;
+import Vue.AffichageGoblin.IE_Goblin;
+import Vue.AffichageGoblin.VueGoblin;
 
 import java.awt.*;
 import java.util.ArrayList;

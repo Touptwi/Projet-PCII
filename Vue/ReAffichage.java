@@ -1,7 +1,5 @@
 package Vue;
 
-import javax.swing.*;
-
 /**
  * ce thread assure le réaffichage régulier de la fenetre
  */

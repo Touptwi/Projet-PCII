@@ -1,7 +1,8 @@
-package Vue;
+package Vue.AffichageGoblin;
 
 import Modele.Etat;
-import Modele.Goblin;
+import Modele.Entitees.EntieesDeplacable.Goblin;
+import Vue.InterfaceEntitee;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -34,5 +35,4 @@ public class IE_Goblin implements InterfaceEntitee {
     public void mise_a_jour() {
         inventaire.setText(Arrays.toString(goblin.getInventaire()));
     }
-
 }

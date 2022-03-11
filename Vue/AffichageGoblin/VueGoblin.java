@@ -1,6 +1,8 @@
-package Vue;
+package Vue.AffichageGoblin;
 
-import Modele.Goblin;
+import Modele.Entitees.EntieesDeplacable.Goblin;
+import Vue.Affichable;
+import Vue.Affichage;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,7 +18,7 @@ public class VueGoblin implements Affichable {
 
     public VueGoblin(Goblin gob){
         this.goblin = gob;
-        try { img = ImageIO.read(new File("Images/Goblin.png"));}
+        try { img = ImageIO.read(new File("Images/Goblin/Goblin.png"));}
         catch (IOException E) { E.printStackTrace(); }
     }
 

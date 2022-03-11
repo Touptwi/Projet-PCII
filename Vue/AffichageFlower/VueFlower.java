@@ -1,6 +1,8 @@
-package Vue;
+package Vue.AffichageFlower;
 
-import Modele.Flower;
+import Modele.Entitees.Ressources.Flower;
+import Vue.Affichable;
+import Vue.Affichage;
 
 import java.awt.*;
 

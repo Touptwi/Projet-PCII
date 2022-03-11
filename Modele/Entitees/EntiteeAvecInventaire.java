@@ -1,6 +1,6 @@
-package Modele;
+package Modele.Entitees;
 
-import java.util.Arrays;
+import Modele.Entitees.Ressources.Ressource;
 
 public abstract class EntiteeAvecInventaire extends Entitee
 {

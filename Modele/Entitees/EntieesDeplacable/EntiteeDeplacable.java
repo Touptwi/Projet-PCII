@@ -1,4 +1,7 @@
-package Modele;
+package Modele.Entitees.EntieesDeplacable;
+
+import Modele.Deplacement;
+import Modele.Entitees.EntiteeAvecInventaire;
 
 import java.awt.Point;
 import java.util.ArrayList;
