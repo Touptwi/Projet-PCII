@@ -10,8 +10,5 @@ public abstract class EntiteeAvecInventaire extends Entitee
 	 */
 	protected Inventaire inventaire = new Inventaire();
 	
-	public Inventaire getInventaire() { return this.inventaire; }
-
-	
-	
+	public Inventaire getInventaire() { return this.inventaire; }	
 }
