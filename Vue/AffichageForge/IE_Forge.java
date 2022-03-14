@@ -3,6 +3,7 @@ package Vue.AffichageForge;
 import Modele.Etat;
 import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette;
 import Modele.Entitees.Ressources.Ressource;
+import Modele.Entitees.EntiteeAvecInventaire.Inventaire;
 import Modele.Entitees.EntiteeAvecInventaire.Batiments.Forge;
 import Vue.InterfaceEntitee;
 
@@ -122,20 +123,17 @@ public class IE_Forge implements InterfaceEntitee {
      */
     public void maj_zone_inventaire()
     {
-    	//TODO
-//        if (forge.getInventaire() != null)
-//        {
-//            String result = "";
-//            Dictionary<Ressource.Type, Integer> inventaire = forge.getInventaire();
-//            Ressource.Type[] ressources = Ressource.Type.values();
-//            for (int i = 0; i < ressources.length - 1; i++) {
-//                Ressource.Type nom_ressource = ressources[i];
-//                int nb_ressource = inventaire.get(nom_ressource);
-//                if ( nb_ressource != 0)
-//                    result = result + nom_ressource.toString() + ": " + inventaire.get(nom_ressource) + "\n";
-//            }
-//            zone_inventaire.setText(result);
-//        }
+        if (forge.getInventaire() != null)
+        {
+            String result = "";
+            Inventaire i = forge.getInventaire();
+            Ressource[] ressources = i.getInventaire();
+            for (Ressource r : ressources) 
+            {
+            	result += r.toString();
+            }
+            zone_inventaire.setText(result);
+        }
     }
 
     /**
