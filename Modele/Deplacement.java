@@ -46,21 +46,24 @@ public class Deplacement extends Thread
 			while(idx < a_star_path.size())
 			{
 				Point v = a_star_path.get(idx);
-				if(this.move(current_p, v)) 
-				{ 
+				if(this.move(current_p, v))
+				{
 					current_p = v; //changing our position locally
 					idx++; //going to read the next step
 					//System.out.print("Move : "); System.out.println(v); //debug
 				}
-				else 
-				{ 
+				else
+				{
+					if(e.check_deplacement(current_p,grille.getVoisins(current_p))) {
+						break;
+					}
 //					System.out.print("Erreur de d�placement : "); System.out.println(v);  //debug
 					from = current_p;
 					if(algorithmA_star()) idx = 0;
-					else 
+					else
 					{
 						System.out.print("Aucun chemin trouv�");
-						break; 
+						break;
 						//TODO : Possible d�bat ici, est-ce vraiment bon de break dans ce cas ou faut-il attendre ?
 						// -> V�rification de la distance entre la position et la destination ?
 					}

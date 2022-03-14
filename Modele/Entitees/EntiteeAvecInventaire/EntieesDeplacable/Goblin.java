@@ -31,12 +31,7 @@ public class Goblin extends EntiteeDeplacable implements Runnable
         if(voisins.contains(ressource.getPosition())) {
             etat.getGrille().recupererRessources(this);
         }
-        doEscape(pos, voisins);
-    }
-
-    /** Rentre d'où il vient */
-    public void doEscape(Point pos, ArrayList<Point> voisins) {
-            new Deplacement(this, pos, position, etat.getGrille()).start();
+        fuir(pos);
     }
 
     @Override
@@ -50,20 +45,32 @@ public class Goblin extends EntiteeDeplacable implements Runnable
     }
 
 	@Override
-	public void check_deplacement(Point position, ArrayList<Point> voisins) 
+	public boolean check_deplacement(Point position, ArrayList<Point> voisins)
 	{
-		// TODO Auto-generated method stub
+        for(Point voisin : voisins) {
+            if(etat.getGrille().getEntitee(voisin) != null) {
+                if (etat.getGrille().getEntitee(voisin).isDwarf) {
+                    this.isFeared= true;
+                    fuir(position);
+                    return true;
+                }
+            }
+        }
+        return false;
 	}
 
 	@Override
 	public void fin_deplacement(Point position, ArrayList<Point> voisins) 
 	{
-		takeRessource(position, voisins);
+        if(!isFeared) {
+            takeRessource(position, voisins);
+        }
 	}
 
+    /** Rentre d'où il vient */
 	@Override
-	public void fuir(Point position, ArrayList<Point> voisins) 
+	public void fuir(Point pos)
 	{
-		doEscape(position, voisins);
+        new Deplacement(this, pos, position, etat.getGrille()).start();
 	}
 }

@@ -15,6 +15,7 @@ public class Dwarf extends EntiteeDeplacable implements Runnable
         this.affichable = new VueDwarf(this);
 		this.position = pos;
 		_e.getGrille().setCase(pos, this);
+		this.isDwarf = true;
     }
 
 	@Override
@@ -29,9 +30,10 @@ public class Dwarf extends EntiteeDeplacable implements Runnable
 	}
 
 	@Override
-	public void check_deplacement(Point position, ArrayList<Point> voisins) 
+	public boolean check_deplacement(Point position, ArrayList<Point> voisins)
 	{
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
@@ -41,7 +43,7 @@ public class Dwarf extends EntiteeDeplacable implements Runnable
 	}
 
 	@Override
-	public void fuir(Point position, ArrayList<Point> voisins) 
+	public void fuir(Point pos)
 	{
 		// TODO Auto-generated method stub	
 	}

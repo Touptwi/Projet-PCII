@@ -13,7 +13,11 @@ public class Entitee
 	public InterfaceEntitee interface_e;
 	/** Point de position de l'Entitee dans la grille */
 	public Point position;
-	
+	/** Vérifie si l'entitée est un dwarf */
+	public Boolean isDwarf = false;
+	/** Vérifie si l'entitée est apeuré */
+	public Boolean isFeared = false;
+
 	public Affichable getSprite() { return affichable; }
 	public InterfaceEntitee getInterfaceEntitee() { return interface_e; }
 	public Point getPosition() { return position; }
