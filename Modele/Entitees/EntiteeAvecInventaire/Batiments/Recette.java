@@ -5,7 +5,7 @@ import Vue.IE_Recette;
 
 import java.util.*;
 
-public abstract class Recette {
+public class Recette {
 
     private Dictionary<Ressource.Type,Integer> ingredients = new Hashtable<Ressource.Type, Integer>();
     //les ingredients de la recette sont stockés dans un dictionnaire de la forme
@@ -16,6 +16,13 @@ public abstract class Recette {
     private int temps = 0; //indique le temps de réalisation d'une recette (utilise par les threads des bâtiments)
 
     IE_Recette ie = new IE_Recette(this); //l'interface (cette interface est utilisé comme sous interface de IE_Forge)
+
+    public Recette(String nom, Dictionary<Ressource.Type,Integer> ingredients, int t)
+    {
+        this.nom = nom;
+        this.ingredients = ingredients;
+        this.temps = t;
+    }
 
     //Guetters et Setters ///////////////////////////////////////////////////
 

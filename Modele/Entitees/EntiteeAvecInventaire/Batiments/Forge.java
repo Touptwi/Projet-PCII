@@ -2,6 +2,7 @@ package Modele.Entitees.EntiteeAvecInventaire.Batiments;
 
 import Modele.Entitees.EntiteeAvecInventaire.Batiments.Batiment;
 import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette_Thread;
+import Modele.Entitees.Ressources.Ressource;
 import Modele.Etat;
 import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette;
 import Vue.AffichageForge.IE_Forge;
@@ -10,6 +11,8 @@ import Vue.AffichageForge.VueForge;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class Forge extends Batiment {
 
@@ -17,13 +20,28 @@ public class Forge extends Batiment {
     private Recette_Thread[] fourneaux;
 
 
+    /**
+     * crée une forge
+     * @param _e l'état du jeu
+     * @param nb_fourneaux le nb de recettes pouvant etre lancé simultanément
+     * @param pos la position ou placer la forge sur la grille.
+     */
     public Forge(Etat _e, int nb_fourneaux, Point pos)
     {
-        super(new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(1,0), new Point(-1,0))));
+        super(new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(1,0), new Point(-1,0)))); //déclaration de la structure du batiment
         affichable = new VueForge();
         init_inventaire();//creation de l'inventaire;
         fourneaux = new Recette_Thread[nb_fourneaux];
+
+        //création des recettes de la forge
         recettes = new ArrayList<Recette>();
+
+
+        Dictionary<Ressource.Type,Integer> ing = new Hashtable<Ressource.Type,Integer>();
+        ing.put(Ressource.Type.RUBIS,1);
+        add_recettes(new Recette("rubis poli",ing,5));
+
+        ////////////////////////////////////
         Arrays.fill(fourneaux, null);
 
         //creation et mise a jour de l'interface
@@ -31,6 +49,8 @@ public class Forge extends Batiment {
 
         this.position = pos;
         _e.getGrille().create_batiment(pos,this); //ajout de la forge à la grille
+
+
     }
 
     /**
@@ -58,13 +78,14 @@ public class Forge extends Batiment {
     }
 
 
-    public void add_recettes(Recette r)
+    private void add_recettes(Recette r)
     {
         recettes.add(r);
     }
 
     public ArrayList<Recette> get_recettes()
     {
+        System.out.println(recettes.toString());
         return recettes;
     }
 

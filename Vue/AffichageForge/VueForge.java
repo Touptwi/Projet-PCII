@@ -18,7 +18,7 @@ public class VueForge implements Affichable {
         for (int i = 0; i < 3 ; i++)
         {
             try {
-                img[i] = ImageIO.read(new File("Images/furnace"+ ((i%2) + 1) +".png"));
+                img[i] = ImageIO.read(new File("Images/Furnace/furnace"+ ((i%2) + 1) +".png"));
             } catch (IOException E) {
                 E.printStackTrace();
             }

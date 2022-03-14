@@ -4,7 +4,6 @@ import java.awt.Point;
 
 import Modele.Entitees.*;
 import Modele.Entitees.EntiteeAvecInventaire.Batiments.Forge;
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Rubis_poli;
 import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
 import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.EntiteeDeplacable;
 import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Goblin;
@@ -38,11 +37,6 @@ public class Etat {
         //initiation du test de la forge
         Forge forge = new Forge(this,3, new Point(3,3));
         forge.get_inventaire().put(Type.RUBIS,2);
-        forge.add_recettes(new Rubis_poli());
-        forge.add_recettes(new Rubis_poli());
-        forge.add_recettes(new Rubis_poli());
-        forge.lancer_recette(forge.get_recettes().get(0));
-        forge.interface_e.mise_a_jour();
         //
 
         new Thread(f).start();
