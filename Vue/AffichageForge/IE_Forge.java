@@ -1,9 +1,9 @@
 package Vue.AffichageForge;
 
 import Modele.Etat;
-import Modele.Entitees.Batiments.Recette;
+import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette;
 import Modele.Entitees.Ressources.Ressource;
-import Modele.Entitees.Batiments.Forge.Forge;
+import Modele.Entitees.EntiteeAvecInventaire.Batiments.Forge;
 import Vue.InterfaceEntitee;
 
 import javax.swing.*;

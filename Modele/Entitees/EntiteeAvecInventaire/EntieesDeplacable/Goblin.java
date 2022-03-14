@@ -1,4 +1,4 @@
-package Modele.Entitees.EntieesDeplacable;
+package Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable;
 
 import Modele.Deplacement;
 import Modele.Entitees.Ressources.Ressource;

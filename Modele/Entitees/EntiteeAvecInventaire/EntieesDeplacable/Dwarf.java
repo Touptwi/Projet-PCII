@@ -1,4 +1,4 @@
-package Modele.Entitees.EntieesDeplacable;
+package Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable;
 
 import java.awt.*;
 import java.util.ArrayList;

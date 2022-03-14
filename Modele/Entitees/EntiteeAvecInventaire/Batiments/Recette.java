@@ -1,4 +1,4 @@
-package Modele.Entitees.Batiments;
+package Modele.Entitees.EntiteeAvecInventaire.Batiments;
 
 import Modele.Entitees.Ressources.Ressource;
 import Vue.IE_Recette;

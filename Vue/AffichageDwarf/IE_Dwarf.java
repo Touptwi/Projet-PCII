@@ -9,7 +9,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import Modele.Etat;
-import Modele.Entitees.EntieesDeplacable.Dwarf;
+import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
 import Vue.ButtonListeners.MoveListener;
 import Vue.ButtonListeners.RecupererListener;
 import Vue.InterfaceEntitee;

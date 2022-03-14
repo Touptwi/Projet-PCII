@@ -3,11 +3,11 @@ package Modele;
 import java.awt.Point;
 
 import Modele.Entitees.*;
-import Modele.Entitees.Batiments.Forge.Forge;
-import Modele.Entitees.Batiments.Forge.Rubis_poli;
-import Modele.Entitees.EntieesDeplacable.Dwarf;
-import Modele.Entitees.EntieesDeplacable.EntiteeDeplacable;
-import Modele.Entitees.EntieesDeplacable.Goblin;
+import Modele.Entitees.EntiteeAvecInventaire.Batiments.Forge;
+import Modele.Entitees.EntiteeAvecInventaire.Batiments.Rubis_poli;
+import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
+import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.EntiteeDeplacable;
+import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Goblin;
 import Modele.Entitees.Ressources.Ressource;
 import Modele.Entitees.Ressources.Ressource.Type;
 import Modele.Entitees.Ressources.Flower;
@@ -37,7 +37,7 @@ public class Etat {
 
         //initiation du test de la forge
         Forge forge = new Forge(this,3, new Point(3,3));
-        forge.get_inventaire().put(Type.RUBIS,3);
+        forge.get_inventaire().put(Type.RUBIS,2);
         forge.add_recettes(new Rubis_poli());
         forge.add_recettes(new Rubis_poli());
         forge.add_recettes(new Rubis_poli());
