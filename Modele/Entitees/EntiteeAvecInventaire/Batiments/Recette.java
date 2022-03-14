@@ -1,5 +1,6 @@
 package Modele.Entitees.EntiteeAvecInventaire.Batiments;
 
+import Modele.Entitees.EntiteeAvecInventaire.Inventaire;
 import Modele.Entitees.Ressources.Ressource;
 import Vue.IE_Recette;
 
@@ -7,17 +8,20 @@ import java.util.*;
 
 public class Recette {
 
-    private Dictionary<Ressource.Type,Integer> ingredients = new Hashtable<Ressource.Type, Integer>();
-    //les ingredients de la recette sont stockés dans un dictionnaire de la forme
-    //Type de l'ingredient -> nb necessaire
+	
+	//les ingredients de la recette sont stockés dans un dictionnaire de la forme
+	//Type de l'ingredient -> nb necessaire
+//    private Dictionary<Ressource.Type,Integer> ingredients = new Hashtable<Ressource.Type, Integer>();
 
-    private String nom;
+	private Inventaire ingredients;
+
+	private String nom;
 
     private int temps = 0; //indique le temps de réalisation d'une recette (utilise par les threads des bâtiments)
 
     IE_Recette ie = new IE_Recette(this); //l'interface (cette interface est utilisé comme sous interface de IE_Forge)
 
-    public Recette(String nom, Dictionary<Ressource.Type,Integer> ingredients, int t)
+    public Recette(String nom, Inventaire ingredients, int t)
     {
         this.nom = nom;
         this.ingredients = ingredients;
@@ -26,9 +30,9 @@ public class Recette {
 
     //Guetters et Setters ///////////////////////////////////////////////////
 
-    protected void add_ingredient(Ressource.Type ing,int nb)
+    protected void add_ingredient(Ressource r)
     {
-        ingredients.put(ing,nb);
+        ingredients.add(r);
     }
 
     /**
@@ -38,15 +42,11 @@ public class Recette {
     public String get_ingredients_string()
     {
         String result = "";
-        Enumeration<Ressource.Type> clefs = ingredients.keys();
-        while(clefs.hasMoreElements())
+        for(Ressource r : ingredients)
         {
-            Ressource.Type ressource = clefs.nextElement();
-            if (ingredients.get(ressource) != 0)
-            {
-                result = result + ressource.toString() + ": " + ingredients.get(ressource) + "\n";
-            }
+        	if(r != null) result += r.toString();
         }
+        
         return result;
     }
 
@@ -78,19 +78,17 @@ public class Recette {
      * @param inventaire un inventaire de bâtiment sous la forme d'un dictionnaire Ressource.type -> quantité
      * @return true si l'inventaire contient les ressources nécessaire et false sinon
      */
-    public boolean check(Dictionary<Ressource.Type,Integer> inventaire)
+    public boolean check(Inventaire inventaire)
     {
-        Enumeration<Ressource.Type> liste_ingredients = ingredients.keys();
-
-        while (liste_ingredients.hasMoreElements())
-        {
-            Ressource.Type ing = liste_ingredients.nextElement();
-            if (ingredients.get(ing) > inventaire.get(ing))
-            {
-                return false;
-            }
-        }
-        return true;
+    	for(int i = 0; i < Ressource.Type.COUNT.ordinal(); i++)
+    	{
+	          if (ingredients.get(i) != null 
+	        		  && ( inventaire.get(i) == null || ingredients.get(i).getQuantitee() > inventaire.get(i).getQuantitee()))
+	          {
+	              return false;
+	          }
+    	}
+    	return true;
     }
 
     /**
@@ -99,18 +97,17 @@ public class Recette {
      * /!\ Cette fonction n'est pas sécurisé et ne verifie pas que l'inventaire possède assez d'élément pour la recette
      * si ce n'est pas le cas l'inventaire possèdera des quantité négatives
      */
-    public void produire(Dictionary<Ressource.Type,Integer> inventaire)
+    public void produire(Inventaire inventaire)
     {
-        Enumeration<Ressource.Type> liste_ingredients = ingredients.keys();
-        while (liste_ingredients.hasMoreElements())
-        {
-            Ressource.Type ing = liste_ingredients.nextElement();
-            inventaire.put(ing,inventaire.get(ing) - ingredients.get(ing));
-        }
+        for(int i = 0; i < Ressource.Type.COUNT.ordinal(); i++)
+    	{
+	          inventaire.remove(ingredients.get(i));
+    	}
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) 
+    {
         if (this == o) return true;
         if (!(o instanceof Recette)) return false;
         Recette recette = (Recette) o;

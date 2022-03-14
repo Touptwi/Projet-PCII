@@ -47,7 +47,7 @@ public class IE_Dwarf implements InterfaceEntitee
 		deliver_button.setVisible(true);
 		
 		//Inventaire : Affichage de l'inventaire du nain
-		inventaire = new JTextField(Arrays.toString(dwarf.getInventaire()), 20);
+		inventaire = new JTextField(Arrays.toString(dwarf.getInventaire().getInventaire()), 20);
 		inventaire.setEditable(false);
 
 		JSplitPane separateurH1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, move_button, recup_button);
@@ -69,6 +69,6 @@ public class IE_Dwarf implements InterfaceEntitee
 	public void mise_a_jour()
 	{
 //		System.out.print(Arrays.toString(dwarf.getInventaire())); //debug
-		inventaire.setText(Arrays.toString(dwarf.getInventaire()));
+		inventaire.setText(Arrays.toString(dwarf.getInventaire().getInventaire()));
 	}
 }

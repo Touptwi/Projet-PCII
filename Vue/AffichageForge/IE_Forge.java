@@ -122,19 +122,20 @@ public class IE_Forge implements InterfaceEntitee {
      */
     public void maj_zone_inventaire()
     {
-        if (forge.get_inventaire() != null)
-        {
-            String result = "";
-            Dictionary<Ressource.Type, Integer> inventaire = forge.get_inventaire();
-            Ressource.Type[] ressources = Ressource.Type.values();
-            for (int i = 0; i < ressources.length - 1; i++) {
-                Ressource.Type nom_ressource = ressources[i];
-                int nb_ressource = inventaire.get(nom_ressource);
-                if ( nb_ressource != 0)
-                    result = result + nom_ressource.toString() + ": " + inventaire.get(nom_ressource) + "\n";
-            }
-            zone_inventaire.setText(result);
-        }
+    	//TODO
+//        if (forge.getInventaire() != null)
+//        {
+//            String result = "";
+//            Dictionary<Ressource.Type, Integer> inventaire = forge.getInventaire();
+//            Ressource.Type[] ressources = Ressource.Type.values();
+//            for (int i = 0; i < ressources.length - 1; i++) {
+//                Ressource.Type nom_ressource = ressources[i];
+//                int nb_ressource = inventaire.get(nom_ressource);
+//                if ( nb_ressource != 0)
+//                    result = result + nom_ressource.toString() + ": " + inventaire.get(nom_ressource) + "\n";
+//            }
+//            zone_inventaire.setText(result);
+//        }
     }
 
     /**

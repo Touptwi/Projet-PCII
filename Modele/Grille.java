@@ -222,7 +222,7 @@ public class Grille
 			Entitee e = this.getEntitee(p);
 			if(e instanceof Ressource)
 			{
-				EAI.addToInventaire((Ressource) e);
+				EAI.getInventaire().add((Ressource) e);;
 				this.setCase(p, null);
 			}
 		}

@@ -1,10 +1,8 @@
 package Modele.Entitees.EntiteeAvecInventaire.Batiments;
 
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Batiment;
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette_Thread;
+import Modele.Entitees.EntiteeAvecInventaire.Inventaire;
 import Modele.Entitees.Ressources.Ressource;
 import Modele.Etat;
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette;
 import Vue.AffichageForge.IE_Forge;
 import Vue.AffichageForge.VueForge;
 
@@ -30,16 +28,15 @@ public class Forge extends Batiment {
     {
         super(new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(1,0), new Point(-1,0)))); //déclaration de la structure du batiment
         affichable = new VueForge();
-        init_inventaire();//creation de l'inventaire;
         fourneaux = new Recette_Thread[nb_fourneaux];
 
         //création des recettes de la forge
         recettes = new ArrayList<Recette>();
 
-
-        Dictionary<Ressource.Type,Integer> ing = new Hashtable<Ressource.Type,Integer>();
-        ing.put(Ressource.Type.RUBIS,1);
-        add_recettes(new Recette("rubis poli",ing,5));
+        Inventaire ingredient = new Inventaire();
+        ingredient.add(new Ressource(_e, 5, Ressource.Type.RUBIS));
+        
+        add_recettes(new Recette("rubis poli", ingredient, 5));
 
         ////////////////////////////////////
         Arrays.fill(fourneaux, null);
@@ -49,8 +46,6 @@ public class Forge extends Batiment {
 
         this.position = pos;
         _e.getGrille().create_batiment(pos,this); //ajout de la forge à la grille
-
-
     }
 
     /**
@@ -62,17 +57,17 @@ public class Forge extends Batiment {
     {
         if (recettes.contains(r) && r.check(inventaire))
         {
-            int i = 0;
-            while (i < fourneaux.length) {
-                if (fourneaux[i] == null || !fourneaux[i].enCours) {
+        	for(int i = 0; i < fourneaux.length; ++i)
+        	{
+        		if (fourneaux[i] == null || !fourneaux[i].enCours) 
+        		{
                     fourneaux[i] = new Recette_Thread(this,r);
                     fourneaux[i].start();
                     r.produire(inventaire);
                     //recettes.remove(r);
                     return true;
                 }
-                i++;
-            }
+        	}
         }
         return false;
     }

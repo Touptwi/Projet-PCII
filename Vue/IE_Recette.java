@@ -32,13 +32,14 @@ public class IE_Recette {
     public void maj_ie_recette(Forge forge)
     {
 
-        // LE bouton qui permettera de selectionner la recette
-        produire.setEnabled(recette.check(forge.get_inventaire()));
-        produire.addActionListener(new ProduireListener(forge,recette));
-        produire.setText("lancer production");
-        //Element necessaire a la creation de la recette
-        area.setEditable(false);
-        area.setText("\n" + recette.get_ingredients_string());
+    	//TODO
+//        // LE bouton qui permettera de selectionner la recette
+//        produire.setEnabled(recette.check(forge.get_inventaire()));
+//        produire.addActionListener(new ProduireListener(forge,recette));
+//        produire.setText("lancer production");
+//        //Element necessaire a la creation de la recette
+//        area.setEditable(false);
+//        area.setText("\n" + recette.get_ingredients_string());
     }
 
     public JPanel get_ie()
