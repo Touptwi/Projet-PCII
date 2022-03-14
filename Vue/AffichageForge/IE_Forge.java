@@ -1,5 +1,6 @@
 package Vue.AffichageForge;
 
+import Controleur.ButtonListeners.ProduireListener;
 import Modele.Etat;
 import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette;
 import Modele.Entitees.Ressources.Ressource;
@@ -11,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.HashMap;
 
 public class IE_Forge implements InterfaceEntitee {
 
@@ -20,16 +22,16 @@ public class IE_Forge implements InterfaceEntitee {
     //composant de la page
     private JPanel fenetre_princ = new JPanel();
 
-    private JPanel zone_fourneaux = new JPanel();
-    private ArrayList<JPanel> liste_fourneaux = new ArrayList<JPanel>();
+    private JPanel zone_fourneaux = new JPanel(); //l'interface dans laquelle s'affiche la liste des fourneaux
+    private ArrayList<JPanel> liste_fourneaux = new ArrayList<JPanel>();// la liste des interfaces des fourneaux
 
     private JTextArea zone_inventaire = new JTextArea("*");
 
     private JTabbedPane tabbed_pane = new JTabbedPane();
 
     //liste des JPanel externes ajoutés
-    JPanel zone_recette = new JPanel();
-    ArrayList<Recette> liste_recette = new ArrayList<Recette>();
+    private JPanel zone_recette = new JPanel();
+    private HashMap<Recette,JPanel> liste_recette = new HashMap<Recette,JPanel>();
 
     public IE_Forge(Etat _e, Forge f) {
         forge = f;
@@ -74,28 +76,17 @@ public class IE_Forge implements InterfaceEntitee {
         maj_zone_fourneau();
         maj_zone_inventaire();
         zone_recette.setBorder(BorderFactory.createTitledBorder("il y a actuellement "+ forge.get_recettes().size() + " en attente"));
+
         for(Recette i:forge.get_recettes())
         {
-            if (!liste_recette.contains(i)) // si elle n'est pas déjà ajouté
+            if (!liste_recette.containsKey(i)) // si elle n'est pas déjà ajouté
             {
-                liste_recette.add(i);
-                zone_recette.add(i.getRecetteIE().get_ie());
-                i.getRecetteIE().maj_ie_recette(forge);
+                generate_ie_recette(i);
+                zone_recette.add(liste_recette.get(i));
+                maj_ie_recette(liste_recette.get(i),i);
+            }else{
+                maj_ie_recette(liste_recette.get(i),i);
             }
-        }
-        ArrayList<Recette> test = new ArrayList<Recette>();
-        for(Recette i : liste_recette)
-        {
-            if(!forge.get_recettes().contains(i))
-            {
-                test.add(i);
-            }
-        }
-
-        for(Recette i : test)
-        {
-            liste_recette.remove(i);
-            zone_recette.remove(i.getRecetteIE().get_ie());
         }
     }
 
@@ -105,7 +96,6 @@ public class IE_Forge implements InterfaceEntitee {
     public void maj_zone_fourneau()
     {
         zone_fourneaux.setBorder(BorderFactory.createTitledBorder("peux encore lancer jusqu'à " + forge.get_nb_fourneaux_libre() + " recettes"));
-        ArrayList<Integer> val = forge.get_liste_fourneaux_actif();
         for (int i = 0; i < forge.get_nb_fourneaux(); i++)
         {
             if (forge.fourneau_actif(i))
@@ -113,7 +103,7 @@ public class IE_Forge implements InterfaceEntitee {
                 liste_fourneaux.get(i).setVisible(true);
                 maj_ie_fourneau(liste_fourneaux.get(i), forge.get_fourneau_nom(i), forge.get_fourneau_avancee(i), forge.get_fourneau_val_max(i));
             }else{
-                liste_fourneaux.get(i).setVisible(false);
+                liste_fourneaux.get(i).setVisible(false); //si le fourneau n'est pas actif, on rend son interface invisible
             }
         }
     }
@@ -156,15 +146,51 @@ public class IE_Forge implements InterfaceEntitee {
         zone_fourneaux.add(result);
     }
 
+    /**
+     * va mettre a jour la barre de progression d'un fourneau
+     * @param panel le JPanel de liste_fourneaux a mettre a jour
+     * @param nom le nom de l'objet entrain d'etre produit
+     * @param avancee l'avancée actuelle du fourneau
+     * @param val_max la valeur max de l'avancé
+     * Remarque, toutes ces données sont accessible dans le thread représentant le fourneau
+     */
     private void maj_ie_fourneau(JPanel panel, String nom, int avancee, int val_max)
     {
-
+        //on récupère tous les éléments de l'interface en les castant dans le bon type
+        //et on met a jour leur valeur
         JTextPane ie_nom = (JTextPane) panel.getComponent(0);
         ie_nom.setText(nom);
 
         JProgressBar barre = (JProgressBar) panel.getComponent(1);
         barre.setMaximum(val_max);
         barre.setValue(val_max - avancee);
+    }
 
+    private void generate_ie_recette(Recette r)
+    {
+        JPanel recette_ie = new JPanel();
+        JButton produire = new JButton();
+        JTextArea area = new JTextArea();
+
+        recette_ie.setLayout(new BorderLayout());
+        recette_ie.add(produire,BorderLayout.EAST);
+        recette_ie.add(area,BorderLayout.CENTER);
+
+        // LE bouton qui permettera de selectionner la recette
+        produire.setEnabled(r.check(forge.getInventaire()));
+        produire.setText("lancer production");
+        produire.addActionListener(new ProduireListener(forge,r));
+
+        //Element necessaire a la creation de la recette
+        area.setEditable(false);
+        area.setText("\n" + r.get_ingredients_string());
+
+        liste_recette.put(r,recette_ie);
+    }
+
+    private void maj_ie_recette(JPanel recette, Recette r)
+    {
+        JButton produire = (JButton) recette.getComponent(0);
+        produire.setEnabled(r.check(forge.getInventaire()));
     }
 }

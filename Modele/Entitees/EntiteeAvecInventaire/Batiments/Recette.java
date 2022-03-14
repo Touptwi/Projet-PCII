@@ -19,7 +19,7 @@ public class Recette {
 
     private int temps = 0; //indique le temps de réalisation d'une recette (utilise par les threads des bâtiments)
 
-    IE_Recette ie = new IE_Recette(this); //l'interface (cette interface est utilisé comme sous interface de IE_Forge)
+    IE_Recette ie =null; //new IE_Recette(this); //l'interface (cette interface est utilisé comme sous interface de IE_Forge)
 
     public Recette(String nom, Inventaire ingredients, int t)
     {
