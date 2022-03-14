@@ -28,7 +28,7 @@ grille --> aff_grille
 entite --> grille
 entite --> aff_entite
 aff_entite --> aff_grille
-entite <-- i_entite
+entite <--> i_entite
 i_entite --> aff_grille
 i_entite --> grille
 
