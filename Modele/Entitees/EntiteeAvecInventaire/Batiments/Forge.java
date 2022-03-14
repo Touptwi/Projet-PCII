@@ -68,7 +68,7 @@ public class Forge extends Batiment {
                     fourneaux[i] = new Recette_Thread(this,r);
                     fourneaux[i].start();
                     r.produire(inventaire);
-                    recettes.remove(r);
+                    //recettes.remove(r);
                     return true;
                 }
                 i++;
@@ -85,7 +85,6 @@ public class Forge extends Batiment {
 
     public ArrayList<Recette> get_recettes()
     {
-        System.out.println(recettes.toString());
         return recettes;
     }
 

@@ -26,6 +26,7 @@ public class IE_Forge implements InterfaceEntitee {
 
     private JTabbedPane tabbed_pane = new JTabbedPane();
 
+    //liste des JPanel externes ajoutés
     JPanel zone_recette = new JPanel();
     ArrayList<Recette> liste_recette = new ArrayList<Recette>();
 
@@ -74,7 +75,7 @@ public class IE_Forge implements InterfaceEntitee {
         zone_recette.setBorder(BorderFactory.createTitledBorder("il y a actuellement "+ forge.get_recettes().size() + " en attente"));
         for(Recette i:forge.get_recettes())
         {
-            if (!liste_recette.contains(i))
+            if (!liste_recette.contains(i)) // si elle n'est pas déjà ajouté
             {
                 liste_recette.add(i);
                 zone_recette.add(i.getRecetteIE().get_ie());
