@@ -1,9 +1,9 @@
-package Vue.ButtonListeners;
+package Controleur.ButtonListeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Modele.Entitees.EntieesDeplacable.Dwarf;
+import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
 import Modele.Etat;
 
 public class RecupererListener implements ActionListener

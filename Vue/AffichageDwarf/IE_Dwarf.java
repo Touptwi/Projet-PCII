@@ -9,9 +9,9 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import Modele.Etat;
-import Modele.Entitees.EntieesDeplacable.Dwarf;
-import Vue.ButtonListeners.MoveListener;
-import Vue.ButtonListeners.RecupererListener;
+import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
+import Controleur.ButtonListeners.MoveListener;
+import Controleur.ButtonListeners.RecupererListener;
 import Vue.InterfaceEntitee;
 
 public class IE_Dwarf implements InterfaceEntitee

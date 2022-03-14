@@ -1,8 +1,8 @@
 package Modele;
 
-import Modele.Entitees.Batiments.Batiment;
+import Modele.Entitees.EntiteeAvecInventaire.Batiments.Batiment;
 import Modele.Entitees.Entitee;
-import Modele.Entitees.EntiteeAvecInventaire;
+import Modele.Entitees.EntiteeAvecInventaire.EntiteeAvecInventaire;
 import Modele.Entitees.Ressources.Ressource;
 
 import java.awt.Point;

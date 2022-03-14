@@ -1,5 +1,6 @@
-package Modele.Entitees;
+package Modele.Entitees.EntiteeAvecInventaire;
 
+import Modele.Entitees.Entitee;
 import Modele.Entitees.Ressources.Ressource;
 
 public abstract class EntiteeAvecInventaire extends Entitee

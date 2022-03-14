@@ -1,7 +1,7 @@
 package Vue.AffichageGoblin;
 
 import Modele.Etat;
-import Modele.Entitees.EntieesDeplacable.Goblin;
+import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Goblin;
 import Vue.InterfaceEntitee;
 
 import javax.swing.*;

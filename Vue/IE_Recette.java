@@ -1,8 +1,8 @@
 package Vue;
 
-import Modele.Entitees.Batiments.Recette;
-import Modele.Entitees.Batiments.Forge.Forge;
-import Vue.ButtonListeners.ProduireListener;
+import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette;
+import Modele.Entitees.EntiteeAvecInventaire.Batiments.Forge;
+import Controleur.ButtonListeners.ProduireListener;
 
 import javax.swing.*;
 import java.awt.*;

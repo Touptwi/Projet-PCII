@@ -1,9 +1,9 @@
-package Modele.Entitees.Batiments.Forge;
+package Modele.Entitees.EntiteeAvecInventaire.Batiments;
 
-import Modele.Entitees.Batiments.Batiment;
-import Modele.Entitees.Batiments.Recette_Thread;
+import Modele.Entitees.EntiteeAvecInventaire.Batiments.Batiment;
+import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette_Thread;
 import Modele.Etat;
-import Modele.Entitees.Batiments.Recette;
+import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette;
 import Vue.AffichageForge.IE_Forge;
 import Vue.AffichageForge.VueForge;
 

@@ -1,6 +1,6 @@
 package Modele;
 
-import Modele.Entitees.EntieesDeplacable.EntiteeDeplacable;
+import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.EntiteeDeplacable;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -28,16 +28,16 @@ public class Deplacement extends Thread
 	}
 	
 	/**
-	 * Procedure run de déplacement d'un entitée
-	 * Lance A* et déplace l'entitée le long du chemin qu'elle a à parcourir
-	 * Vérifie que les mouvements sont corrects
+	 * Procedure run de dï¿½placement d'un entitï¿½e
+	 * Lance A* et dï¿½place l'entitï¿½e le long du chemin qu'elle a ï¿½ parcourir
+	 * Vï¿½rifie que les mouvements sont corrects
 	 */
 	@Override
 	public void
 	run()
 	{
 		current_p = from;
-		if(!algorithmA_star()) System.out.print("Aucun chemin trouvé");
+		if(!algorithmA_star()) System.out.print("Aucun chemin trouvï¿½");
 		else
 		{
 			//System.out.print("A* : "); System.out.println(a_star_path);
@@ -54,15 +54,15 @@ public class Deplacement extends Thread
 				}
 				else 
 				{ 
-//					System.out.print("Erreur de déplacement : "); System.out.println(v);  //debug
+//					System.out.print("Erreur de dï¿½placement : "); System.out.println(v);  //debug
 					from = current_p;
 					if(algorithmA_star()) idx = 0;
 					else 
 					{
-						System.out.print("Aucun chemin trouvé");
+						System.out.print("Aucun chemin trouvï¿½");
 						break; 
-						//TODO : Possible débat ici, est-ce vraiment bon de break dans ce cas ou faut-il attendre ?
-						// -> Vérification de la distance entre la position et la destination ?
+						//TODO : Possible dï¿½bat ici, est-ce vraiment bon de break dans ce cas ou faut-il attendre ?
+						// -> Vï¿½rification de la distance entre la position et la destination ?
 					}
 				}
 				try { sleep(500); } 
@@ -81,11 +81,11 @@ public class Deplacement extends Thread
 	}
 	
 	/**
-	 * Fonction utilitaire permettant le deplacement de l'entitée e de f à t avec vérification
-	 * @param f case "from" de départ
-	 * @param t case "to" d'arrivée
-	 * @return vrai si le move a été effectué et était correct, faux sinon
-	 * TODO : Vérifier que le "synchronized" fait bien ce qu'on veut.
+	 * Fonction utilitaire permettant le deplacement de l'entitï¿½e e de f ï¿½ t avec vï¿½rification
+	 * @param f case "from" de dï¿½part
+	 * @param t case "to" d'arrivï¿½e
+	 * @return vrai si le move a ï¿½tï¿½ effectuï¿½ et ï¿½tait correct, faux sinon
+	 * TODO : Vï¿½rifier que le "synchronized" fait bien ce qu'on veut.
 	 */
 	
 	public synchronized boolean
@@ -97,14 +97,14 @@ public class Deplacement extends Thread
 		
 		if(!grille.estOccupee(f))
 		{
-//			System.out.println("Pas d'entitee case de départ"); //debug
+//			System.out.println("Pas d'entitee case de dï¿½part"); //debug
 			return false;
 		}
 		else if (grille.estOccupee(t)) 
 		{
-//			System.out.print("Entitee case de départ : "); //debug
+//			System.out.print("Entitee case de dï¿½part : "); //debug
 //			System.out.println(grille.getEntitee(f)); //debug
-//			System.out.print("Entitee case d'arrivée : "); //debug
+//			System.out.print("Entitee case d'arrivï¿½e : "); //debug
 //			System.out.println(grille.getEntitee(t)); //debug
 			return false;
 		}
@@ -117,9 +117,9 @@ public class Deplacement extends Thread
 	}
 
 	/**
-	 * Algorithme A* (sans heuristiques : cases carrées de même dimensions)
+	 * Algorithme A* (sans heuristiques : cases carrï¿½es de mï¿½me dimensions)
 	 * Trace un chemin du point "from" au point "to" si il existe et le stocke dans le champs "a_star_path"
-	 * @return true si et seulement si un chemin est trouvé
+	 * @return true si et seulement si un chemin est trouvï¿½
 	 */
 	public boolean
 	algorithmA_star() 
@@ -138,14 +138,14 @@ public class Deplacement extends Thread
 		
 		while(!a_voir.isEmpty())
 		{
-			Point u = a_voir.get(0); a_voir.remove(u); //dépiler
+			Point u = a_voir.get(0); a_voir.remove(u); //dï¿½piler
 			if(u.x == to.x && u.y == to.y) //Si on est sur la case destination, retracer le chemin
 			{
 				this.a_star_path = retrace_chemin(u, precedents);
 //				for(Point[] precs: precedents) System.out.println(Arrays.toString(precs)); //debug
 				return true;
 			}
-			else //Sinon explorer les voisins en leur sauvegardant leur père (le point courrant)
+			else //Sinon explorer les voisins en leur sauvegardant leur pï¿½re (le point courrant)
 			{
 //				System.out.print("Current :"); //debug
 //				System.out.print(u); //debug
@@ -175,24 +175,24 @@ public class Deplacement extends Thread
 				}
 			}
 		}
-		// Cas où il n'y a pas de chemin possible
+		// Cas oï¿½ il n'y a pas de chemin possible
 		return false;
 	}
 	
 	/**
 	 * Retrace le chemin a partir de notre dernier point et la liste des parents des points
 	 * On utilise ici le dernier point pour pouvoir faire des appels recursifs :
-	 * On obtiendra alors une liste dans le "bon sens", avec le début du chemin en indice 0
-	 * (On estime donc ici que le cout en temps est plus important que celui en mémoire)
+	 * On obtiendra alors une liste dans le "bon sens", avec le dï¿½but du chemin en indice 0
+	 * (On estime donc ici que le cout en temps est plus important que celui en mï¿½moire)
 	 * @param u : le dernier point du chemin
 	 * @param prec : la liste des parents de chaque points
-	 * @return le chemin obtenu en reliant les points trouvés
+	 * @return le chemin obtenu en reliant les points trouvï¿½s
 	 */
 	public ArrayList<Point>
 	retrace_chemin(Point u, Point[][] prec)
 	{
 		ArrayList<Point> chemin;
-		if(u.x == from.x && u.y == from.y) return new ArrayList<Point>(); //Ne pas ajouter la premiere case (case de départ)
+		if(u.x == from.x && u.y == from.y) return new ArrayList<Point>(); //Ne pas ajouter la premiere case (case de dï¿½part)
 		else chemin = retrace_chemin(prec[u.x][u.y], prec); //Retracer le reste du chemin inverse
 		chemin.add(u); //Ajouter la case en cours a la fin
 		return chemin;

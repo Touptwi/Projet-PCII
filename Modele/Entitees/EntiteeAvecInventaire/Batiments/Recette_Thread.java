@@ -1,6 +1,5 @@
-package Modele.Entitees.Batiments;
+package Modele.Entitees.EntiteeAvecInventaire.Batiments;
 
-import Modele.Entitees.Batiments.Forge.Forge;
 import Vue.AffichageForge.IE_Forge;
 
 public class Recette_Thread extends Thread{
