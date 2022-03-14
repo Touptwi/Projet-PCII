@@ -215,16 +215,21 @@ public class Grille
         }
     }
 
-	public void recupererRessources(EntiteeAvecInventaire EAI)
-	{
-		for(Point p : this.getSelectionVoisins())
-		{
-			Entitee e = this.getEntitee(p);
-			if(e instanceof Ressource)
-			{
-				EAI.getInventaire().add((Ressource) e);;
-				this.setCase(p, null);
-			}
-		}
-	}
+	public void recupererRessources(EntiteeAvecInventaire EAI) {
+        Point pos = new Point(-1, -1);
+        for (int i = 0; i < getLargeur(); i++) {
+            for (int j = 0; j < getLongueur(); j++) {
+                if (getEntitee(i, j) == EAI) pos = new Point(i, j);
+            }
+        }
+        if (pos != new Point(-1,-1)) {
+            for (Point p : getVoisins(pos)) {
+                Entitee e = this.getEntitee(p);
+                if (e instanceof Ressource) {
+                    EAI.getInventaire().add((Ressource) e);
+                    this.setCase(p, null);
+                }
+            }
+        }
+    }
 }
