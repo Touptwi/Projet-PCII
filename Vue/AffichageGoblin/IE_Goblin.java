@@ -19,7 +19,7 @@ public class IE_Goblin implements InterfaceEntitee {
         this.interface_graphique = new JPanel();
 
         //Inventaire : Affichage de l'inventaire du gobelin
-        inventaire = new JTextField(Arrays.toString(goblin.getInventaire()), 20);
+        inventaire = new JTextField(Arrays.toString(goblin.getInventaire().getInventaire()), 20);
         inventaire.setEditable(false);
 
         interface_graphique.add(inventaire);
@@ -33,6 +33,6 @@ public class IE_Goblin implements InterfaceEntitee {
 
     @Override
     public void mise_a_jour() {
-        inventaire.setText(Arrays.toString(goblin.getInventaire()));
+        inventaire.setText(Arrays.toString(goblin.getInventaire().getInventaire()));
     }
 }
