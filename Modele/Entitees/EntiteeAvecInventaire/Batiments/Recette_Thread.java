@@ -9,6 +9,7 @@ public class Recette_Thread extends Thread{
     private int duree;
     private int valMax;
     private String nom;
+    private int score;
     public boolean enCours = true;
 
     public Recette_Thread(Forge f, Recette r)
@@ -18,6 +19,7 @@ public class Recette_Thread extends Thread{
         duree = r.getTemps();
         valMax = r.getTemps();
         nom = r.getNom();
+        score = r.getScore();
     }
 
     @Override
@@ -33,6 +35,7 @@ public class Recette_Thread extends Thread{
                 enCours = false;
 
         }
+        origine.getEtat().addScore(score);
     }
 
     public int getDuree()

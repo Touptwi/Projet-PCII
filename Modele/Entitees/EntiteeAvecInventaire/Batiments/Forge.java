@@ -16,6 +16,7 @@ public class Forge extends Batiment {
 
     private ArrayList<Recette> recettes;
     private Recette_Thread[] fourneaux;
+    private Etat etat;
 
 
     /**
@@ -26,7 +27,7 @@ public class Forge extends Batiment {
      */
     public Forge(Etat _e, int nb_fourneaux, Point pos)
     {
-        super(new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(1,0), new Point(-1,0)))); //déclaration de la structure du batiment
+        super(_e,new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(1,0), new Point(-1,0)))); //déclaration de la structure du batiment
         affichable = new VueForge();
         fourneaux = new Recette_Thread[nb_fourneaux];
 
@@ -34,9 +35,9 @@ public class Forge extends Batiment {
         recettes = new ArrayList<Recette>();
 
         Inventaire ingredient = new Inventaire();
-        ingredient.add(new Ressource(_e, 5, Ressource.Type.RUBIS));
+        ingredient.add(new Ressource(_e, 1, Ressource.Type.RUBIS));
         
-        add_recettes(new Recette("rubis poli", ingredient, 5));
+        add_recettes(new Recette("rubis poli", ingredient, 5,3));
 
         ////////////////////////////////////
         Arrays.fill(fourneaux, null);

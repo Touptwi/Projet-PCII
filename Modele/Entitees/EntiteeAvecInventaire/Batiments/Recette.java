@@ -19,13 +19,16 @@ public class Recette {
 
     private int temps = 0; //indique le temps de réalisation d'une recette (utilise par les threads des bâtiments)
 
-    IE_Recette ie =null; //new IE_Recette(this); //l'interface (cette interface est utilisé comme sous interface de IE_Forge)
+    private int score = 0;
 
-    public Recette(String nom, Inventaire ingredients, int t)
+    //IE_Recette ie =null; //new IE_Recette(this); //l'interface (cette interface est utilisé comme sous interface de IE_Forge)
+
+    public Recette(String nom, Inventaire ingredients, int t,int score)
     {
         this.nom = nom;
         this.ingredients = ingredients;
         this.temps = t;
+        this.score = score;
     }
 
     //Guetters et Setters ///////////////////////////////////////////////////
@@ -42,8 +45,9 @@ public class Recette {
     public String get_ingredients_string()
     {
         String result = "";
-        for(Ressource r : ingredients)
+        for(int i = 0; i < ingredients.getInventaire().length;i++)
         {
+            Ressource r = ingredients.get(i);
         	if(r != null) result += r.toString();
         }
         
@@ -68,7 +72,12 @@ public class Recette {
 
     public IE_Recette getRecetteIE()
     {
-        return ie;
+        return null;
+    }
+
+    public int getScore()
+    {
+        return score;
     }
 
     /////////////////////////////////////////////////////////////////////////
@@ -101,7 +110,10 @@ public class Recette {
     {
         for(int i = 0; i < Ressource.Type.COUNT.ordinal(); i++)
     	{
-	          inventaire.remove(ingredients.get(i));
+            Ressource ing = ingredients.get(i);
+            if (ing != null) {
+                inventaire.remove(ing);
+            }
     	}
     }
 

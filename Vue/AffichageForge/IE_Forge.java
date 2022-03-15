@@ -74,7 +74,7 @@ public class IE_Forge implements InterfaceEntitee {
     public void mise_a_jour()
     {
         maj_zone_fourneau();
-        //maj_zone_inventaire();
+        maj_zone_inventaire();
         maj_zone_recettes();
         zone_recette.setBorder(BorderFactory.createTitledBorder("il y a actuellement "+ forge.get_recettes().size() + " en attente"));
 
@@ -108,9 +108,13 @@ public class IE_Forge implements InterfaceEntitee {
             String result = "";
             Inventaire i = forge.getInventaire();
             Ressource[] ressources = i.getInventaire();
-            for (Ressource r : ressources) 
+            for (int cpt = 0; cpt < ressources.length ; cpt++)
             {
-            	result += r.toString();
+                Ressource r = ressources[cpt];
+                if(r!=null && r.getQuantitee() != 0)
+                {
+                    result += r.toString();
+                }
             }
             zone_inventaire.setText(result);
         }

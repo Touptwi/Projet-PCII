@@ -22,6 +22,8 @@ public class Etat {
     private final int largeur_grille = 10;
     private final int hauteur_grille = 10;
 
+    private int score = 0;
+
     private Grille grille;
 
     public Etat(int l, int h) 
@@ -89,5 +91,11 @@ public class Etat {
     public Entitee getEntitee(int i, int j)
     {
         return grille.getEntitee(i,j);
+    }
+
+    public void addScore(int n_score)
+    {
+        score = score + n_score;
+        System.out.println("score:" + score);
     }
 }
