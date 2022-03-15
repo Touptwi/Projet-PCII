@@ -66,4 +66,17 @@ public class Inventaire implements Iterable<Ressource>
         };
         return it;
 	}
+
+	private void transfert(Inventaire cible)
+	{
+		for (int i = 0; i < inventaire.length ; i++)
+		{
+			Ressource r = get(i);
+			if (r != null)
+			{
+				cible.add(r);
+				remove(r);
+			}
+		}
+	}
 }
