@@ -76,10 +76,10 @@ public class Deplacement extends Thread
 			{
 				e.check_deplacement(current_p, grille.getVoisins(current_p));
 				e.fin_deplacement(current_p, grille.getVoisins(current_p));
-				System.out.println("fin déplacement");
+				//System.out.println("fin déplacement");
 			}
 		}
-		e.setDeplacement(null);
+
 	}
 	
 	public Point
@@ -100,21 +100,21 @@ public class Deplacement extends Thread
 	public synchronized boolean
 	move(Point f, Point t)
 	{
-		System.out.print(f); //debug
-		System.out.print("  "); //debug
-		System.out.println(t); //debug
+		//System.out.print(f); //debug
+		//System.out.print("  "); //debug
+		//System.out.println(t); //debug
 		
 		if(!grille.estOccupee(f))
 		{
-			System.out.println("Pas d'entitee case de d�part"); //debug
+			//System.out.println("Pas d'entitee case de d�part"); //debug
 			return false;
 		}
 		else if (grille.estOccupee(t)) 
 		{
-			System.out.print("Entitee case de d�part : "); //debug
-			System.out.println(grille.getEntitee(f)); //debug
-			System.out.print("Entitee case d'arriv�e : "); //debug
-			System.out.println(grille.getEntitee(t)); //debug
+			//System.out.print("Entitee case de d�part : "); //debug
+			//System.out.println(grille.getEntitee(f)); //debug
+			//System.out.print("Entitee case d'arriv�e : "); //debug
+			//System.out.println(grille.getEntitee(t)); //debug
 			return false;
 		}
 		else

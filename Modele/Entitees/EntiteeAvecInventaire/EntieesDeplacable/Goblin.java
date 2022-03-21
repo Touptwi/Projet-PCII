@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class Goblin extends EntiteeDeplacable
 {
-
     Ressource ressource;
     Etat etat;
 
@@ -57,8 +56,9 @@ public class Goblin extends EntiteeDeplacable
             takeRessource(position, voisins);
         }else if(etat.getGrille().getEntitee(position) == this){
             etat.getGrille().setCase(position.x, position.y, null);
+
         }else{
-            System.out.println("la position " + position + "n'est pas la bonne");
+            //System.out.println("la position " + position + "n'est pas la bonne");
         }
 	}
 
@@ -67,7 +67,9 @@ public class Goblin extends EntiteeDeplacable
 	public void fuir(Point pos)
 	{
         isFeared = true;
-        this.deplacement.stop_thread();
+        if (deplacement != null) {
+            this.deplacement.stop_thread();
+        }
         this.deplacement = new Deplacement(this, pos, position, etat.getGrille());
         this.deplacement.start();
 
