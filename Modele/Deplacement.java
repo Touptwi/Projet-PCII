@@ -38,43 +38,46 @@ public class Deplacement extends Thread
 	{
 		current_p = from;
 		if(!algorithmA_star()) System.out.print("Aucun chemin trouv�");
-		else
-		{
+		else {
 			//System.out.print("A* : "); System.out.println(a_star_path);
 			int idx = 0;
-			
-			while(idx < a_star_path.size())
-			{
+
+			while (idx < a_star_path.size()) {
 				Point v = a_star_path.get(idx);
-				if(this.move(current_p, v))
-				{
+				if (this.move(current_p, v)) {
 					current_p = v; //changing our position locally
 					idx++; //going to read the next step
-					e.check_deplacement(current_p,grille.getVoisins(current_p));
-					//System.out.print("Move : "); System.out.println(v); //debug
-				}
-				else
-				{
-					if(e.check_deplacement(current_p,grille.getVoisins(current_p))) {
+					e.check_deplacement(current_p, grille.getVoisins(current_p));
+					System.out.print("Move : ");
+					System.out.println(v); //debug
+				} else {
+					if (e.check_deplacement(current_p, grille.getVoisins(current_p))) {
 						break;
 					}
-//					System.out.print("Erreur de d�placement : "); System.out.println(v);  //debug
+					System.out.print("Erreur de d�placement : ");
+					System.out.println(v);  //debug
 					from = current_p;
-					if(algorithmA_star()) idx = 0;
-					else
-					{
+					if (algorithmA_star()) idx = 0;
+					else {
 						System.out.print("Aucun chemin trouv�");
 						break;
 						//TODO : Possible d�bat ici, est-ce vraiment bon de break dans ce cas ou faut-il attendre ?
 						// -> V�rification de la distance entre la position et la destination ?
 					}
 				}
-				try { sleep(500); } 
-				catch (InterruptedException e) { e.printStackTrace(); }
-				if(shouldQuit) break;
+				try {
+					sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				if (shouldQuit) break;
 			}
-			e.check_deplacement(current_p,grille.getVoisins(current_p));
-			e.fin_deplacement(current_p,grille.getVoisins(current_p));
+			if (!shouldQuit)
+			{
+				e.check_deplacement(current_p, grille.getVoisins(current_p));
+				e.fin_deplacement(current_p, grille.getVoisins(current_p));
+				System.out.println("fin déplacement");
+			}
 		}
 		e.setDeplacement(null);
 	}
@@ -97,21 +100,21 @@ public class Deplacement extends Thread
 	public synchronized boolean
 	move(Point f, Point t)
 	{
-//		System.out.print(f); //debug
-//		System.out.print("  "); //debug
-//		System.out.println(t); //debug
+		System.out.print(f); //debug
+		System.out.print("  "); //debug
+		System.out.println(t); //debug
 		
 		if(!grille.estOccupee(f))
 		{
-//			System.out.println("Pas d'entitee case de d�part"); //debug
+			System.out.println("Pas d'entitee case de d�part"); //debug
 			return false;
 		}
 		else if (grille.estOccupee(t)) 
 		{
-//			System.out.print("Entitee case de d�part : "); //debug
-//			System.out.println(grille.getEntitee(f)); //debug
-//			System.out.print("Entitee case d'arriv�e : "); //debug
-//			System.out.println(grille.getEntitee(t)); //debug
+			System.out.print("Entitee case de d�part : "); //debug
+			System.out.println(grille.getEntitee(f)); //debug
+			System.out.print("Entitee case d'arriv�e : "); //debug
+			System.out.println(grille.getEntitee(t)); //debug
 			return false;
 		}
 		else

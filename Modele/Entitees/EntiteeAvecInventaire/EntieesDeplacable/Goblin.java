@@ -41,7 +41,6 @@ public class Goblin extends EntiteeDeplacable
         for(Point voisin : voisins) {
             if(etat.getGrille().getEntitee(voisin) != null) {
                 if (etat.getGrille().getEntitee(voisin).isDwarf) {
-                    this.isFeared= true;
                     fuir(position);
                     return true;
                 }
@@ -55,7 +54,10 @@ public class Goblin extends EntiteeDeplacable
 	{
         if(!isFeared) {
             takeRessource(position, voisins);
+        }else if(etat.getGrille().getEntitee(position) == this){
+            etat.getGrille().setCase(position.x, position.y, null);
         }else{
+            System.out.println("la position " + position + "n'est pas la bonne");
         }
 	}
 
