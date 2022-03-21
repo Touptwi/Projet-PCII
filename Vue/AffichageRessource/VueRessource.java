@@ -20,7 +20,7 @@ public class VueRessource implements Affichable
     public VueRessource(Ressource r)
     {
         this.ressource = r;
-        if(r!=null && r.getType()!= Ressource.Type.COUNT) {
+        if(r.getType()!=null) {
             try {
                 img = ImageIO.read(new File("Images/Ressources/" + ressource.getType() + "/Ore.png"));
             } catch (IOException E) {
