@@ -25,6 +25,6 @@ public class VueRessource implements Affichable
     }
 
     public void draw(Graphics g, Affichage a){
-        g.drawImage(img,10, 10, a.fitX(80), a.fitY(80),null);
+        g.drawImage(img,a.fitX(10), a.fitY(10), a.fitX(80), a.fitY(80),null);
     }
 }

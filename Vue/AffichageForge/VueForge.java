@@ -27,7 +27,7 @@ public class VueForge implements Affichable {
 
     @Override
     public void draw(Graphics g, Affichage a) {
-        g.drawImage(img[appel],10, 20, a.fitX(80), a.fitY(80),null);
+        g.drawImage(img[appel],a.fitX(10), a.fitY(20), a.fitX(80), a.fitY(80),null);
         appel = (appel + 1)%3;
     }
 }
