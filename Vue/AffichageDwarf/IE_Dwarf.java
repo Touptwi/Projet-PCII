@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
+import Controleur.ButtonListeners.LivrerListener;
 import Modele.Etat;
 import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
 import Controleur.ButtonListeners.MoveListener;
@@ -43,6 +44,8 @@ public class IE_Dwarf implements InterfaceEntitee
 				
 		//"Livrer" : livraison de materiaux aux batiments
 		// TODO : Action listener
+		LivrerListener livrer = new LivrerListener(_etat,_dwarf);
+		deliver_button.addActionListener(livrer);
 		deliver_button.setBounds(new Rectangle(100, 0, 100, 100));
 		deliver_button.setVisible(true);
 		

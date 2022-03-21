@@ -9,10 +9,12 @@ import Modele.Entitees.EntiteeAvecInventaire.Batiments.Forge;
 import Vue.InterfaceEntitee;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class IE_Forge implements InterfaceEntitee {
 
@@ -114,6 +116,7 @@ public class IE_Forge implements InterfaceEntitee {
                 if(r!=null && r.getQuantitee() != 0)
                 {
                     result += r.toString();
+                    result += "\n";
                 }
             }
             zone_inventaire.setText(result);
@@ -177,6 +180,8 @@ public class IE_Forge implements InterfaceEntitee {
     private void generate_ie_recette(Recette r)
     {
         JPanel recette_ie = new JPanel();
+        recette_ie.setBorder(BorderFactory.createTitledBorder(r.getNom()));
+
         JButton produire = new JButton();
         JTextArea area = new JTextArea();
 
