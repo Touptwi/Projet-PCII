@@ -45,7 +45,7 @@ public class Inventaire implements Iterable<Ressource>
 	public boolean isVide()
 	{
 		for(Ressource r : this.inventaire) {
-			if(r!=null && r.getQuantitee()==0) {return false;}
+			if(r!=null && r.getQuantitee()>0) {return false;}
 		}
 		return true;
 	}
