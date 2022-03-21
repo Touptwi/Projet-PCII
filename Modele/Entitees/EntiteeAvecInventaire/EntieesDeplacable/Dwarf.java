@@ -33,6 +33,7 @@ public class Dwarf extends EntiteeDeplacable implements Runnable
 	public boolean check_deplacement(Point position, ArrayList<Point> voisins)
 	{
 		// TODO Auto-generated method stub
+		this.position = position;
 		return false;
 	}
 

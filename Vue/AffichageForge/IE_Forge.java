@@ -24,6 +24,8 @@ public class IE_Forge implements InterfaceEntitee {
     //composant de la page
     private JPanel fenetre_princ = new JPanel();
 
+    private JPanel zone_info = new JPanel();
+
     private JPanel zone_fourneaux = new JPanel(); //l'interface dans laquelle s'affiche la liste des fourneaux
     private ArrayList<JPanel> liste_fourneaux = new ArrayList<JPanel>();// la liste des interfaces des fourneaux
 
@@ -123,6 +125,9 @@ public class IE_Forge implements InterfaceEntitee {
         }
     }
 
+    /**
+     * met a jour l'interface indiquant la liste des recettes faisable par la forge
+     */
     private void maj_zone_recettes()
     {
         for(Recette i:forge.get_recettes())
@@ -177,6 +182,11 @@ public class IE_Forge implements InterfaceEntitee {
         barre.setValue(val_max - avancee);
     }
 
+    /**
+     * va créer une interface représentant une recette avec son nom, les ingrédients nécessaires
+     * et un bouton lançant la production.
+     * @param r la recette liée à cette interface
+     */
     private void generate_ie_recette(Recette r)
     {
         JPanel recette_ie = new JPanel();
@@ -198,9 +208,14 @@ public class IE_Forge implements InterfaceEntitee {
         area.setEditable(false);
         area.setText("\n" + r.get_ingredients_string());
 
-        liste_recette.put(r,recette_ie);
+        liste_recette.put(r,recette_ie); //on ajoute le duo recette
     }
 
+    /**
+     * va changer l'etat du bouton "produire" de
+     * @param recette l'interface de la recette a modifier
+     * @param r la recette liée à l'interface
+     */
     private void maj_ie_recette(JPanel recette, Recette r)
     {
         JButton produire = (JButton) recette.getComponent(0);

@@ -26,7 +26,7 @@ public class LivrerListener implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         Grille g = etat.getGrille();
-        for (Point p:g.getVoisins(etat.getGrille().getSelectionPosition()))
+        for (Point p:g.getVoisins(dwarf.position))
         {
             Entitee entitee = g.getEntitee(p);
             if (entitee instanceof Forge)
