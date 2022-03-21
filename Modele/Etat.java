@@ -34,7 +34,7 @@ public class Etat
         largeur = l;
         hauteur = h;
         grille = new Grille(this, largeur_grille, hauteur_grille);
-        Flower f = new Flower(this, new Point(0,0));
+        //Flower f = new Flower(this, new Point(0,0));
         Dwarf d1 = new Dwarf(this, new Point(1, 0));
         Dwarf d2 = new Dwarf(this, new Point(2, 0));
 
@@ -43,7 +43,7 @@ public class Etat
         Forge forge = new Forge(this,3, new Point(3,3));
         forge.getInventaire().add(new Ressource(this, 5, Type.GOLD));
 
-        new Thread(f).start();
+        //new Thread(f).start();
 
 
         Etat _e = this;

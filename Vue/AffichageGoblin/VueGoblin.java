@@ -28,7 +28,7 @@ public class VueGoblin implements Affichable {
     }
 
     public void draw(Graphics g, Affichage a){
-        if(goblin.getInventaire().isVide()) {g.drawImage(img_, 10, 20, a.fitX(80), a.fitY(80), null);}
-        else                                {g.drawImage(img, 10, 20, a.fitX(80), a.fitY(80), null);}
+        if(goblin.getInventaire().isVide()) {g.drawImage(img_, a.fitX(10), a.fitY(20), a.fitX(80), a.fitY(80), null);}
+        else                                {g.drawImage(img, a.fitX(10), a.fitY(20), a.fitX(80), a.fitY(80), null);}
     }
 }
