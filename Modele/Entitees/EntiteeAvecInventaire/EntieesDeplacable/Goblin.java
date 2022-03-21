@@ -32,6 +32,7 @@ public class Goblin extends EntiteeDeplacable
         if(voisins.contains(ressource.getPosition())) {
             etat.getGrille().recupererRessources(this);
         }
+
         fuir(pos);
     }
 
