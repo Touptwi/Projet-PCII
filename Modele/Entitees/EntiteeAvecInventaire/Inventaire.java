@@ -24,18 +24,29 @@ public class Inventaire implements Iterable<Ressource>
 		else inInvRess.setQuantitee(inInvRess.getQuantitee() + r.getQuantitee());
 //		System.out.print(Arrays.toString(inventaire)); //debug
 	}
-	
+
 	/** Supprime la ressource donnee de l'inventaire
 	 * @param r : Ressource a enlever
 	 * @return : Reusite de l'operation (test de quantitee suffisante ?)
 	 */
-	public boolean remove(Ressource r) 
-	{ 
+	public boolean remove(Ressource r)
+	{
 		Ressource inInvRess = this.inventaire[r.getType().ordinal()];
 		if(inInvRess == null) return false;
 		int quantitee = inInvRess.getQuantitee() - r.getQuantitee();
-		if(quantitee < 0) return false;		
+		if(quantitee < 0) return false;
 		else inInvRess.setQuantitee(quantitee);
+		return true;
+	}
+
+	/** Vérifie si l'inventaire est vide (toutes les ressources à 0)
+	 * @return : retourne true si l'inventaire est vide et false sinon
+	 */
+	public boolean isVide()
+	{
+		for(Ressource r : this.inventaire) {
+			if(r!=null && r.getQuantitee()==0) {return false;}
+		}
 		return true;
 	}
 
