@@ -35,7 +35,7 @@ public class Forge extends Batiment {
         recettes = new ArrayList<Recette>();
 
         Inventaire ingredient = new Inventaire();
-        ingredient.add(new Ressource(_e, 1, Ressource.Type.RUBIS));
+        ingredient.add(new Ressource(_e, 1, Ressource.Type.GOLD));
         
         add_recettes(new Recette("rubis poli", ingredient, 5,3));
 

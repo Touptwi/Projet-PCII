@@ -42,7 +42,7 @@ public class Etat
 
         //initiation du test de la forge
         Forge forge = new Forge(this,3, new Point(3,3));
-        forge.getInventaire().add(new Ressource(this, 5, Type.RUBIS));
+        forge.getInventaire().add(new Ressource(this, 5, Type.GOLD));
 
         new Thread(f).start();
         new Thread(d1).start();

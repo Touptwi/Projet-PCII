@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class Ressource extends Entitee
 {
-	public enum Type { OR, RUBIS, EMERAUDE, SAPHIR, FLEUR, COUNT }
-	private Type type = Type.OR;
+	public enum Type { GOLD, SILVER, COPPER, ALUMINIUM, FLEUR, COUNT }
+	private Type type = Type.GOLD;
 	private int quantitee = 0;
 
 	public Ressource(Etat _e, int q, Type t, Point pos)
@@ -54,11 +54,11 @@ public class Ressource extends Entitee
 	toString()
 	{	
 		String ressource_type = "";
-		if(this.type == Type.OR) ressource_type = "or";
-		else if(this.type == Type.RUBIS) ressource_type = "rubis";
-		else if(this.type == Type.EMERAUDE) ressource_type = "emeraude";
-		else if(this.type == Type.SAPHIR) ressource_type = "saphir";
-		else if(this.type == Type.FLEUR) ressource_type = "fleur";
+		if(this.type == Type.GOLD) ressource_type = "Gold";
+		else if(this.type == Type.SILVER) ressource_type = "Silver";
+		else if(this.type == Type.COPPER) ressource_type = "Copper";
+		else if(this.type == Type.ALUMINIUM) ressource_type = "Aluminium";
+		else if(this.type == Type.FLEUR) ressource_type = "Fleur";
 		
         return (ressource_type + " " + this.quantitee);
 	}
