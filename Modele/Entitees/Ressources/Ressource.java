@@ -58,6 +58,7 @@ public class Ressource extends Entitee
 		else if(this.type == Type.RUBIS) ressource_type = "rubis";
 		else if(this.type == Type.EMERAUDE) ressource_type = "emeraude";
 		else if(this.type == Type.SAPHIR) ressource_type = "saphir";
+		else if(this.type == Type.FLEUR) ressource_type = "fleur";
 		
         return (ressource_type + " " + this.quantitee);
 	}
