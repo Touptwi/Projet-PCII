@@ -76,6 +76,7 @@ public class Deplacement extends Thread
 			e.check_deplacement(current_p,grille.getVoisins(current_p));
 			e.fin_deplacement(current_p,grille.getVoisins(current_p));
 		}
+		e.setDeplacement(null);
 	}
 	
 	public Point

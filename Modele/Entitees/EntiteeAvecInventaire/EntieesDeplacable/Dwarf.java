@@ -7,7 +7,7 @@ import Modele.Etat;
 import Vue.AffichageDwarf.IE_Dwarf;
 import Vue.AffichageDwarf.VueDwarf;
 
-public class Dwarf extends EntiteeDeplacable implements Runnable
+public class Dwarf extends EntiteeDeplacable
 {
     public Dwarf(Etat _e, Point pos)
     {
@@ -17,17 +17,6 @@ public class Dwarf extends EntiteeDeplacable implements Runnable
 		_e.getGrille().setCase(pos, this);
 		this.isDwarf = true;
     }
-
-	@Override
-	public void run() 
-	{
-		while(true)
-		{
-			interface_e.mise_a_jour();
-			try { Thread.sleep(100); }
-			catch (Exception e) { e.printStackTrace(); }			
-		}
-	}
 
 	@Override
 	public boolean check_deplacement(Point position, ArrayList<Point> voisins)

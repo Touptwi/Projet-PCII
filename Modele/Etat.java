@@ -14,7 +14,6 @@ import Modele.Entitees.Ressources.Flower;
 
 public class Etat
 {
-
 	public enum Modes { SELECTION, DEPLACEMENT }
 	
 	Modes mode_courant = Modes.SELECTION;
@@ -45,8 +44,7 @@ public class Etat
         forge.getInventaire().add(new Ressource(this, 5, Type.GOLD));
 
         new Thread(f).start();
-        new Thread(d1).start();
-        new Thread(d2).start();
+
 
         Etat _e = this;
         dynamic_spawn_thread =
@@ -104,7 +102,7 @@ public class Etat
 
 		    				//Lancement du goblin
 		    				Goblin gob = new Goblin(_e, new Point(x, y), r);
-		    				new Thread(gob).start();
+		    				//new Thread(gob).start();
 		    			}
 
 		    			try { sleep(1000*1); }
