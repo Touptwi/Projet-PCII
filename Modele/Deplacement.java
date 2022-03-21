@@ -50,6 +50,7 @@ public class Deplacement extends Thread
 				{
 					current_p = v; //changing our position locally
 					idx++; //going to read the next step
+					e.check_deplacement(current_p,grille.getVoisins(current_p));
 					//System.out.print("Move : "); System.out.println(v); //debug
 				}
 				else
@@ -72,8 +73,10 @@ public class Deplacement extends Thread
 				catch (InterruptedException e) { e.printStackTrace(); }
 				if(shouldQuit) break;
 			}
+			e.check_deplacement(current_p,grille.getVoisins(current_p));
 			e.fin_deplacement(current_p,grille.getVoisins(current_p));
 		}
+		e.setDeplacement(null);
 	}
 	
 	public Point

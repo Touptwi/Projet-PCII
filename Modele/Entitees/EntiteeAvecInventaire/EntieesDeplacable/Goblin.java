@@ -9,7 +9,7 @@ import Vue.AffichageGoblin.VueGoblin;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Goblin extends EntiteeDeplacable implements Runnable
+public class Goblin extends EntiteeDeplacable
 {
 
     Ressource ressource;
@@ -23,7 +23,8 @@ public class Goblin extends EntiteeDeplacable implements Runnable
         this.ressource = r;
         this.etat = e;
         e.getGrille().setCase(pos, this);
-        new Deplacement(this, pos, r.getPosition(),e.getGrille()).start();
+        this.deplacement = new Deplacement(this, pos, r.getPosition(),e.getGrille());
+        this.deplacement.start();
     }
 
     /** Prendre la ressource si atteint puis fuit*/
@@ -32,16 +33,6 @@ public class Goblin extends EntiteeDeplacable implements Runnable
             etat.getGrille().recupererRessources(this);
         }
         fuir(pos);
-    }
-
-    @Override
-    public void run()
-    {
-        while(true)
-        {
-            try { Thread.sleep(100); }
-            catch (Exception e) { e.printStackTrace(); }
-        }
     }
 
 	@Override
@@ -64,6 +55,7 @@ public class Goblin extends EntiteeDeplacable implements Runnable
 	{
         if(!isFeared) {
             takeRessource(position, voisins);
+        }else{
         }
 	}
 
@@ -71,6 +63,10 @@ public class Goblin extends EntiteeDeplacable implements Runnable
 	@Override
 	public void fuir(Point pos)
 	{
-        new Deplacement(this, pos, position, etat.getGrille()).start();
+        isFeared = true;
+        this.deplacement.stop_thread();
+        this.deplacement = new Deplacement(this, pos, position, etat.getGrille());
+        this.deplacement.start();
+
 	}
 }
