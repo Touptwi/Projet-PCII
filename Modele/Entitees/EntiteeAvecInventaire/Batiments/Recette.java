@@ -2,7 +2,6 @@ package Modele.Entitees.EntiteeAvecInventaire.Batiments;
 
 import Modele.Entitees.EntiteeAvecInventaire.Inventaire;
 import Modele.Entitees.Ressources.Ressource;
-import Vue.IE_Recette;
 
 import java.util.*;
 
@@ -70,10 +69,6 @@ public class Recette {
         this.nom = nom;
     }
 
-    public IE_Recette getRecetteIE()
-    {
-        return null;
-    }
 
     public int getScore()
     {

@@ -126,7 +126,7 @@ public class Grille
      * @param y la coordonnée Y de la case
      * @param val la nouvelle valeur de la case
      */
-    public void setCase(int x, int y, Entitee val)
+    public synchronized void setCase(int x, int y, Entitee val)
     {
         grille[x][y] = val;
     }
@@ -136,7 +136,7 @@ public class Grille
      * @param to : case ou placer l'entitee
      * @param val : Entitee a placer 
      */
-    public void setCase(Point to, Entitee val)
+    public synchronized void setCase(Point to, Entitee val)
     {
     	grille[to.x][to.y] = val;
     }
