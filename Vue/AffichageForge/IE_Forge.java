@@ -158,8 +158,8 @@ public class IE_Forge implements InterfaceEntitee {
         barre.setValue(0);
         result.add(barre);
 
-        liste_fourneaux.add(result);
-        zone_fourneaux.add(result);
+        liste_fourneaux.add(result);//on ajoute cette interface dans la liste des interface crée
+        zone_fourneaux.add(result); //on ajoute le jpanel dans la zone correspondante
     }
 
     /**

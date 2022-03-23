@@ -2,6 +2,8 @@ package Modele;
 
 import Modele.Entitees.EntiteeAvecInventaire.Batiments.Batiment;
 import Modele.Entitees.Entitee;
+import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
+import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Goblin;
 import Modele.Entitees.EntiteeAvecInventaire.EntiteeAvecInventaire;
 import Modele.Entitees.Ressources.Ressource;
 
@@ -129,6 +131,8 @@ public class Grille
     public synchronized void setCase(int x, int y, Entitee val)
     {
         grille[x][y] = val;
+        //System.out.println(toString()+ "\n"); //debug
+        //System.out.println(Thread.activeCount());
     }
     
     
@@ -139,6 +143,8 @@ public class Grille
     public synchronized void setCase(Point to, Entitee val)
     {
     	grille[to.x][to.y] = val;
+        //System.out.println(toString() + "\n");//debug
+        //System.out.println(Thread.activeCount());
     }
 
     /**
@@ -231,5 +237,27 @@ public class Grille
                 }
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < getLongueur();i++) {
+            for (int j = 0; j < getLargeur(); j++) {
+                Entitee e = getEntitee(j,i);
+                if( e instanceof Dwarf)
+                    result.append("D").append(" ; ");
+                else if (e instanceof Goblin)
+                    result.append("G" + " ; ");
+                else if(e instanceof Batiment)
+                    result.append("B" + " ; ");
+                else if(e instanceof Ressource)
+                    result.append("R" + " ; ");
+                else
+                    result.append(" " + " ; ");
+            }
+            result.append("\n");
+        }
+        return result.toString();
     }
 }

@@ -42,20 +42,21 @@ public class Deplacement extends Thread
 			//System.out.print("A* : "); System.out.println(a_star_path);
 			int idx = 0;
 
-			while (idx < a_star_path.size()) {
+			while (idx < a_star_path.size() && !shouldQuit) {
 				Point v = a_star_path.get(idx);
 				if (this.move(current_p, v)) {
 					current_p = v; //changing our position locally
 					idx++; //going to read the next step
 					e.check_deplacement(current_p, grille.getVoisins(current_p));
-					System.out.print("Move : ");
-					System.out.println(v); //debug
-				} else {
-					if (e.check_deplacement(current_p, grille.getVoisins(current_p))) {
+					//System.out.print("Move : ");
+					//System.out.println(v); //debug
+				} else { //si le mouvement a echoué
+					if (e.check_deplacement(current_p, grille.getVoisins(current_p))) {//si le check déplacement a réussi (cas goblein: si le gobelin a croisé un ennemis)
+						System.out.println("sortie demandé par check déplacement");
 						break;
 					}
 					System.out.print("Erreur de d�placement : ");
-					System.out.println(v);  //debug
+					//System.out.println(v);  //debug
 					from = current_p;
 					if (algorithmA_star()) idx = 0;
 					else {
@@ -70,14 +71,10 @@ public class Deplacement extends Thread
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				if (shouldQuit) break;
 			}
-			if (!shouldQuit)
-			{
-				e.check_deplacement(current_p, grille.getVoisins(current_p));
-				e.fin_deplacement(current_p, grille.getVoisins(current_p));
-				//System.out.println("fin déplacement");
-			}
+			e.check_deplacement(current_p, grille.getVoisins(current_p));
+			e.fin_deplacement(current_p, grille.getVoisins(current_p));
+			System.out.println("fin déplacement");
 		}
 
 	}

@@ -15,8 +15,8 @@ public class VueGoblin implements Affichable {
 
     private Goblin goblin;
 
-    private BufferedImage img;
-    private BufferedImage img_;
+    static private BufferedImage img;
+    static private BufferedImage img_;
 
     public VueGoblin(Goblin gob){
         this.goblin = gob;

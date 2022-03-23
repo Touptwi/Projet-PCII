@@ -39,8 +39,8 @@ public class Goblin extends EntiteeDeplacable
 	public boolean check_deplacement(Point position, ArrayList<Point> voisins)
 	{
         for(Point voisin : voisins) {
-            if(etat.getGrille().getEntitee(voisin) != null) {
-                if (etat.getGrille().getEntitee(voisin).isDwarf) {
+            if(etat.getGrille().getEntitee(voisin) != null && !isFeared) {
+                if (etat.getGrille().getEntitee(voisin).isDwarf ) {
                     fuir(position);
                     return true;
                 }
