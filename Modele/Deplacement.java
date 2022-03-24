@@ -4,6 +4,8 @@ import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.EntiteeDeplacable
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class Deplacement extends Thread
 {
@@ -127,28 +129,32 @@ public class Deplacement extends Thread
 	 * Trace un chemin du point "from" au point "to" si il existe et le stocke dans le champs "a_star_path"
 	 * @return true si et seulement si un chemin est trouv�
 	 */
-	public boolean
-	algorithmA_star() 
+	public boolean parcours_profondeur()
 	{
 //		System.out.print("A* start (from, to) :("); //debug
 //			System.out.print("["); System.out.print(from.x); System.out.print(","); System.out.print(from.y); System.out.print("]");//debug
 //			System.out.print(", "); //debug
 //			System.out.print("["); System.out.print(to.x); System.out.print(","); System.out.print(to.y); System.out.print("]"); //debug
 //		System.out.println(")"); //debug
-		
 		ArrayList<Point> a_voir = new ArrayList<Point>();
-		a_voir.add(from);
+		int max_priorite = Integer.MAX_VALUE;
 
+
+		a_voir.add(from);
 		boolean deja_vu[][] = new boolean[grille.getLongueur()][grille.getLargeur()];
 		Point precedents[][] = new Point[grille.getLongueur()][grille.getLargeur()];
-		
+
+		int nb_noeud_dev = 0;
+
 		while(!a_voir.isEmpty())
 		{
 			Point u = a_voir.get(0); a_voir.remove(u); //d�piler
+			nb_noeud_dev++;
 			if(u.x == to.x && u.y == to.y) //Si on est sur la case destination, retracer le chemin
 			{
 				this.a_star_path = retrace_chemin(u, precedents);
 //				for(Point[] precs: precedents) System.out.println(Arrays.toString(precs)); //debug
+				System.out.println("pfiou après "+nb_noeud_dev+" noeud j'ai trouvé");
 				return true;
 			}
 			else //Sinon explorer les voisins en leur sauvegardant leur p�re (le point courrant)
@@ -167,6 +173,7 @@ public class Deplacement extends Thread
 							{
 								this.a_star_path = retrace_chemin(u, precedents);
 //								for(Point[] precs: precedents) System.out.println(Arrays.toString(precs)); //debug
+								System.out.println("pfiou après "+nb_noeud_dev+" noeud j'ai trouvé");
 								return true;
 							}
 						}
@@ -176,6 +183,92 @@ public class Deplacement extends Thread
 							precedents[v.x][v.y] = new Point(u);							
 						}
 						
+					}
+					deja_vu[v.x][v.y] = true;
+				}
+			}
+		}
+		// Cas o� il n'y a pas de chemin possible
+		return false;
+	}
+
+	/**
+	 * Algorithme A* (sans heuristiques : cases carr�es de m�me dimensions)
+	 * Trace un chemin du point "from" au point "to" si il existe et le stocke dans le champs "a_star_path"
+	 * @return true si et seulement si un chemin est trouv�
+	 */
+	public boolean algorithmA_star()
+	{
+//		System.out.print("A* start (from, to) :("); //debug
+//			System.out.print("["); System.out.print(from.x); System.out.print(","); System.out.print(from.y); System.out.print("]");//debug
+//			System.out.print(", "); //debug
+//			System.out.print("["); System.out.print(to.x); System.out.print(","); System.out.print(to.y); System.out.print("]"); //debug
+//		System.out.println(")"); //debug
+
+		class D_point implements Comparable<D_point>
+		{
+			final public Point p;
+			final int heuristic;
+
+			public D_point(Point p)
+			{
+				this.p = p;
+				heuristic = (int) Math.sqrt((to.x - p.x)*(to.x - p.x) + (to.y - p.y)*(to.y - p.y));
+			}
+
+			@Override
+			public int compareTo(D_point o) {
+				return heuristic - o.heuristic;
+			}
+
+		}
+
+
+
+		//ArrayList<Point> a_voir = new ArrayList<>();
+		PriorityQueue<D_point> a_voir = new PriorityQueue<>();
+		a_voir.add(new D_point(from));
+		boolean deja_vu[][] = new boolean[grille.getLongueur()][grille.getLargeur()];
+		Point precedents[][] = new Point[grille.getLongueur()][grille.getLargeur()];
+
+		int nb_noeud_dev = 0;
+		while(!a_voir.isEmpty())
+		{
+			D_point u = a_voir.poll(); //d�piler
+			nb_noeud_dev++;
+			if(u.p.x == to.x && u.p.y == to.y) //Si on est sur la case destination, retracer le chemin
+			{
+				this.a_star_path = retrace_chemin(u.p, precedents);
+//				for(Point[] precs: precedents) System.out.println(Arrays.toString(precs)); //debug
+				System.out.println("pfiou après "+nb_noeud_dev+" noeud j'ai trouvé");
+				return true;
+			}
+			else //Sinon explorer les voisins en leur sauvegardant leur p�re (le point courrant)
+			{
+//				System.out.print("Current :"); //debug
+//				System.out.print(u); //debug
+//				System.out.print("Voisins :"); //debug
+//				System.out.println(grille.getVoisins(u)); //debug
+				for(Point v : grille.getVoisins(u.p))
+				{
+					if(!deja_vu[v.x][v.y])
+					{
+						if(grille.estOccupee(v)) // Modification locale dans le cas ou la case destination soit occupee
+						{
+							if(v.x == to.x && v.y == to.y)
+							{
+								this.a_star_path = retrace_chemin(u.p, precedents);
+//								for(Point[] precs: precedents) System.out.println(Arrays.toString(precs)); //debug
+								System.out.println("pfiou après "+nb_noeud_dev+" noeud j'ai trouvé");
+								return true;
+							}
+						}
+						else
+						{
+							a_voir.add(new D_point(v));
+							precedents[v.x][v.y] = new Point(u.p);
+						}
+
 					}
 					deja_vu[v.x][v.y] = true;
 				}

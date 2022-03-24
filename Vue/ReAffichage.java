@@ -23,7 +23,7 @@ public class ReAffichage extends Thread {
 
         while(true) {
             ie = affichage.getInterface_entitee_courante();
-            System.out.println(Thread.activeCount());
+            //System.out.println(Thread.activeCount());
 
 
             if(ie != null)
