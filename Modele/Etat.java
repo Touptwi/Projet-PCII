@@ -166,4 +166,9 @@ public class Etat
         score = score + n_score;
         System.out.println("score:" + score);
     }
+
+	public int getScore()
+	{
+		return score;
+	}
 }

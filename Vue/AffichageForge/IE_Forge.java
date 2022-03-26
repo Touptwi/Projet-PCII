@@ -80,8 +80,8 @@ public class IE_Forge implements InterfaceEntitee {
         maj_zone_fourneau();
         maj_zone_inventaire();
         maj_zone_recettes();
-        zone_recette.setBorder(BorderFactory.createTitledBorder("il y a actuellement "+ forge.get_recettes().size() + " en attente"));
-
+        //zone_recette.setBorder(BorderFactory.createTitledBorder("il y a actuellement "+ forge.get_recettes().size() + " en attente"));
+        zone_recette.setBorder(BorderFactory.createTitledBorder("score: "+ forge.getEtat().getScore()));
     }
 
     /**
