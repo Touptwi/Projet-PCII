@@ -7,6 +7,10 @@ import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Goblin;
 import Modele.Entitees.Ressources.Ressource;
 import Modele.Grille;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.WindowEvent;
+
 /**
  * ce thread assure le réaffichage régulier de la fenetre
  */
@@ -32,6 +36,13 @@ public class ReAffichage extends Thread {
             }
             affichage.revalidate();
             affichage.repaint();
+
+            if (affichage.getEtat().getCountdown().isOver())
+            {
+                Window test = SwingUtilities.getWindowAncestor(affichage);
+                test.dispatchEvent(new WindowEvent(test,WindowEvent.WINDOW_CLOSING));
+                return;
+            }
             try { Thread.sleep(20); }
             catch (Exception e) { e.printStackTrace(); }
         }

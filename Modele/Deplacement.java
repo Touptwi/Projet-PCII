@@ -47,15 +47,16 @@ public class Deplacement extends Thread
 			while (idx < a_star_path.size() && !shouldQuit) {
 				Point v = a_star_path.get(idx);
 				if (this.move(current_p, v)) {
+					e.check_deplacement(current_p, grille.getVoisins(current_p));
 					current_p = v; //changing our position locally
 					idx++; //going to read the next step
-					e.check_deplacement(current_p, grille.getVoisins(current_p));
+
 					//System.out.print("Move : ");
 					//System.out.println(v); //debug
 				} else { //si le mouvement a echoué
 					if (e.check_deplacement(current_p, grille.getVoisins(current_p))) {//si le check déplacement a réussi (cas goblein: si le gobelin a croisé un ennemis)
 						System.out.println("sortie demandé par check déplacement");
-						break;
+						return;
 					}
 					System.out.print("Erreur de d�placement : ");
 					//System.out.println(v);  //debug
@@ -74,11 +75,11 @@ public class Deplacement extends Thread
 					e.printStackTrace();
 				}
 			}
-			e.check_deplacement(current_p, grille.getVoisins(current_p));
-			e.fin_deplacement(current_p, grille.getVoisins(current_p));
+			//e.check_deplacement(current_p, grille.getVoisins(current_p));
+
 			System.out.println("fin déplacement");
 		}
-
+		e.fin_deplacement(current_p, grille.getVoisins(current_p));
 	}
 	
 	public Point
@@ -218,7 +219,7 @@ public class Deplacement extends Thread
 			{
 				this.a_star_path = retrace_chemin(u.p, precedents);
 //				for(Point[] precs: precedents) System.out.println(Arrays.toString(precs)); //debug
-				System.out.println("pfiou après "+nb_noeud_dev+" noeud j'ai trouvé");
+				//System.out.println("pfiou après "+nb_noeud_dev+" noeud j'ai trouvé");
 				return true;
 			}
 			else //Sinon explorer les voisins en leur sauvegardant leur p�re (le point courrant)

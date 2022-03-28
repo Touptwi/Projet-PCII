@@ -15,10 +15,16 @@ public class Affichage extends JSplitPane
 {
     /** Java est maintenant tres content. */
 	private static final long serialVersionUID = 1L;
-	private Etat etat;
+
+    public Etat getEtat() {
+        return etat;
+    }
+
+    private Etat etat;
     private final int taille_case = 100;
     
     private JPanel interface_entitee_courante = null;
+    private JSplitPane interfaces = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 
     private Thread thread_rafraichissement;
 
@@ -30,7 +36,7 @@ public class Affichage extends JSplitPane
         etat = e;        
 
         JFrame fenetre = new JFrame("FlowerCraft");
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.setPreferredSize(new Dimension(etat.getLargeur() , etat.getHauteur()));
         this.addMouseListener(new Control(etat, this));
@@ -39,6 +45,11 @@ public class Affichage extends JSplitPane
         this.setLeftComponent(new JPanel());
         this.setRightComponent(interface_entitee_courante);
         this.setDividerSize(0);
+
+        //interfaces.setDividerSize(0);
+        interfaces.setTopComponent(interface_entitee_courante);
+        interfaces.setBottomComponent(new JPanel());
+        interfaces.setDividerLocation(0.7);
         
         fenetre.add(this);
         fenetre.pack();
@@ -46,6 +57,7 @@ public class Affichage extends JSplitPane
         thread_rafraichissement = new ReAffichage(this);
         thread_rafraichissement.start();
     }
+
     
     public int getTailleCase() { return this.taille_case; }
     
@@ -53,7 +65,10 @@ public class Affichage extends JSplitPane
     public void 
     selectionnerEntitee()
     {
-    	if(interface_entitee_courante != null) this.remove(interface_entitee_courante);
+    	if(interface_entitee_courante != null)
+        {
+            this.remove(interface_entitee_courante);
+        }
     	Entitee selected = etat.getGrille().getSelectedEntitee();
     	if(selected == null) interface_entitee_courante = null;
     	else

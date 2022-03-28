@@ -28,8 +28,12 @@ public class Etat
     private Grille grille;
 
     TerrainGenerationThread dynamic_spawn_thread;
-    
-    Countdown countdown;
+
+	public Countdown getCountdown() {
+		return countdown;
+	}
+
+	Countdown countdown;
 
     public Etat(int l, int h) 
     {
