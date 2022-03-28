@@ -219,6 +219,8 @@ public class IE_Forge implements InterfaceEntitee {
     private void maj_ie_recette(JPanel recette, Recette r)
     {
         JButton produire = (JButton) recette.getComponent(0);
-        produire.setEnabled(r.check(forge.getInventaire()));
+        boolean can_produce = r.check(forge.getInventaire());
+        produire.setEnabled(can_produce);
+//        produire.setBackground((can_produce ? Color.GREEN : Color.RED));
     }
 }
