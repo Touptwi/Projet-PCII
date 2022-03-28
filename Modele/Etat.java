@@ -38,6 +38,10 @@ public class Etat
         Dwarf d1 = new Dwarf(this, new Point(1, 0));
         Dwarf d2 = new Dwarf(this, new Point(2, 0));
 
+		//Generation terrain
+		Stone s1 = new Stone(this, new Point(7,6));
+		Stone s2 = new Stone(this, new Point(8,6));
+		Stone s3 = new Stone(this, new Point(6,7));
 
         //initiation du test de la forge
         Forge forge = new Forge(this,3, new Point(3,3));
