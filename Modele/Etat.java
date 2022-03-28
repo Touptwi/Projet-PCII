@@ -58,6 +58,7 @@ public class Etat
         dynamic_spawn_thread.start();
         
         countdown = new Countdown(this, 300);
+        System.out.println("le jeu se terminera dans 5 minutes");
     }
 
     public int getLargeur() {
