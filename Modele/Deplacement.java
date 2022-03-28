@@ -99,29 +99,7 @@ public class Deplacement extends Thread
 	public synchronized boolean
 	move(Point f, Point t)
 	{
-		//System.out.print(f); //debug
-		//System.out.print("  "); //debug
-		//System.out.println(t); //debug
-		
-		if(!grille.estOccupee(f))
-		{
-			//System.out.println("Pas d'entitee case de d�part"); //debug
-			return false;
-		}
-		else if (grille.estOccupee(t)) 
-		{
-			//System.out.print("Entitee case de d�part : "); //debug
-			//System.out.println(grille.getEntitee(f)); //debug
-			//System.out.print("Entitee case d'arriv�e : "); //debug
-			//System.out.println(grille.getEntitee(t)); //debug
-			return false;
-		}
-		else
-		{
-			grille.setCase(f, null);
-			grille.setCase(t, e);
-			return true;
-		}
+		return grille.move(f,t);
 	}
 
 	/**
@@ -259,7 +237,7 @@ public class Deplacement extends Thread
 							{
 								this.a_star_path = retrace_chemin(u.p, precedents);
 //								for(Point[] precs: precedents) System.out.println(Arrays.toString(precs)); //debug
-								System.out.println("pfiou après "+nb_noeud_dev+" noeud j'ai trouvé");
+								//System.out.println("pfiou après "+nb_noeud_dev+" noeud j'ai trouvé");
 								return true;
 							}
 						}
