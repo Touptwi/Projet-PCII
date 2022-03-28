@@ -57,7 +57,7 @@ public class Etat
         dynamic_spawn_thread = new TerrainGenerationThread(this);
         dynamic_spawn_thread.start();
         
-        countdown = new Countdown(this, 10);
+        countdown = new Countdown(this, 300);
     }
 
     public int getLargeur() {

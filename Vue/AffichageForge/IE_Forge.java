@@ -27,7 +27,7 @@ public class IE_Forge implements InterfaceEntitee {
     private JPanel zone_info = new JPanel();
 
     private JPanel zone_fourneaux = new JPanel(); //l'interface dans laquelle s'affiche la liste des fourneaux
-    private ArrayList<JPanel> liste_fourneaux = new ArrayList<JPanel>();// la liste des interfaces des fourneaux
+    private ArrayList<JPanel> liste_fourneaux = new ArrayList<JPanel>();// la list  e des interfaces des fourneaux
 
     private JTextArea zone_inventaire = new JTextArea("*");
 
