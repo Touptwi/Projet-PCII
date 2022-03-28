@@ -27,7 +27,7 @@ public class Etat
 
     private Grille grille;
 
-    Thread dynamic_spawn_thread;
+    TerrainGenerationThread dynamic_spawn_thread;
     
     Countdown countdown;
 
@@ -50,73 +50,8 @@ public class Etat
         forge.getInventaire().add(new Ressource(this, 5, Type.GOLD));
 
         //new Thread(f).start();
-
-
-        Etat _e = this;
-        dynamic_spawn_thread =
-    		new Thread()
-		    {
-		    	@Override
-		    	public void run()
-		    	{
-		    		//Boucle de cr�ation de ressources
-		    		while(true)
-		    		{
-		    			//Cr�ation de l'objet random pour g�n�ration de nombre al�atoire
-		    			Random rand = new Random();
-
-		    			//Coordonn�es de la ressources choisies al�atoirement
-		    			int x = rand.nextInt()%largeur_grille; x = (x < 0 ? x + largeur_grille : x);
-		    			int y = rand.nextInt()%hauteur_grille; y = (y < 0 ? y + largeur_grille : y);
-
-		    			//Si la case est valide on continue
-		    			if(!_e.getGrille().estOccupee(x,y))
-		    			{
-
-		    				//On choisi le type de ressource de fa�on al�atoire
-		    				int type_ord = rand.nextInt()%Type.COUNT.ordinal(); type_ord = (type_ord < 0 ? type_ord + Type.COUNT.ordinal() : type_ord);
-		    				Type type = Type.values()[type_ord];
-
-		    				//Cr�ation de la ressource
-		    				Ressource r = new Ressource(_e, 5, type, new Point(x, y));
-
-		    				do
-		    				{
-		    					//Choix de coordonn�es : les goblins apparaissent a un des bords du terrain, en hauteur ou largeur al�atoirement
-		    					if(rand.nextBoolean())
-		    					{
-		    						//Choix de coordonn�es al�atoires
-		    						x = rand.nextInt()%largeur_grille; x = (x < 0 ? x + largeur_grille : x);
-		    						y = (rand.nextBoolean() ? 0 : hauteur_grille-1);
-		    					}
-		    					else
-		    					{
-		    						//Choix de coordonn�es al�atoires
-		    						x = (rand.nextBoolean() ? 0 : largeur_grille-1);
-		    						y = rand.nextInt()%hauteur_grille; y = (y < 0 ? y + largeur_grille : y);
-		    					}
-		    				}while (_e.getGrille().estOccupee(x,y)); // Nouvelle g�neration si case non valide
-
-		    				//Intervalle de temps a attendre avant de lancer le goblin pour recuperer la ressource
-		    				int min_t = 3;
-		    				int max_t = 8;
-
-		    				//Generation de timer al�atoire
-		    				int t = rand.nextInt()%max_t; t = (x < 0 ? x + max_t + min_t : x + min_t);
-		    				try { sleep(1000*t); }
-			    			catch (InterruptedException e) { e.printStackTrace(); }
-
-		    				//Lancement du goblin
-		    				Goblin gob = new Goblin(_e, new Point(x, y), r);
-		    				//new Thread(gob).start();
-		    			}
-
-		    			try { sleep(1000*1); }
-		    			catch (InterruptedException e) { e.printStackTrace(); }
-		    		}
-		    	}
-			};
-        this.dynamic_spawn_thread.start();
+        dynamic_spawn_thread = new TerrainGenerationThread(this);
+        dynamic_spawn_thread.start();
         
         countdown = new Countdown(this, 10);
     }
@@ -183,5 +118,7 @@ public class Etat
 	public void stop()
 	{
 		System.out.print("Stopping the game loop now");
+		this.dynamic_spawn_thread.stop_thread();
+		
 	}
 }
