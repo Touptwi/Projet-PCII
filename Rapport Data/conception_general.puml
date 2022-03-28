@@ -25,7 +25,7 @@ rectangle aff_grille[
 
 
 grille --> aff_grille
-entite --> grille
+entite <--> grille
 entite --> aff_entite
 aff_entite --> aff_grille
 entite <--> i_entite

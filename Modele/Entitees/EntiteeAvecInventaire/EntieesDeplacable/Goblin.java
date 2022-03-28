@@ -28,11 +28,14 @@ public class Goblin extends EntiteeDeplacable
 
     /** Prendre la ressource si atteint puis fuit*/
     public void takeRessource(Point pos, ArrayList<Point> voisins) {
-        if(voisins.contains(ressource.getPosition())) {
-            etat.getGrille().recupererRessources(this);
-        }
+        if(!isFeared)
+        {
+            if (voisins.contains(ressource.getPosition())) {
+                etat.getGrille().recupererRessources(this);
+            }
 
-        fuir(pos);
+            fuir(pos);
+        }
     }
 
 	@Override
@@ -42,7 +45,7 @@ public class Goblin extends EntiteeDeplacable
             for (Point voisin : voisins) {
                 if (etat.getGrille().getEntitee(voisin) != null) {
                     if (etat.getGrille().getEntitee(voisin).isDwarf) {
-                        fuir(position);
+                        takeRessource(position, voisins);
                         return true;
                     }
                 }

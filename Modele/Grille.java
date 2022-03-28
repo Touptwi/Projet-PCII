@@ -147,6 +147,48 @@ public class Grille
         //System.out.println(Thread.activeCount());
     }
 
+
+    public synchronized boolean move(Point f, Point t)
+    {
+        //System.out.print(f); //debug
+        //System.out.print("  "); //debug
+        //System.out.println(t); //debug
+
+        if(!estOccupee(f))
+        {
+            //System.out.println("Pas d'entitee case de d�part"); //debug
+            return false;
+        }
+        else if (estOccupee(t))
+        {
+            //System.out.print("Entitee case de d�part : "); //debug
+            //System.out.println(grille.getEntitee(f)); //debug
+            //System.out.print("Entitee case d'arriv�e : "); //debug
+            //System.out.println(grille.getEntitee(t)); //debug
+            return false;
+        }
+        else
+        {
+            Entitee e = getEntitee(f);
+            Entitee e2 = getEntitee(t);
+            if(setCaseSecure(t, e)) {
+                setCase(f, e2);
+                return true;
+            }
+            return false;
+        }
+    }
+
+    public synchronized boolean setCaseSecure(Point to, Entitee val)
+    {
+        if(!estOccupee(to))
+        {
+            grille[to.x][to.y] = val;
+            return true;
+        }
+        return false;
+    }
+
     /**
      * va marque la case de coordonnée x y comme selectionnée
      * @param x coord X
