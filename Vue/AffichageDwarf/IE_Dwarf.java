@@ -43,7 +43,6 @@ public class IE_Dwarf implements InterfaceEntitee
 		recup_button.setVisible(true);
 				
 		//"Livrer" : livraison de materiaux aux batiments
-		// TODO : Action listener
 		LivrerListener livrer = new LivrerListener(_etat,_dwarf);
 		deliver_button.addActionListener(livrer);
 		deliver_button.setBounds(new Rectangle(100, 0, 100, 100));

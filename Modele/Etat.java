@@ -28,6 +28,8 @@ public class Etat
     private Grille grille;
 
     Thread dynamic_spawn_thread;
+    
+    Countdown countdown;
 
     public Etat(int l, int h) 
     {
@@ -115,6 +117,8 @@ public class Etat
 		    	}
 			};
         this.dynamic_spawn_thread.start();
+        
+        countdown = new Countdown(this, 10);
     }
 
     public int getLargeur() {
@@ -174,5 +178,10 @@ public class Etat
 	public int getScore()
 	{
 		return score;
+	}
+	
+	public void stop()
+	{
+		System.out.print("Stopping the game loop now");
 	}
 }
