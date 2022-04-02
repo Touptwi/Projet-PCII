@@ -1,12 +1,12 @@
-package Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable;
+package Modele.Entites.EntiteAvecInventaire.EntitesDeplacable;
 
 import Modele.Deplacement;
-import Modele.Entitees.EntiteeAvecInventaire.EntiteeAvecInventaire;
+import Modele.Entites.EntiteAvecInventaire.EntiteAvecInventaire;
 
 import java.awt.Point;
 import java.util.ArrayList;
 
-public abstract class EntiteeDeplacable extends EntiteeAvecInventaire
+public abstract class EntiteDeplacable extends EntiteAvecInventaire
 {
 	Deplacement deplacement;
 	

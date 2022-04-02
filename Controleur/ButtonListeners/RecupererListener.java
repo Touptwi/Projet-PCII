@@ -3,7 +3,7 @@ package Controleur.ButtonListeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.Dwarf;
 import Modele.Etat;
 
 public class RecupererListener implements ActionListener

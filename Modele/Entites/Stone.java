@@ -1,11 +1,11 @@
-package Modele.Entitees;
+package Modele.Entites;
 
 import Modele.Etat;
 import Vue.VueStone;
 
 import java.awt.*;
 
-public class Stone extends Entitee{
+public class Stone extends Entite {
     
     public Stone(Etat _e, Point pos) {
         this.affichable = new VueStone(this);

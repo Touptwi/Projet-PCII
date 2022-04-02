@@ -1,6 +1,6 @@
 package Vue.AffichageDwarf;
 
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.Dwarf;
 import Vue.Affichable;
 import Vue.Affichage;
 

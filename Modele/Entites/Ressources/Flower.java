@@ -1,4 +1,4 @@
-package Modele.Entitees.Ressources;
+package Modele.Entites.Ressources;
 
 import Modele.Etat;
 import Vue.AffichageFlower.IE_Plante;

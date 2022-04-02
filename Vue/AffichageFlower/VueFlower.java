@@ -1,6 +1,6 @@
 package Vue.AffichageFlower;
 
-import Modele.Entitees.Ressources.Flower;
+import Modele.Entites.Ressources.Flower;
 import Vue.Affichable;
 import Vue.Affichage;
 

@@ -1,13 +1,13 @@
 package Vue.AffichageGoblin;
 
 import Modele.Etat;
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Goblin;
-import Vue.InterfaceEntitee;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.Goblin;
+import Vue.InterfaceEntite;
 
 import javax.swing.*;
 import java.util.Arrays;
 
-public class IE_Goblin implements InterfaceEntitee {
+public class IE_Goblin implements InterfaceEntite {
 
     Goblin goblin;
     JPanel interface_graphique;

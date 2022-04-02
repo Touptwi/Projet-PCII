@@ -1,7 +1,6 @@
 package Vue.AffichageGoblin;
 
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Goblin;
-import Modele.Entitees.EntiteeAvecInventaire.Inventaire;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.Goblin;
 import Vue.Affichable;
 import Vue.Affichage;
 

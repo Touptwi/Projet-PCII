@@ -1,4 +1,4 @@
-package Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable;
+package Modele.Entites.EntiteAvecInventaire.EntitesDeplacable;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import Modele.Etat;
 import Vue.AffichageDwarf.IE_Dwarf;
 import Vue.AffichageDwarf.VueDwarf;
 
-public class Dwarf extends EntiteeDeplacable
+public class Dwarf extends EntiteDeplacable
 {
     public Dwarf(Etat _e, Point pos)
     {

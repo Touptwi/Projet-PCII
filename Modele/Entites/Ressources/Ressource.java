@@ -1,13 +1,13 @@
-package Modele.Entitees.Ressources;
+package Modele.Entites.Ressources;
 
-import Modele.Entitees.Entitee;
+import Modele.Entites.Entite;
 import Modele.Etat;
 import Vue.AffichageRessource.IE_Ressource;
 import Vue.AffichageRessource.VueRessource;
 
 import java.awt.*;
 
-public class Ressource extends Entitee
+public class Ressource extends Entite
 {
 	public enum Type { GOLD, SILVER, COPPER, ALUMINIUM, FLEUR, COUNT }
 	private Type type = Type.GOLD;
@@ -52,14 +52,15 @@ public class Ressource extends Entitee
 	@Override
 	public String 
 	toString()
-	{	
+	{	/*
 		String ressource_type = "";
 		if(this.type == Type.GOLD) ressource_type = "Gold";
 		else if(this.type == Type.SILVER) ressource_type = "Silver";
 		else if(this.type == Type.COPPER) ressource_type = "Copper";
 		else if(this.type == Type.ALUMINIUM) ressource_type = "Aluminium";
 		else if(this.type == Type.FLEUR) ressource_type = "Fleur";
+		*/
 		
-        return (ressource_type + " " + this.quantitee);
+        return (type.name() + " " + this.quantitee);
 	}
 }

@@ -1,8 +1,8 @@
-package Modele.Entitees.EntiteeAvecInventaire;
+package Modele.Entites.EntiteAvecInventaire;
 
 import java.util.Iterator;
 
-import Modele.Entitees.Ressources.Ressource;
+import Modele.Entites.Ressources.Ressource;
 
 public class Inventaire implements Iterable<Ressource>
 {

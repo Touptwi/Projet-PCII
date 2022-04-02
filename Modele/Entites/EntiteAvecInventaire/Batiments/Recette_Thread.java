@@ -1,4 +1,4 @@
-package Modele.Entitees.EntiteeAvecInventaire.Batiments;
+package Modele.Entites.EntiteAvecInventaire.Batiments;
 
 import Vue.AffichageForge.IE_Forge;
 

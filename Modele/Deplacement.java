@@ -1,15 +1,14 @@
 package Modele;
 
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.EntiteeDeplacable;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.EntiteDeplacable;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Deplacement extends Thread
 {
-	protected EntiteeDeplacable e;
+	protected EntiteDeplacable e;
 	protected Grille grille;
 	protected Point from;
 	protected Point to;
@@ -21,7 +20,7 @@ public class Deplacement extends Thread
 	boolean shouldQuit = false;
 	
 	public 
-	Deplacement(EntiteeDeplacable _e, Point _from, Point _to, Grille _grille)
+	Deplacement(EntiteDeplacable _e, Point _from, Point _to, Grille _grille)
 	{
 		this.grille = _grille;
 		this.e = _e;
@@ -90,11 +89,10 @@ public class Deplacement extends Thread
 	}
 	
 	/**
-	 * Fonction utilitaire permettant le deplacement de l'entit�e e de f � t avec v�rification
-	 * @param f case "from" de d�part
-	 * @param t case "to" d'arriv�e
-	 * @return vrai si le move a �t� effectu� et �tait correct, faux sinon
-	 * TODO : V�rifier que le "synchronized" fait bien ce qu'on veut.
+	 * Fonction utilitaire permettant le deplacement de l'entite e de f vers t avec verification
+	 * @param f case "from" de depart
+	 * @param t case "to" d'arrivée
+	 * @return vrai si le move a put être effectué (aucune des case n'était occupées), faux sinon
 	 */
 	
 	public synchronized boolean
@@ -104,9 +102,9 @@ public class Deplacement extends Thread
 	}
 
 	/**
-	 * Algorithme A* (sans heuristiques : cases carr�es de m�me dimensions)
-	 * Trace un chemin du point "from" au point "to" si il existe et le stocke dans le champs "a_star_path"
-	 * @return true si et seulement si un chemin est trouv�
+	 * Algorithme A* (sans heuristiques : cases carrées de même dimension)
+	 * Trace un chemin du point "from" au point "to" s'il existe et le stocke dans l'objet "a_star_path"
+	 * @return true si et seulement si un chemin est trouvé
 	 */
 	public boolean parcours_profondeur()
 	{
@@ -172,9 +170,9 @@ public class Deplacement extends Thread
 	}
 
 	/**
-	 * Algorithme A* (sans heuristiques : cases carr�es de m�me dimensions)
-	 * Trace un chemin du point "from" au point "to" si il existe et le stocke dans le champs "a_star_path"
-	 * @return true si et seulement si un chemin est trouv�
+	 * Algorithme A* (avec heuristique) sans coût
+	 * Trace un chemin du point "from" au point "to" s'il existe et le stocke dans l'objet "a_star_path"
+	 * @return true si et seulement si un chemin est trouvé
 	 */
 	public boolean algorithmA_star()
 	{
@@ -184,6 +182,9 @@ public class Deplacement extends Thread
 //			System.out.print("["); System.out.print(to.x); System.out.print(","); System.out.print(to.y); System.out.print("]"); //debug
 //		System.out.println(")"); //debug
 
+		/**
+		 * une coordonnée possédant un objet Point et une heurisitique
+		 */
 		class D_point implements Comparable<D_point>
 		{
 			final public Point p;
@@ -195,6 +196,13 @@ public class Deplacement extends Thread
 				heuristic = (int) Math.sqrt((to.x - p.x)*(to.x - p.x) + (to.y - p.y)*(to.y - p.y));
 			}
 
+
+			/**
+			 * utilisé pour classer les elements par heurisitque lors du parcours de A*
+			 * Compare un D_point avec this
+			 * @param o un D_point
+			 * @return 0 si leur heurisitques sont les même, -1 si celle de o est supérieure et 1 si elle est inférieure
+			 */
 			@Override
 			public int compareTo(D_point o) {
 				return heuristic - o.heuristic;
@@ -205,15 +213,15 @@ public class Deplacement extends Thread
 
 
 		//ArrayList<Point> a_voir = new ArrayList<>();
-		PriorityQueue<D_point> a_voir = new PriorityQueue<>();
+		PriorityQueue<D_point> a_voir = new PriorityQueue<>(); //contient les cases à explorer classée par heuristique croissante
 		a_voir.add(new D_point(from));
-		boolean deja_vu[][] = new boolean[grille.getLongueur()][grille.getLargeur()];
+		boolean deja_vu[][] = new boolean[grille.getLongueur()][grille.getLargeur()]; //les cases déjà visités
 		Point precedents[][] = new Point[grille.getLongueur()][grille.getLargeur()];
 
-		int nb_noeud_dev = 0;
+		int nb_noeud_dev = 0;//utile pour du debuguage en indiquant le nombre de noeud développés
 		while(!a_voir.isEmpty())
 		{
-			D_point u = a_voir.poll(); //d�piler
+			D_point u = a_voir.poll(); //depiler
 			nb_noeud_dev++;
 			if(u.p.x == to.x && u.p.y == to.y) //Si on est sur la case destination, retracer le chemin
 			{

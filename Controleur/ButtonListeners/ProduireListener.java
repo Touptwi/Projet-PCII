@@ -1,15 +1,15 @@
 package Controleur.ButtonListeners;
 
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette;
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Forge;
-import Vue.InterfaceEntitee;
+import Modele.Entites.EntiteAvecInventaire.Batiments.Recette;
+import Modele.Entites.EntiteAvecInventaire.Batiments.Forge;
+import Vue.InterfaceEntite;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ProduireListener implements ActionListener {
 
-    InterfaceEntitee ie_forge;
+    InterfaceEntite ie_forge;
     Forge forge;
     Recette recette;
     public ProduireListener(Forge f, Recette r)

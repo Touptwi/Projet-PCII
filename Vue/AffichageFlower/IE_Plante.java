@@ -1,13 +1,13 @@
 package Vue.AffichageFlower;
 
 import Modele.Etat;
-import Modele.Entitees.Ressources.Flower;
-import Vue.InterfaceEntitee;
+import Modele.Entites.Ressources.Flower;
+import Vue.InterfaceEntite;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class IE_Plante implements InterfaceEntitee {
+public class IE_Plante implements InterfaceEntite {
     private Flower flower;
     private JPanel interface_graphique_princ;
     private Canvas icone;

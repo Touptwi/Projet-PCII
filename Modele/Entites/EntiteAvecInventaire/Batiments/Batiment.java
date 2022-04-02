@@ -1,13 +1,13 @@
-package Modele.Entitees.EntiteeAvecInventaire.Batiments;
+package Modele.Entites.EntiteAvecInventaire.Batiments;
 
-import Modele.Entitees.EntiteeAvecInventaire.EntiteeAvecInventaire;
+import Modele.Entites.EntiteAvecInventaire.EntiteAvecInventaire;
 import Modele.Etat;
 
 import java.awt.*;
 
 import java.util.ArrayList;
 
-public abstract class Batiment extends EntiteeAvecInventaire 
+public abstract class Batiment extends EntiteAvecInventaire
 {
 
     protected final ArrayList<Point> structure; //les déplacement necessaire pour creer le bâtiment

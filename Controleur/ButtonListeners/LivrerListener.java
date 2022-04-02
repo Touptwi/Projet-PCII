@@ -4,9 +4,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Modele.Entitees.Entitee;
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Forge;
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
+import Modele.Entites.Entite;
+import Modele.Entites.EntiteAvecInventaire.Batiments.Forge;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.Dwarf;
 import Modele.Etat;
 import Modele.Grille;
 
@@ -28,7 +28,7 @@ public class LivrerListener implements ActionListener
         Grille g = etat.getGrille();
         for (Point p:g.getVoisins(dwarf.position))
         {
-            Entitee entitee = g.getEntitee(p);
+            Entite entitee = g.getEntitee(p);
             if (entitee instanceof Forge)
             {
                 dwarf.getInventaire().transfert(((Forge) entitee).getInventaire());

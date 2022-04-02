@@ -3,9 +3,9 @@ package Modele;
 import java.awt.Point;
 import java.util.Random;
 
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Goblin;
-import Modele.Entitees.Ressources.Ressource;
-import Modele.Entitees.Ressources.Ressource.Type;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.Goblin;
+import Modele.Entites.Ressources.Ressource;
+import Modele.Entites.Ressources.Ressource.Type;
 
 public class TerrainGenerationThread extends Thread 
 {

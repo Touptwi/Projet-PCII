@@ -1,7 +1,7 @@
 package Vue;
 
 import Controleur.Control;
-import Modele.Entitees.Entitee;
+import Modele.Entites.Entite;
 import Modele.Etat;
 
 import javax.imageio.ImageIO;
@@ -24,6 +24,8 @@ public class Affichage extends JSplitPane
 
     private Etat etat;
     private final int taille_case = 100;
+
+    public final JFrame fenetre;
     
     private JPanel interface_entitee_courante = null;
     private JSplitPane interfaces = new JSplitPane(JSplitPane.VERTICAL_SPLIT); //la zone droite contenant l'interface et le score
@@ -39,7 +41,7 @@ public class Affichage extends JSplitPane
     {
         etat = e;        
 
-        JFrame fenetre = new JFrame("FlowerCraft");
+        fenetre = new JFrame("FlowerCraft"); //la fenêtre principale du jeu
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.setPreferredSize(new Dimension(etat.getLargeur() , etat.getHauteur())); //la fenêtre princ
@@ -51,18 +53,19 @@ public class Affichage extends JSplitPane
         this.setDividerLocation(1/1.4);
         this.setRightComponent(null); //doit être initialisé a null sinon le split spane recouvre la grille et empeche le controleur de fonctionner
 
-        score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
+        score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS)); //assure que les elements s'affiche les uns en dessous des autres
         score.add(new JLabel("score: " + etat.getScore()));
         score.add(new JLabel("temps restant:"));
         score.add(temps);
 
-        temps.setMaximum(5*60);
-        temps.setSize(80,10);
+        temps.setMaximum(etat.getDuree());
+        //temps.setSize(80,10);
 
         //interfaces.setDividerSize(0);
         interfaces.setTopComponent(interface_entitee_courante);
         interfaces.setBottomComponent(score);
-        interfaces.setResizeWeight(0.9);
+        interfaces.setResizeWeight(0.9); //assure que l'element du haut (ici l'interface de l'entité sélectionnée) prennent
+                                         //90% de l'espace disponible
 
 
         fenetre.add(this);
@@ -85,7 +88,7 @@ public class Affichage extends JSplitPane
         {
             interfaces.remove(interface_entitee_courante);
         }
-    	Entitee selected = etat.getGrille().getSelectedEntitee(); //on récupère l'entité sélectionnée
+    	Entite selected = etat.getGrille().getSelectedEntitee(); //on récupère l'entité sélectionnée
     	if(selected == null) interface_entitee_courante = null;
     	else
     	{
@@ -144,7 +147,7 @@ public class Affichage extends JSplitPane
         {
             for(int i = 0; i < etat.getLargeurGrille(); ++i)
             {
-                Entitee entitee = etat.getEntitee(i, j);
+                Entite entitee = etat.getEntitee(i, j);
                 if(entitee == null) continue;
                 ((Graphics2D) g).translate(fitX(i*taille_case), fitY(j*taille_case));
                 entitee.getSprite().draw(g, this);
@@ -171,14 +174,18 @@ public class Affichage extends JSplitPane
      * Renvoie l'interface de l'entitée selectionnée si elle existe
      * @return l'entitée de l'entité selectionnée et null si il n'y en a pas
      */
-    public InterfaceEntitee getInterface_entitee_courante() {
-        Entitee entitee = etat.getGrille().getSelectedEntitee();
+    public InterfaceEntite getInterface_entitee_courante() {
+        Entite entitee = etat.getGrille().getSelectedEntitee();
         if (entitee == null)
             return null;
         else
             return entitee.interface_e;
     }
 
+    /**
+     * Cette fonction est appellée par la classe Reaffichage pour mettre a jour le JPanel contenant le score et
+     * le temps de jeu restant.
+     */
     public void mise_a_jour_score()
     {
         JLabel val_score = (JLabel) score.getComponent(0);

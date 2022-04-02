@@ -2,21 +2,18 @@ package Vue.AffichageForge;
 
 import Controleur.ButtonListeners.ProduireListener;
 import Modele.Etat;
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Recette;
-import Modele.Entitees.Ressources.Ressource;
-import Modele.Entitees.EntiteeAvecInventaire.Inventaire;
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Forge;
-import Vue.InterfaceEntitee;
+import Modele.Entites.EntiteAvecInventaire.Batiments.Recette;
+import Modele.Entites.Ressources.Ressource;
+import Modele.Entites.EntiteAvecInventaire.Inventaire;
+import Modele.Entites.EntiteAvecInventaire.Batiments.Forge;
+import Vue.InterfaceEntite;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Locale;
 
-public class IE_Forge implements InterfaceEntitee {
+public class IE_Forge implements InterfaceEntite {
 
     //Objet représenté
     private Forge forge;

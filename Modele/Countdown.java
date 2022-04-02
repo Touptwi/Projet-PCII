@@ -45,7 +45,7 @@ public class Countdown
 		            
 		            JFrame jFrame = new JFrame();
 
-		            JDialog jd = new JDialog(jFrame);
+		            JDialog jd = new JDialog(jFrame); //le message pop up indiquant le score lancé à la fin de la partie
 
 		            jd.setLayout(new FlowLayout());
 
@@ -57,7 +57,7 @@ public class Countdown
 		            jButton.addActionListener( (ActionListener) new ActionListener() 
 		            {
 						@Override
-						public void actionPerformed(ActionEvent e) { jd.setVisible(false); }
+						public void actionPerformed(ActionEvent e) { System.exit(1);}//jd.setVisible(false); }
 		            });
 
 		            jd.add(jLabel);

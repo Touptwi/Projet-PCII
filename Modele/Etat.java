@@ -1,16 +1,13 @@
 package Modele;
 
 import java.awt.Point;
-import java.util.Random;
 
-import Modele.Entitees.*;
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Forge;
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.EntiteeDeplacable;
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Goblin;
-import Modele.Entitees.Ressources.Ressource;
-import Modele.Entitees.Ressources.Ressource.Type;
-import Modele.Entitees.Ressources.Flower;
+import Modele.Entites.*;
+import Modele.Entites.EntiteAvecInventaire.Batiments.Forge;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.Dwarf;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.EntiteDeplacable;
+import Modele.Entites.Ressources.Ressource;
+import Modele.Entites.Ressources.Ressource.Type;
 
 public class Etat
 {
@@ -19,6 +16,7 @@ public class Etat
 	Modes mode_courant = Modes.SELECTION;
     private final int largeur;
     private final int hauteur;
+    private final int duree;
     
     private final int largeur_grille = 10;
     private final int hauteur_grille = 10;
@@ -35,10 +33,11 @@ public class Etat
 
 	Countdown countdown;
 
-    public Etat(int l, int h) 
+    public Etat(int l, int h,int d)
     {
         largeur = l;
         hauteur = h;
+        duree = d;
         grille = new Grille(this, largeur_grille, hauteur_grille);
         //Flower f = new Flower(this, new Point(0,0));
         Dwarf d1 = new Dwarf(this, new Point(1, 0));
@@ -57,7 +56,7 @@ public class Etat
         dynamic_spawn_thread = new TerrainGenerationThread(this);
         dynamic_spawn_thread.start();
         
-        countdown = new Countdown(this, 300);
+        countdown = new Countdown(this, duree);
         System.out.println("le jeu se terminera dans 5 minutes");
     }
 
@@ -68,6 +67,8 @@ public class Etat
     public int getHauteur() {
         return hauteur;
     }
+
+    public int getDuree() {return duree; }
     
     public int getLargeurGrille() { return largeur_grille; }
     public int getHauteurGrille() { return hauteur_grille; }
@@ -83,16 +84,16 @@ public class Etat
     public void
     click(int x, int y)
     {
-    	switch(mode_courant)
+    	switch(mode_courant) //recupère le mode actuel
     	{
-    		case SELECTION: 
+    		case SELECTION:  //on demande à la grille de selectionner la case à l'emplacement du click
     		{
     			this.grille.selectionne(x, y); 
     		} break;
     		
-    		case DEPLACEMENT: 
+    		case DEPLACEMENT: //lorsque l'utilisateur appuie
 			{
-				EntiteeDeplacable selected = (EntiteeDeplacable) this.grille.getSelectedEntitee();
+				EntiteDeplacable selected = (EntiteDeplacable) this.grille.getSelectedEntitee();
 				Deplacement d = selected.getDeplacement();
 				Point depart = this.grille.getSelectionPosition();
 				if(d != null) depart = d.stop_thread();
@@ -104,7 +105,7 @@ public class Etat
     	}
     }
 
-    public Entitee getEntitee(int i, int j)
+    public Entite getEntitee(int i, int j)
     {
         return grille.getEntitee(i,j);
     }
@@ -119,7 +120,10 @@ public class Etat
 	{
 		return score;
 	}
-	
+
+    /**
+     * Arrête la génération d'ennemis en arrêtant dynamic_spawn_thread
+     */
 	public void stop()
 	{
 		System.out.print("Stopping the game loop now");

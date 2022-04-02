@@ -1,7 +1,7 @@
-package Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable;
+package Modele.Entites.EntiteAvecInventaire.EntitesDeplacable;
 
 import Modele.Deplacement;
-import Modele.Entitees.Ressources.Ressource;
+import Modele.Entites.Ressources.Ressource;
 import Modele.Etat;
 import Vue.AffichageGoblin.IE_Goblin;
 import Vue.AffichageGoblin.VueGoblin;
@@ -9,7 +9,7 @@ import Vue.AffichageGoblin.VueGoblin;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Goblin extends EntiteeDeplacable
+public class Goblin extends EntiteDeplacable
 {
     Ressource ressource;
     Etat etat;

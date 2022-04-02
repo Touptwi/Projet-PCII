@@ -8,10 +8,10 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import Modele.Etat;
-import Modele.Entitees.Ressources.Ressource;
-import Vue.InterfaceEntitee;
+import Modele.Entites.Ressources.Ressource;
+import Vue.InterfaceEntite;
 
-public class IE_Ressource implements InterfaceEntitee
+public class IE_Ressource implements InterfaceEntite
 {
     private Ressource ressource;
     private JPanel interface_graphique_princ;

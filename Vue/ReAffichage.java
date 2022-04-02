@@ -1,12 +1,5 @@
 package Vue;
 
-import Modele.Entitees.Entitee;
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Batiment;
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Goblin;
-import Modele.Entitees.Ressources.Ressource;
-import Modele.Grille;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -17,7 +10,7 @@ import java.awt.event.WindowEvent;
 public class ReAffichage extends Thread {
 
     Affichage affichage;
-    InterfaceEntitee ie;
+    InterfaceEntite ie;
 
     public ReAffichage(Affichage a) {
         affichage = a;
@@ -38,11 +31,13 @@ public class ReAffichage extends Thread {
             affichage.revalidate();
             affichage.repaint();
 
-            if (affichage.getEtat().getCountdown().isOver())
+            if (affichage.getEtat().getCountdown().isOver()) //a la fin du temps imparti
             {
-                Window test = SwingUtilities.getWindowAncestor(affichage);
-                test.dispatchEvent(new WindowEvent(test,WindowEvent.WINDOW_CLOSING));
-                return;
+                affichage.fenetre.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //assure que le programme ne se termine pas lors de
+                //la fermeture de la JFRAME contenant le jeu
+                Window test = affichage.fenetre; //recupération de la JFrame dans l'affichage
+                test.dispatchEvent(new WindowEvent(test,WindowEvent.WINDOW_CLOSING));//envoie du signal de fermeture à la fenêtre
+                return; //fin du trhead
             }
             try { Thread.sleep(20); }
             catch (Exception e) { e.printStackTrace(); }

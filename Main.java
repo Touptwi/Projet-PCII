@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) 
     {
-        Etat etat = new Etat(largeur, hauteur);
+        Etat etat = new Etat(largeur, hauteur,10);
         Affichage affichage = new Affichage(etat);
     }
 }

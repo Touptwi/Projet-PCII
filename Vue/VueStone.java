@@ -1,6 +1,6 @@
 package Vue;
 
-import Modele.Entitees.Stone;
+import Modele.Entites.Stone;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

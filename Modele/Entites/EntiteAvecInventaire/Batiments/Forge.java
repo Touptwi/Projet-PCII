@@ -1,7 +1,7 @@
-package Modele.Entitees.EntiteeAvecInventaire.Batiments;
+package Modele.Entites.EntiteAvecInventaire.Batiments;
 
-import Modele.Entitees.EntiteeAvecInventaire.Inventaire;
-import Modele.Entitees.Ressources.Ressource;
+import Modele.Entites.EntiteAvecInventaire.Inventaire;
+import Modele.Entites.Ressources.Ressource;
 import Modele.Etat;
 import Vue.AffichageForge.IE_Forge;
 import Vue.AffichageForge.VueForge;
@@ -9,8 +9,6 @@ import Vue.AffichageForge.VueForge;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.Hashtable;
 
 public class Forge extends Batiment {
 

@@ -10,12 +10,12 @@ import javax.swing.JTextField;
 
 import Controleur.ButtonListeners.LivrerListener;
 import Modele.Etat;
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.Dwarf;
 import Controleur.ButtonListeners.MoveListener;
 import Controleur.ButtonListeners.RecupererListener;
-import Vue.InterfaceEntitee;
+import Vue.InterfaceEntite;
 
-public class IE_Dwarf implements InterfaceEntitee
+public class IE_Dwarf implements InterfaceEntite
 {
 	Dwarf dwarf;
 	JPanel interface_graphique;

@@ -1,11 +1,11 @@
 package Modele;
 
-import Modele.Entitees.EntiteeAvecInventaire.Batiments.Batiment;
-import Modele.Entitees.Entitee;
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Dwarf;
-import Modele.Entitees.EntiteeAvecInventaire.EntieesDeplacable.Goblin;
-import Modele.Entitees.EntiteeAvecInventaire.EntiteeAvecInventaire;
-import Modele.Entitees.Ressources.Ressource;
+import Modele.Entites.EntiteAvecInventaire.Batiments.Batiment;
+import Modele.Entites.Entite;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.Dwarf;
+import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.Goblin;
+import Modele.Entites.EntiteAvecInventaire.EntiteAvecInventaire;
+import Modele.Entites.Ressources.Ressource;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -22,16 +22,16 @@ public class Grille
     private int selectionX;
     private int selectionY;
     
-    private Entitee entitee_selectionee;
+    private Entite entitee_selectionee;
 
-    private Entitee[][] grille;
+    private Entite[][] grille;
     
     public Grille(Etat etat, int longu, int larg)
     {
         e = etat;
         longueur = longu;
         largeur = larg;
-        grille = new Entitee[longueur][largeur];
+        grille = new Entite[longueur][largeur];
 
         init_grille();
 
@@ -128,7 +128,7 @@ public class Grille
      * @param y la coordonnée Y de la case
      * @param val la nouvelle valeur de la case
      */
-    public synchronized void setCase(int x, int y, Entitee val)
+    public synchronized void setCase(int x, int y, Entite val)
     {
         grille[x][y] = val;
         //System.out.println(toString()+ "\n"); //debug
@@ -140,7 +140,7 @@ public class Grille
      * @param to : case ou placer l'entitee
      * @param val : Entitee a placer 
      */
-    public synchronized void setCase(Point to, Entitee val)
+    public synchronized void setCase(Point to, Entite val)
     {
     	grille[to.x][to.y] = val;
         //System.out.println(toString() + "\n");//debug
@@ -169,8 +169,8 @@ public class Grille
         }
         else
         {
-            Entitee e = getEntitee(f);
-            Entitee e2 = getEntitee(t);
+            Entite e = getEntitee(f);
+            Entite e2 = getEntitee(t);
             if(setCaseSecure(t, e)) {
                 setCase(f, e2);
                 return true;
@@ -179,7 +179,7 @@ public class Grille
         }
     }
 
-    public synchronized boolean setCaseSecure(Point to, Entitee val)
+    public synchronized boolean setCaseSecure(Point to, Entite val)
     {
         if(!estOccupee(to))
         {
@@ -209,7 +209,7 @@ public class Grille
      * @param y la coord Y
      * @return rend L'entitée située sur la case et null si il n'y a rien à ces coordonnées
      */
-    public Entitee getEntitee(int x, int y)
+    public Entite getEntitee(int x, int y)
     {
         if (grille[x][y] != null && grille[x][y].getSprite() == null) { grille[x][y] = null; }
         return grille[x][y];
@@ -219,7 +219,7 @@ public class Grille
      * @param from : Case contenant l'entitee
      * @return Entitee a la case donee
      */
-    public Entitee getEntitee(Point from)
+    public Entite getEntitee(Point from)
     {
         if (grille[from.x][from.y] != null && grille[from.x][from.y].getSprite() == null) { grille[from.x][from.y] = null; }
         return grille[from.x][from.y];
@@ -228,7 +228,7 @@ public class Grille
     /**
      * @return la denrniere entitee selectionne
      */
-    public Entitee getSelectedEntitee()
+    public Entite getSelectedEntitee()
     {
         return entitee_selectionee;
     }
@@ -263,7 +263,7 @@ public class Grille
         }
     }
 
-	public void recupererRessources(EntiteeAvecInventaire EAI) {
+	public void recupererRessources(EntiteAvecInventaire EAI) {
         Point pos = new Point(-1, -1);
         for (int i = 0; i < getLargeur(); i++) {
             for (int j = 0; j < getLongueur(); j++) {
@@ -272,7 +272,7 @@ public class Grille
         }
         if (pos != new Point(-1,-1)) {
             for (Point p : getVoisins(pos)) {
-                Entitee e = this.getEntitee(p);
+                Entite e = this.getEntitee(p);
                 if (e instanceof Ressource) {
                     EAI.getInventaire().add((Ressource) e);
                     this.setCase(p, null);
@@ -286,7 +286,7 @@ public class Grille
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < getLongueur();i++) {
             for (int j = 0; j < getLargeur(); j++) {
-                Entitee e = getEntitee(j,i);
+                Entite e = getEntitee(j,i);
                 if( e instanceof Dwarf)
                     result.append("D").append(" ; ");
                 else if (e instanceof Goblin)
