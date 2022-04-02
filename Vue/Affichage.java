@@ -27,6 +27,8 @@ public class Affichage extends JSplitPane
     
     private JPanel interface_entitee_courante = null;
     private JSplitPane interfaces = new JSplitPane(JSplitPane.VERTICAL_SPLIT); //la zone droite contenant l'interface et le score
+    private JPanel score = new JPanel(); //le jpanel contenant les informations a propos de la partie
+    private JProgressBar temps = new JProgressBar(); //progress bar indiquant le temps restant
 
     private Thread thread_rafraichissement;
 
@@ -49,11 +51,19 @@ public class Affichage extends JSplitPane
         this.setDividerLocation(1/1.4);
         this.setRightComponent(null); //doit être initialisé a null sinon le split spane recouvre la grille et empeche le controleur de fonctionner
 
+        score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
+        score.add(new JLabel("score: " + etat.getScore()));
+        score.add(new JLabel("temps restant:"));
+        score.add(temps);
+
+        temps.setMaximum(5*60);
+        temps.setSize(80,10);
 
         //interfaces.setDividerSize(0);
         interfaces.setTopComponent(interface_entitee_courante);
-        interfaces.setBottomComponent(new JPanel());
+        interfaces.setBottomComponent(score);
         interfaces.setResizeWeight(0.9);
+
 
         fenetre.add(this);
         fenetre.pack();
@@ -82,7 +92,6 @@ public class Affichage extends JSplitPane
     		interface_entitee_courante = selected.getInterfaceEntitee().getJPanel(); //on récupère son interface
             this.setDividerLocation(1/1.4);
             interfaces.setTopComponent(interface_entitee_courante);
-            interfaces.setBottomComponent(new JPanel());
             interfaces.setDividerSize(0);
             this.setRightComponent(interfaces);
 		}
@@ -168,5 +177,12 @@ public class Affichage extends JSplitPane
             return null;
         else
             return entitee.interface_e;
+    }
+
+    public void mise_a_jour_score()
+    {
+        JLabel val_score = (JLabel) score.getComponent(0);
+        val_score.setText("Score: "+ etat.getScore());
+        temps.setValue(etat.getCountdown().getTimeLeft());
     }
 }

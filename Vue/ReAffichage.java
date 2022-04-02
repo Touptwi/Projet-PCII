@@ -34,6 +34,7 @@ public class ReAffichage extends Thread {
             {
                 ie.mise_a_jour();
             }
+            affichage.mise_a_jour_score();
             affichage.revalidate();
             affichage.repaint();
 
