@@ -10,11 +10,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serial;
 
 public class Affichage extends JSplitPane
 {
     /** Java est maintenant tres content. */
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 
     public Etat getEtat() {
         return etat;
@@ -24,7 +26,7 @@ public class Affichage extends JSplitPane
     private final int taille_case = 100;
     
     private JPanel interface_entitee_courante = null;
-    private JSplitPane interfaces = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+    private JSplitPane interfaces = new JSplitPane(JSplitPane.VERTICAL_SPLIT); //la zone droite contenant l'interface et le score
 
     private Thread thread_rafraichissement;
 
@@ -36,46 +38,53 @@ public class Affichage extends JSplitPane
         etat = e;        
 
         JFrame fenetre = new JFrame("FlowerCraft");
-        //fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.setPreferredSize(new Dimension(etat.getLargeur() , etat.getHauteur()));
-        this.addMouseListener(new Control(etat, this));
+        this.setPreferredSize(new Dimension(etat.getLargeur() , etat.getHauteur())); //la fenêtre princ
+
         this.setFocusable(true);
 
-        this.setLeftComponent(new JPanel());
-        this.setRightComponent(interface_entitee_courante);
+        this.setLeftComponent(new JPanel()); //la partie grille
         this.setDividerSize(0);
+        this.setDividerLocation(1/1.4);
+        this.setRightComponent(null); //doit être initialisé a null sinon le split spane recouvre la grille et empeche le controleur de fonctionner
+
 
         //interfaces.setDividerSize(0);
         interfaces.setTopComponent(interface_entitee_courante);
         interfaces.setBottomComponent(new JPanel());
-        interfaces.setDividerLocation(0.7);
-        
+        interfaces.setResizeWeight(0.9);
+
         fenetre.add(this);
         fenetre.pack();
         fenetre.setVisible(true);
         thread_rafraichissement = new ReAffichage(this);
         thread_rafraichissement.start();
+
+        this.addMouseListener(new Control(etat, this));
     }
 
     
     public int getTailleCase() { return this.taille_case; }
     
-    /** Ajoute l'affichage de l'entitee selectionnee dans la grille */
+    /** Ajoute l'affichage de l'entitee selectionnee dans la grille au split pane  interfaces*/
     public void 
     selectionnerEntitee()
     {
     	if(interface_entitee_courante != null)
         {
-            this.remove(interface_entitee_courante);
+            interfaces.remove(interface_entitee_courante);
         }
-    	Entitee selected = etat.getGrille().getSelectedEntitee();
+    	Entitee selected = etat.getGrille().getSelectedEntitee(); //on récupère l'entité sélectionnée
     	if(selected == null) interface_entitee_courante = null;
     	else
     	{
-    		interface_entitee_courante = selected.getInterfaceEntitee().getJPanel();
+    		interface_entitee_courante = selected.getInterfaceEntitee().getJPanel(); //on récupère son interface
             this.setDividerLocation(1/1.4);
-            this.setRightComponent(interface_entitee_courante);
+            interfaces.setTopComponent(interface_entitee_courante);
+            interfaces.setBottomComponent(new JPanel());
+            interfaces.setDividerSize(0);
+            this.setRightComponent(interfaces);
 		}
     }
 
