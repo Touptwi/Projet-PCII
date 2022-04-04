@@ -190,6 +190,6 @@ public class Affichage extends JSplitPane
     {
         JLabel val_score = (JLabel) score.getComponent(0);
         val_score.setText("Score: "+ etat.getScore());
-        temps.setValue(etat.getCountdown().getTimeLeft());
+        temps.setValue(etat.getDuree()-etat.getCountdown().getTimeLeft());
     }
 }
