@@ -5,13 +5,19 @@ import Modele.Etat;
 import Vue.AffichageRessource.IE_Ressource;
 import Vue.AffichageRessource.VueRessource;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Ressource extends Entite
 {
 	public enum Type { GOLD, SILVER, COPPER, ALUMINIUM, FLEUR, COUNT }
 	private Type type = Type.GOLD;
 	private int quantitee = 0;
+	private ArrayList<BufferedImage> images = new ArrayList<>();
 
 	public Ressource(Etat _e, int q, Type t, Point pos)
 	{
@@ -62,5 +68,13 @@ public class Ressource extends Entite
 		*/
 		
         return (type.name() + " " + this.quantitee);
+	}
+
+	public BufferedImage getImage() {
+		BufferedImage img = new BufferedImage(10,10,0);
+		try {
+			img = ImageIO.read(new File("Images/Ressources/"+type.name()+"/Ingot.png"));
+		} catch (IOException E) { E.printStackTrace();}
+		return img;
 	}
 }
