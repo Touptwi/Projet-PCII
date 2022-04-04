@@ -42,6 +42,8 @@ public class IE_Plante implements InterfaceEntite {
 
         //mise en page via un SPLITSPANE
         separateur = new JSplitPane(JSplitPane.VERTICAL_SPLIT, icone, barre);
+        separateur.setDividerSize(0);
+        separateur.setMaximumSize(new Dimension(400,100));
         interface_graphique_princ.add(separateur);
     }
 
