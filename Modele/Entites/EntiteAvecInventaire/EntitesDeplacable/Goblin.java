@@ -22,20 +22,21 @@ public class Goblin extends EntiteDeplacable
         this.ressource = r;
         this.etat = e;
         e.getGrille().setCase(pos, this);
-        this.deplacement = new Deplacement(this, pos, r.getPosition(),e.getGrille());
+        this.deplacement = new Deplacement(this, pos, r.getPosition(),e.getGrille(), false);
         this.deplacement.start();
     }
 
     /** Prendre la ressource si atteint puis fuit*/
     public void takeRessource(Point pos, ArrayList<Point> voisins) {
-        if(!isFeared)
-        {
-            if (voisins.contains(ressource.getPosition())) {
-                etat.getGrille().recupererRessources(this);
-            }
-
-            fuir(pos);
-        }
+    	if (voisins.contains(ressource.getPosition())) {
+    		etat.getGrille().recupererRessources(this);
+    	}
+    	this.isFeared = true;
+//        if(!isFeared)
+//        {
+//
+//            fuir(pos);
+//        }
     }
 
 	@Override
@@ -57,9 +58,12 @@ public class Goblin extends EntiteDeplacable
 	@Override
 	public void fin_deplacement(Point position, ArrayList<Point> voisins) 
 	{
-        if(!isFeared) {
+        if(!isFeared) 
+        {
             takeRessource(position, voisins);
-        }else if(etat.getGrille().getEntitee(position) == this){
+        }
+        else if(etat.getGrille().getEntitee(position) == this)
+        {
             etat.getGrille().setCase(position.x, position.y, null);
         }else{
             //System.out.println("la position " + position + "n'est pas la bonne");
@@ -70,12 +74,12 @@ public class Goblin extends EntiteDeplacable
 	@Override
 	public void fuir(Point pos)
 	{
-        isFeared = true;
-        if (deplacement != null) {
-            this.deplacement.stop_thread();
-        }
-        this.deplacement = new Deplacement(this, pos, position, etat.getGrille());
-        this.deplacement.start();
+//        isFeared = true;
+//        if (deplacement != null) {
+//            this.deplacement.stop_thread();
+//        }
+//        this.deplacement = new Deplacement(this, pos, position, etat.getGrille());
+//        this.deplacement.start();
 
 	}
 }

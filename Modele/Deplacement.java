@@ -19,6 +19,8 @@ public class Deplacement extends Thread
 	
 	boolean shouldQuit = false;
 	
+	boolean parcourRetour = true;
+	
 	public 
 	Deplacement(EntiteDeplacable _e, Point _from, Point _to, Grille _grille)
 	{
@@ -28,14 +30,50 @@ public class Deplacement extends Thread
 		this.to = _to;
 	}
 	
+	public 
+	Deplacement(EntiteDeplacable _e, Point _from, Point _to, Grille _grille, boolean pR)
+	{
+		this.grille = _grille;
+		this.e = _e;
+		this.from = _from;
+		this.to = _to;
+		this.parcourRetour = pR;
+	}
+	
+	
 	/**
-	 * Procedure run de d�placement d'un entit�e
-	 * Lance A* et d�place l'entit�e le long du chemin qu'elle a � parcourir
-	 * V�rifie que les mouvements sont corrects
+	 * Procedure run d'un deplacement : 
+	 * lance le parcour d'un chemin dans un sens 
+	 * verifie ensuite si l'on doit faire un retour et le lance si c'est le cas
 	 */
 	@Override
 	public void
 	run()
+	{
+		lance_chemin();
+		if(!this.parcourRetour)
+		{
+			to = from;
+			from = current_p;
+			this.shouldQuit = false;
+			lance_chemin();
+		}
+	}
+	
+	public Point
+	stop_thread()
+	{
+		this.shouldQuit = true;
+		return this.current_p;
+	}
+	
+	/**
+	 * Procedure lance_chemin de d�placement d'un entit�e
+	 * Lance A* et d�place l'entit�e le long du chemin qu'elle a � parcourir
+	 * V�rifie que les mouvements sont corrects
+	 */
+	public void 
+	lance_chemin()
 	{
 		current_p = from;
 		if(!algorithmA_star()) System.out.print("Aucun chemin trouv�");
@@ -46,13 +84,11 @@ public class Deplacement extends Thread
 			while (idx < a_star_path.size() && !shouldQuit) {
 				Point v = a_star_path.get(idx);
 				if (this.move(current_p, v)) {
+					current_p = v; //changing our position locally
+					idx++; //going to read the next step
 					if (e.check_deplacement(current_p, grille.getVoisins(current_p))) {//si le check déplacement a réussi (cas goblein: si le gobelin a croisé un ennemis)
 						System.out.println("sortie demandé par check déplacement");
 						this.stop_thread();
-					} else {
-						current_p = v; //changing our position locally
-						idx++; //going to read the next step
-
 						//System.out.print("Move : ");
 						//System.out.println(v); //debug
 					}
@@ -85,14 +121,6 @@ public class Deplacement extends Thread
 		}
 		e.fin_deplacement(current_p, grille.getVoisins(current_p));
 	}
-	
-	public Point
-	stop_thread()
-	{
-		this.shouldQuit = true;
-		return this.current_p;
-	}
-	
 	/**
 	 * Fonction utilitaire permettant le deplacement de l'entite e de f vers t avec verification
 	 * @param f case "from" de depart
