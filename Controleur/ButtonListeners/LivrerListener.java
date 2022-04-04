@@ -25,12 +25,14 @@ public class LivrerListener implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
+        System.out.println("livraison depuis la case: " + dwarf.position);
         Grille g = etat.getGrille();
         for (Point p:g.getVoisins(dwarf.position))
         {
             Entite entitee = g.getEntitee(p);
             if (entitee instanceof Forge)
             {
+                System.out.println("forge trouvée");
                 dwarf.getInventaire().transfert(((Forge) entitee).getInventaire());
                 return;
             }

@@ -6,6 +6,7 @@ import Modele.Entites.EntiteAvecInventaire.Batiments.Recette;
 import Modele.Entites.Ressources.Ressource;
 import Modele.Entites.EntiteAvecInventaire.Inventaire;
 import Modele.Entites.EntiteAvecInventaire.Batiments.Forge;
+import Vue.IE_inventaire;
 import Vue.InterfaceEntite;
 
 import javax.swing.*;
@@ -26,7 +27,8 @@ public class IE_Forge implements InterfaceEntite {
     private JPanel zone_fourneaux = new JPanel(); //l'interface dans laquelle s'affiche la liste des fourneaux
     private ArrayList<JPanel> liste_fourneaux = new ArrayList<JPanel>();// la list  e des interfaces des fourneaux
 
-    private JTextArea zone_inventaire = new JTextArea("*");
+    private JPanel zone_inventaire = new JPanel();//new JTextArea("*");
+    private IE_inventaire inventaire = new IE_inventaire();
 
     private JTabbedPane tabbed_pane = new JTabbedPane();
 
@@ -50,8 +52,9 @@ public class IE_Forge implements InterfaceEntite {
         zone_recette.setBorder(BorderFactory.createTitledBorder("il y a actuellement * en attente"));
 
         //parametrage de l'interface de l'inventaire
-        zone_inventaire.setEditable(false);
-        zone_inventaire.setBackground(fenetre_princ.getBackground());
+        //zone_inventaire.setEditable(false);
+        //zone_inventaire.setBackground(fenetre_princ.getBackground());
+        zone_inventaire.add(inventaire.getInterface());
 
         // paramétrage de la fenetre princ
         fenetre_princ.setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -104,7 +107,7 @@ public class IE_Forge implements InterfaceEntite {
      */
     public void maj_zone_inventaire()
     {
-        if (forge.getInventaire() != null)
+        /*if (forge.getInventaire() != null)
         {
             String result = "";
             Inventaire i = forge.getInventaire();
@@ -119,7 +122,10 @@ public class IE_Forge implements InterfaceEntite {
                 }
             }
             zone_inventaire.setText(result);
-        }
+        }*/
+        zone_inventaire.remove(inventaire.getInterface());
+        inventaire.mise_a_jour_inventaire(forge);
+        zone_inventaire.add(inventaire.getInterface());
     }
 
     /**
