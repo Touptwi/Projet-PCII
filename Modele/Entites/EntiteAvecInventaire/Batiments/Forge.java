@@ -34,8 +34,14 @@ public class Forge extends Batiment {
 
         Inventaire ingredient = new Inventaire();
         ingredient.add(new Ressource(_e, 1, Ressource.Type.GOLD));
-        
-        add_recettes(new Recette("rubis poli", ingredient, 5,3));
+        add_recettes(new Recette("or sculpté", ingredient, 5,3));
+
+
+        Inventaire ingredient2 = new Inventaire();
+        ingredient2.add(new Ressource(_e, 1, Ressource.Type.SILVER));
+
+        add_recettes(new Recette("aluminium traité", ingredient2, 5,3));
+
 
         ////////////////////////////////////
         Arrays.fill(fourneaux, null);

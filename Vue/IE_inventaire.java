@@ -38,13 +38,12 @@ public class IE_inventaire {
     public void mise_a_jour_inventaire(Inventaire i)
     {
         inventaire = new JPanel();
-        for(Ressource r:i)
+        for(Ressource r:i.getInventaire())
         {
             if(r!= null && r.getQuantitee() > 0)
             {
-                inventaire.add(new JLabel(new ImageIcon("Images/Ressources/" + r.getType().name() + "/Ingot.png","description")));
+                inventaire.add(new JLabel(r.toString(),new ImageIcon("Images/Ressources/" + r.getType().name() + "/Ingot.png","description"),SwingConstants.LEFT));
                 //System.out.println(r.toString());
-                inventaire.add(new JLabel(r.toString()));
             }
         }
     }
