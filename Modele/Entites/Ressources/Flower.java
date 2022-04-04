@@ -13,11 +13,14 @@ public class Flower extends Ressource implements Runnable
 
     public Flower(Etat _e, Point pos)
     {
-    	super(_e, 1, Ressource.Type.FLEUR, pos);
+    	super(_e, 5, Ressource.Type.FLEUR, pos);
         this.interface_e = new IE_Plante(_e, this);
     	this.affichable = new VueFlower(this);
         this.position = pos;
         _e.getGrille().setCase(pos, this);
+        
+        Thread th = new Thread(this);
+        th.start();
     }
 
     public void run() 
@@ -28,10 +31,12 @@ public class Flower extends Ressource implements Runnable
             if(durability < 70 && color == Color.red)
             {
                 color = Color.orange;
+                this.setQuantitee(1);
             } 
             else if (durability<40 && color == Color.orange)
             {
                 color = Color.yellow;
+                this.setQuantitee(3);
             }
             
             try { Thread.sleep(200); }

@@ -33,7 +33,7 @@ public class Etat
 
 	Countdown countdown;
 
-    public Etat(int l, int h,int d)
+    public Etat(int l, int h, int d)
     {
         largeur = l;
         hauteur = h;
