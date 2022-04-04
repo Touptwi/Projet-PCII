@@ -3,9 +3,7 @@ package Vue.AffichageRessource;
 import java.awt.Canvas;
 import java.awt.Dimension;
 
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import Modele.Etat;
 import Modele.Entites.Ressources.Ressource;
@@ -27,9 +25,10 @@ public class IE_Ressource implements InterfaceEntite
         icone = new Canvas();
         icone.setSize(new Dimension(60,60));
         
-		
-        JTextField nameAndQuantity = new JTextField(ressource.toString(), 20);
-        nameAndQuantity.setEditable(false);
+
+        JLabel nameAndQuantity = new JLabel(ressource.toString(),new ImageIcon("Images/Ressources/" + ressource.getType().name() +"/Ingot.png"),SwingConstants.LEFT);
+        //JTextField nameAndQuantity = new JTextField(ressource.toString(), 20);
+        //nameAndQuantity.setEditable(false);
         
         //mise en page via un SPLITSPANE
         separateur = new JSplitPane(JSplitPane.VERTICAL_SPLIT, icone, nameAndQuantity);
