@@ -50,6 +50,11 @@ public class IE_Forge implements InterfaceEntite {
         //parametrage de l'interface de recette
         zone_recette.setLayout(new BoxLayout(zone_recette,BoxLayout.Y_AXIS));
         zone_recette.setBorder(BorderFactory.createTitledBorder("il y a actuellement * en attente"));
+        for(Recette r:forge.get_recettes()) {
+            System.out.println(r.getNom());
+            generate_ie_recette(r, new IE_inventaire());
+            zone_recette.add(liste_recette.get(r));
+        }
 
         //parametrage de l'interface de l'inventaire
         //zone_inventaire.setEditable(false);
@@ -119,12 +124,10 @@ public class IE_Forge implements InterfaceEntite {
     {
         for(Recette i:forge.get_recettes())
         {
-            if (!liste_recette.containsKey(i)) // si elle n'est pas déjà ajouté
+            /*if (!liste_recette.containsKey(i)) // si elle n'est pas déjà ajouté
             {
-                generate_ie_recette(i);
-                zone_recette.add(liste_recette.get(i));
-                maj_ie_recette(liste_recette.get(i),i);
-            }else{
+
+            }else*/{
                 maj_ie_recette(liste_recette.get(i),i);
             }
         }
@@ -174,31 +177,29 @@ public class IE_Forge implements InterfaceEntite {
      * et un bouton lançant la production.
      * @param r la recette liée à cette interface
      */
-    private void generate_ie_recette(Recette r)
+    private void generate_ie_recette(Recette r, IE_inventaire i)
     {
         JPanel recette_ie = new JPanel();
         recette_ie.setBorder(BorderFactory.createTitledBorder(r.getNom()));
 
         JButton produire = new JButton();
-        JTextArea area = new JTextArea();
 
         recette_ie.setLayout(new BorderLayout());
         recette_ie.add(produire,BorderLayout.EAST);
-        //recette_ie.add(area,BorderLayout.CENTER);
-        IE_inventaire inventaire = new IE_inventaire();
-        inventaire.mise_a_jour_inventaire(r.get_ingredients());
-        recette_ie.add(inventaire.getInterface(),BorderLayout.CENTER);
+
+        //l'inventaire indiquant la liste des ingrédients nécessaires
+        i.mise_a_jour_inventaire(r.get_ingredients());
+        System.out.println("recette " + r.getNom() + ": " + r.get_ingredients_string());
+        recette_ie.add(i.getInterface());
 
         // LE bouton qui permettera de selectionner la recette
         produire.setEnabled(r.check(forge.getInventaire()));
         produire.setText("lancer production");
         produire.addActionListener(new ProduireListener(forge,r));
 
-        //Element necessaire a la creation de la recette
-        area.setEditable(false);
-        area.setText("\n" + r.get_ingredients_string());
 
-        liste_recette.put(r,recette_ie); //on ajoute le duo recette
+        liste_recette.put(r,recette_ie); //on ajoute le duo recette interface
+        System.out.println(liste_recette.size());
     }
 
     /**
