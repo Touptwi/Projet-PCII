@@ -18,23 +18,14 @@ public class Dwarf extends EntiteDeplacable
 		this.isDwarf = true;
     }
 
+    //On update ici simplement la position de notre nain
 	@Override
 	public boolean check_deplacement(Point position, ArrayList<Point> voisins)
 	{
-		// TODO Auto-generated method stub
 		this.position = position;
 		return false;
 	}
 
 	@Override
-	public void fin_deplacement(Point position, ArrayList<Point> voisins) 
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void fuir(Point pos)
-	{
-		// TODO Auto-generated method stub	
-	}
+	public void fin_deplacement(Point position, ArrayList<Point> voisins) { }
 }
