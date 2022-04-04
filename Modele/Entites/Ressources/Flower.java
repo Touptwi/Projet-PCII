@@ -23,6 +23,11 @@ public class Flower extends Ressource implements Runnable
         th.start();
     }
 
+    /**
+     * Methode run
+     * Met a jour la durabilite de la fleur en fonction du temps, 
+     * change aussi la couleur et la quantitee de la ressource en fonction du temps qui passe
+     */
     public void run() 
     {
         while(durability > 0)

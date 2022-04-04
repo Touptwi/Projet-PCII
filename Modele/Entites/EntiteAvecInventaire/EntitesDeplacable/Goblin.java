@@ -32,11 +32,6 @@ public class Goblin extends EntiteDeplacable
     		etat.getGrille().recupererRessources(this);
     	}
     	this.isFeared = true;
-//        if(!isFeared)
-//        {
-//
-//            fuir(pos);
-//        }
     }
 
 	@Override
@@ -68,18 +63,5 @@ public class Goblin extends EntiteDeplacable
         }else{
             //System.out.println("la position " + position + "n'est pas la bonne");
         }
-	}
-
-    /** Rentre d'où il vient */
-	@Override
-	public void fuir(Point pos)
-	{
-//        isFeared = true;
-//        if (deplacement != null) {
-//            this.deplacement.stop_thread();
-//        }
-//        this.deplacement = new Deplacement(this, pos, position, etat.getGrille());
-//        this.deplacement.start();
-
 	}
 }

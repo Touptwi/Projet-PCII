@@ -31,6 +31,13 @@ public class TerrainGenerationThread extends Thread
 	
 	public void stop_thread() { this.running = false; }
 	
+	/**
+	 * Methode run lancant la boucle de generation de ressources
+	 * Chaque ressource a son type genere aleatoirement
+	 * On attache a cette ressource un gobelin qui apparait plus tard (intervalle determine par les attributs final time_wait_min/max)
+	 * On attend l apparition du gobelin
+	 * On repete ces etapes avec une seconde de delai
+	 */
 	@Override
 	public void run()
 	{
@@ -66,6 +73,10 @@ public class TerrainGenerationThread extends Thread
 		}
 	}
 	
+	/**
+	 * Methode utilitaire pour obtenir une position aleatoire
+	 * @return position aleatoire dans la grille 
+	 */
 	public Point
 	getRandomPos()
 	{
@@ -81,6 +92,11 @@ public class TerrainGenerationThread extends Thread
 		return new Point(x,y);
 	}
 	
+	
+	/**
+	 * Methode utilitaire pour obtenir une position aleatoire sur une bordure
+	 * @return Position libre sur une bordure de la grille
+	 */
 	public Point
 	getRandomFreeBorderPos()
 	{

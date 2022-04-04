@@ -32,29 +32,33 @@ public class Countdown
 	
 	public void start()
 	{
+		//scheduler nous permet de lancer un runnable a un intervalle de temps donne
 		final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+		
+		
 	    final Runnable runnable = new Runnable() 
 	    {
 	        public void run() 
 	        {
-	        	countdownValue--;
+	        	countdownValue--; //Update du decompte (on decrois jusqu'a 0)
 	            if (countdownValue < 0) 
 	            {
-	            	scheduler.shutdown();
-	            	etat.stop();
-		            
+	            	scheduler.shutdown(); //on arrete la programmation du run
+	            	etat.stop(); //on arrete la boucle de jeu
+	            	
+	            	
+		            //Fenetre de dialogue
 		            JFrame jFrame = new JFrame();
-
-		            JDialog jd = new JDialog(jFrame); //le message pop up indiquant le score lancé à la fin de la partie
-
+		            JDialog jd = new JDialog(jFrame);
 		            jd.setLayout(new FlowLayout());
-
 		            jd.setBounds(500, 300, 400, 300);
 
+		            //Affichage texte
 		            JLabel jLabel = new JLabel("Your score :" + etat.getScore());
-		            
 		            JButton jButton = new JButton("Exit game");
-		            jButton.addActionListener( (ActionListener) new ActionListener() 
+		            
+		            // quand on clique sur "exit game", on termine le programme :
+		            jButton.addActionListener( (ActionListener) new ActionListener()  
 		            {
 						@Override
 						public void actionPerformed(ActionEvent e) { System.exit(1);}//jd.setVisible(false); }
@@ -62,10 +66,10 @@ public class Countdown
 
 		            jd.add(jLabel);
 		            jd.add(jButton);
-		            jd.setVisible(true);
+		            jd.setVisible(true); //On affiche finalement la fenetre
 	            }
 	        }
 	    };
-	    scheduler.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
+	    scheduler.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS); // on lance le scheduler avec une intervalle de temps de 1 seconde.
 	}
 }

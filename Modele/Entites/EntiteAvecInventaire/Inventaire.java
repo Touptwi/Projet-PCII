@@ -78,6 +78,10 @@ public class Inventaire implements Iterable<Ressource>
         return it;
 	}
 
+	/**
+	 * Transfert l'inventaire de l'entitee courant a l'inventaire cible
+	 * @param cible : l'inventaire cible
+	 */
 	public void transfert(Inventaire cible)
 	{
 		for (int i = 0; i < inventaire.length ; i++)
