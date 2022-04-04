@@ -28,6 +28,8 @@ public class IE_Plante implements InterfaceEntite {
 
         //création de la fenetre générale de l'interface
         interface_graphique_princ = new JPanel();
+        interface_graphique_princ.setLayout(new BoxLayout(interface_graphique_princ, BoxLayout.PAGE_AXIS));
+        interface_graphique_princ.add(new JLabel(new ImageIcon("Images/Ressources/FLEUR/Ore.png")));
 
         //generation de l'icone
         icone = new Canvas();

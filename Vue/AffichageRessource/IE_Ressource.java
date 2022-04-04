@@ -24,7 +24,8 @@ public class IE_Ressource implements InterfaceEntite
         //generation de l'icone
         icone = new Canvas();
         icone.setSize(new Dimension(60,60));
-        
+        interface_graphique_princ.setLayout(new BoxLayout(interface_graphique_princ, BoxLayout.PAGE_AXIS));
+        interface_graphique_princ.add(new JLabel(new ImageIcon("Images/Ressources/"+r.getType()+"/Ore.png")));
 
         JLabel nameAndQuantity = new JLabel(ressource.toString(),new ImageIcon("Images/Ressources/" + ressource.getType().name() +"/Ingot.png"),SwingConstants.LEFT);
         //JTextField nameAndQuantity = new JTextField(ressource.toString(), 20);

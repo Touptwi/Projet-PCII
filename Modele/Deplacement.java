@@ -30,6 +30,7 @@ public class Deplacement extends Thread
 		this.to = _to;
 	}
 	
+	//Ajout de pR (pour goblin) indicant la presence d'un retour
 	public 
 	Deplacement(EntiteDeplacable _e, Point _from, Point _to, Grille _grille, boolean pR)
 	{
@@ -53,6 +54,7 @@ public class Deplacement extends Thread
 		lance_chemin();
 		if(!this.parcourRetour)
 		{
+			//update des positions pour le retour
 			to = from;
 			from = current_p;
 			this.shouldQuit = false;
