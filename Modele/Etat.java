@@ -113,7 +113,6 @@ public class Etat
     public void addScore(int n_score)
     {
         score = score + n_score;
-        System.out.println("score:" + score);
     }
 
 	public int getScore()

@@ -42,6 +42,7 @@ public class Affichage extends JSplitPane
         etat = e;        
 
         fenetre = new JFrame("FlowerCraft"); //la fenêtre principale du jeu
+        fenetre.setResizable(false);
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.setPreferredSize(new Dimension(etat.getLargeur() , etat.getHauteur())); //la fenêtre princ
