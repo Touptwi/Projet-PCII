@@ -25,7 +25,7 @@ public class IE_Forge implements InterfaceEntite {
     private JPanel zone_info = new JPanel();
 
     private JPanel zone_fourneaux = new JPanel(); //l'interface dans laquelle s'affiche la liste des fourneaux
-    private ArrayList<JPanel> liste_fourneaux = new ArrayList<JPanel>();// la list  e des interfaces des fourneaux
+    private ArrayList<JPanel> liste_fourneaux = new ArrayList<JPanel>();// la liste des interfaces des fourneaux
 
     private JPanel zone_inventaire = new JPanel();//new JTextArea("*");
     private IE_inventaire inventaire = new IE_inventaire();
@@ -107,22 +107,6 @@ public class IE_Forge implements InterfaceEntite {
      */
     public void maj_zone_inventaire()
     {
-        /*if (forge.getInventaire() != null)
-        {
-            String result = "";
-            Inventaire i = forge.getInventaire();
-            Ressource[] ressources = i.getInventaire();
-            for (int cpt = 0; cpt < ressources.length ; cpt++)
-            {
-                Ressource r = ressources[cpt];
-                if(r!=null && r.getQuantitee() != 0)
-                {
-                    result += r.toString();
-                    result += "\n";
-                }
-            }
-            zone_inventaire.setText(result);
-        }*/
         zone_inventaire.remove(inventaire.getInterface());
         inventaire.mise_a_jour_inventaire(forge);
         zone_inventaire.add(inventaire.getInterface());
@@ -200,7 +184,10 @@ public class IE_Forge implements InterfaceEntite {
 
         recette_ie.setLayout(new BorderLayout());
         recette_ie.add(produire,BorderLayout.EAST);
-        recette_ie.add(area,BorderLayout.CENTER);
+        //recette_ie.add(area,BorderLayout.CENTER);
+        IE_inventaire inventaire = new IE_inventaire();
+        inventaire.mise_a_jour_inventaire(r.get_ingredients());
+        recette_ie.add(inventaire.getInterface(),BorderLayout.CENTER);
 
         // LE bouton qui permettera de selectionner la recette
         produire.setEnabled(r.check(forge.getInventaire()));

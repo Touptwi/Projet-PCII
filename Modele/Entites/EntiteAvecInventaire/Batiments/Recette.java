@@ -53,6 +53,11 @@ public class Recette {
         return result;
     }
 
+    public Inventaire get_ingredients()
+    {
+        return ingredients;
+    }
+
     public int getTemps() {
         return temps;
     }
