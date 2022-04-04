@@ -46,26 +46,31 @@ public class Deplacement extends Thread
 			while (idx < a_star_path.size() && !shouldQuit) {
 				Point v = a_star_path.get(idx);
 				if (this.move(current_p, v)) {
-					e.check_deplacement(current_p, grille.getVoisins(current_p));
-					current_p = v; //changing our position locally
-					idx++; //going to read the next step
+					if (e.check_deplacement(current_p, grille.getVoisins(current_p))) {//si le check déplacement a réussi (cas goblein: si le gobelin a croisé un ennemis)
+						System.out.println("sortie demandé par check déplacement");
+						this.stop_thread();
+					} else {
+						current_p = v; //changing our position locally
+						idx++; //going to read the next step
 
-					//System.out.print("Move : ");
-					//System.out.println(v); //debug
+						//System.out.print("Move : ");
+						//System.out.println(v); //debug
+					}
 				} else { //si le mouvement a echoué
 					if (e.check_deplacement(current_p, grille.getVoisins(current_p))) {//si le check déplacement a réussi (cas goblein: si le gobelin a croisé un ennemis)
 						System.out.println("sortie demandé par check déplacement");
-						return;
-					}
-					System.out.print("Erreur de d�placement : ");
-					//System.out.println(v);  //debug
-					from = current_p;
-					if (algorithmA_star()) idx = 0;
-					else {
-						System.out.print("Aucun chemin trouv�");
-						break;
-						//TODO : Possible d�bat ici, est-ce vraiment bon de break dans ce cas ou faut-il attendre ?
-						// -> V�rification de la distance entre la position et la destination ?
+						this.stop_thread();
+					} else {
+						System.out.print("Erreur de d�placement : ");
+						//System.out.println(v);  //debug
+						from = current_p;
+						if (algorithmA_star()) idx = 0;
+						else {
+							System.out.print("Aucun chemin trouv�");
+							break;
+							//TODO : Possible d�bat ici, est-ce vraiment bon de break dans ce cas ou faut-il attendre ?
+							// -> V�rification de la distance entre la position et la destination ?
+						}
 					}
 				}
 				try {
