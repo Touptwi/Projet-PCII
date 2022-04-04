@@ -5,7 +5,11 @@ import Modele.Entites.EntiteAvecInventaire.EntitesDeplacable.Goblin;
 import Vue.IE_inventaire;
 import Vue.InterfaceEntite;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.Arrays;
 
 public class IE_Goblin implements InterfaceEntite {
@@ -18,6 +22,8 @@ public class IE_Goblin implements InterfaceEntite {
     {
         this.goblin = gob;
         this.interface_graphique = new JPanel();
+        interface_graphique.setLayout(new BoxLayout(interface_graphique, BoxLayout.PAGE_AXIS));
+        interface_graphique.add(new JLabel(new ImageIcon("Images/Goblin/Goblin.png")));
 
         //Inventaire : Affichage de l'inventaire du gobelin
         //inventaire = new JTextField(Arrays.toString(goblin.getInventaire().getInventaire()), 20);
